@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:photo_manager/photo_manager.dart';
 import 'dart:typed_data';
 import '../theme/vinci_theme.dart';
 import '../../providers/providers.dart';
@@ -273,9 +274,7 @@ class _ResultCardState extends ConsumerState<_ResultCard> {
               offset: Offset(0, _hovered ? 6 : 4),
             ),
           ],
-          transform: _hovered
-              ? (Matrix4.identity()..translate(0.0, -2.0))
-              : Matrix4.identity(),
+          transform: Matrix4.identity()..translate(0.0, _hovered ? -2.0 : 0.0),
         ),
         child: Row(
           children: [

@@ -4,6 +4,7 @@ import '../../data/services/embedding_service.dart';
 import '../../data/services/vector_store.dart';
 import '../../data/services/search_service.dart';
 import '../../data/services/indexer_service.dart';
+import '../../data/services/favorites_store.dart';
 import '../../data/repositories/photo_repository.dart';
 import '../../domain/entities/search_result.dart';
 

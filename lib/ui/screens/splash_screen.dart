@@ -43,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                   ],
                 ),
                 child: const Icon(
-                  Icons.photo_search_rounded,
+                  Icons.photo_filter,
                   size: 56,
                   color: Colors.white,
                 ),

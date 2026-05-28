@@ -37,7 +37,7 @@ Future<void> runIndexing(WidgetRef ref) async {
       final photos = await photoRepo.loadPhotos(page: page, size: size);
       if (photos.isEmpty) break;
 
-      // Index the batch — use indexAssetEntities for raw AssetEntity inputs
+      // Index the batch using AssetEntity directly
       await indexer.indexAssetEntities(photos);
       final done = vectorStore.indexedCount;
       ref.read(indexProgressProvider.notifier).state = (done, total);

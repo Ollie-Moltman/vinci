@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:photo_manager/photo_manager.dart';
 import '../theme/vinci_theme.dart';
-import '../services/permission_service.dart';
 
 class PermissionsScreen extends StatefulWidget {
   final VoidCallback onGranted;
@@ -13,25 +12,33 @@ class PermissionsScreen extends StatefulWidget {
 }
 
 class _PermissionsScreenState extends State<PermissionsScreen> {
-  final _permissionService = PermissionService();
-  bool _isRequesting = false;
-  bool _denied = false;
+  bool _requesting = false;
 
   Future<void> _requestPermission() async {
-    setState(() => _isRequesting = true);
-    final granted = await _permissionService.requestPhotosPermission();
-    setState(() {
-      _isRequesting = false;
-      _denied = !granted;
-    });
-    if (granted) widget.onGranted();
+    setState(() => _requesting = true);
+    try {
+      final result = await PhotoManager.requestPermissionExtend();
+      if (!mounted) return;
+      if (result.isAuth) {
+        widget.onGranted();
+      } else {
+        _showDeniedSnackBar();
+      }
+    } finally {
+      if (mounted) setState(() => _requesting = false);
+    }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    // Auto-request on appear
-    WidgetsBinding.instance.addPostFrameCallback((_) => _requestPermission());
+  void _showDeniedSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Permission required to search your photos'),
+        action: SnackBarAction(
+          label: 'Settings',
+          onPressed: () => PhotoManager.openAppSetting(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -47,113 +54,128 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(32),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
             child: Column(
               children: [
-                const Spacer(),
-                // Vinci logo placeholder
+                const Spacer(flex: 3),
+                // Icon
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: 96,
+                  height: 96,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [VinciTheme.primary, VinciTheme.primaryDark],
                     ),
-                    borderRadius: BorderRadius.circular(24),
+                    borderRadius: BorderRadius.circular(26),
+                    boxShadow: [
+                      BoxShadow(
+                        color: VinciTheme.primary.withOpacity(0.25),
+                        blurRadius: 24,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
                   ),
-                  child: const Icon(Icons.photo_search_rounded,
-                      size: 56, color: Colors.white),
+                  child: const Icon(Icons.photo_library_outlined,
+                      color: Colors.white, size: 48),
                 ),
                 const SizedBox(height: 32),
                 const Text(
-                  'Vinci',
+                  'Access Your Photos',
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: VinciTheme.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'AI-Powered Photo Search',
-                  style: TextStyle(fontSize: 16, color: VinciTheme.textSecondary),
+                  'Vinci needs access to your photo library to index and search your photos using AI — all processing happens on your device.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: VinciTheme.textSecondary,
+                    height: 1.5,
+                  ),
                 ),
-                const Spacer(),
+                const SizedBox(height: 24),
+                // Privacy badge
                 Container(
-                  padding: const EdgeInsets.all(20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: VinciTheme.borderColor),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.04),
-                        blurRadius: 20,
-                        offset: const Offset(0, 4),
+                    color: Colors.green.shade.shade50,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.green.shade.shade200),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.lock_outline,
+                          size: 16, color: Colors.green.shade.shade700),
+                      const SizedBox(width: 6),
+                      Text(
+                        '100% on-device — never leaves your phone',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.green.shade.shade700,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
-                  child: Column(
-                    children: [
-                      _buildInfoRow(Icons.photo_library_outlined,
-                          'Your photos stay on your device'),
-                      const SizedBox(height: 12),
-                      _buildInfoRow(Icons.lock_outlined, '100% private & secure'),
-                      const SizedBox(height: 12),
-                      _buildInfoRow(Icons.cloud_off, 'No cloud upload needed'),
-                    ],
+                ),
+                const Spacer(flex: 4),
+                // CTA button
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: _requesting ? null : _requestPermission,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: VinciTheme.primary,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: _requesting
+                        ? const SizedBox(
+                            width: 22,
+                            height: 22,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.5,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            'Allow Photo Access',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                   ),
                 ),
-                const SizedBox(height: 32),
-                if (_denied) ...[
-                  const Text(
-                    'Permission required to search your photos',
-                    style: TextStyle(color: Colors.red),
+                const SizedBox(height: 16),
+                TextButton(
+                  onPressed: () => PhotoManager.openAppSetting(),
+                  child: const Text(
+                    'Open Settings Instead',
+                    style: TextStyle(
+                      color: VinciTheme.textSecondary,
+                      fontSize: 14,
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => _permissionService.openSettings(),
-                    child: const Text('Open Settings'),
-                  ),
-                ] else ...[
-                  ElevatedButton(
-                    onPressed: _isRequesting ? null : _requestPermission,
-                    child: _isRequesting
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(
-                                strokeWidth: 2, color: Colors.white),
-                          )
-                        : const Text('Allow Access'),
-                  ),
-                ],
-                const Spacer(),
+                ),
+                const Spacer(flex: 1),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildInfoRow(IconData icon, String text) {
-    return Row(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: VinciTheme.primary.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Icon(icon, color: VinciTheme.primary, size: 20),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(text,
-              style: const TextStyle(fontSize: 14, color: VinciTheme.textPrimary)),
-        ),
-      ],
     );
   }
 }

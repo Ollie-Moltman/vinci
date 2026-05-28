@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:android_intent_plus/android_intent.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../theme/vinci_theme.dart';
 import '../../data/repositories/photo_repository.dart';
 import '../../domain/entities/search_result.dart';
@@ -63,29 +61,10 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
     final asset =
         await PhotoRepository().getAssetById(widget.result.photo.id);
     if (asset == null) return;
-
-    // Try to open using Android intent for the specific photo
-    // Falls back to opening the gallery app if exact path unavailable
-    try {
-      final file = await asset.file;
-      if (file != null) {
-        final intent = AndroidIntent(
-          action: 'action_view',
-          type: 'image/*',
-          uri: Uri.file(file.path),
-        );
-        await intent.launch();
-      }
-    } catch (e) {
-      // Fallback: open gallery
-      try {
-        final intent = AndroidIntent(
-          action: 'action_view',
-          type: 'image/*',
-        );
-        await intent.launch();
-      } catch (_) {}
-    }
+    final file = await asset.file;
+    if (file == null) return;
+    // Share as file (opens gallery app picker on Android)
+    await Share.shareXFiles([XFile(file.path)], text: 'View photo');
   }
 
   @override

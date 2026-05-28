@@ -39,7 +39,8 @@ class PhotoRepository {
       type: RequestType.image,
     );
     if (albums.isEmpty) return 0;
-    return albums.first.assetCount;
+    final allAssets = await albums.first.getAssetList();
+    return allAssets.length;
   }
 
   /// Load a single asset by ID.
