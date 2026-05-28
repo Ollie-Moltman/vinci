@@ -10,37 +10,42 @@ import '../../domain/entities/search_result.dart';
 // Services
 final permissionServiceProvider = Provider((_) => PermissionService());
 final embeddingServiceProvider = Provider((_) => EmbeddingService());
-final vectorStoreProvider = Provider((ref) {
-  return VectorStore('${ref.watch(indexDirProvider)}/vectors');
+
+final vectorStoreProvider = Provider<VectorStore>((ref) {
+  final dir = ref.watch(indexDirProvider);
+  return VectorStore('$dir/vectors');
 });
-final searchServiceProvider = Provider((ref) {
+
+final searchServiceProvider = Provider<SearchService>((ref) {
   return SearchService(
     ref.watch(embeddingServiceProvider),
     ref.watch(vectorStoreProvider),
   );
 });
-final indexerServiceProvider = Provider((ref) {
+
+final indexerServiceProvider = Provider<IndexerService>((ref) {
   return IndexerService(
     ref.watch(embeddingServiceProvider),
     ref.watch(vectorStoreProvider),
   );
 });
+
 final photoRepositoryProvider = Provider((_) => PhotoRepository());
 
-// App state providers
+// App state
 final hasPermissionProvider = StateProvider<bool>((ref) => false);
 final isIndexingProvider = StateProvider<bool>((ref) => false);
 final indexProgressProvider = StateProvider<(int, int)>((ref) => (0, 0));
 final indexedCountProvider = StateProvider<int>((ref) => 0);
 final lastIndexedProvider = StateProvider<DateTime?>((ref) => null);
-final indexDirProvider = Provider<String>((ref) {
-  // Provided by app setup — for now placeholder
-  return '/data/user/0/com.vinci.app';
-});
+final indexDirProvider = StateProvider<String>((ref) => '');
+final autoIndexEnabledProvider = StateProvider<bool>((ref) => true);
 
-// Search state
+// Search
 final searchQueryProvider = StateProvider<String>((ref) => '');
-final searchResultsProvider = FutureProvider<List<SearchResult>>((ref) async {
+
+final searchResultsProvider =
+    FutureProvider<List<SearchResult>>((ref) async {
   final query = ref.watch(searchQueryProvider);
   if (query.isEmpty) return [];
 
@@ -48,5 +53,8 @@ final searchResultsProvider = FutureProvider<List<SearchResult>>((ref) async {
   return await searchService.search(query);
 });
 
-// Auto-index toggle
-final autoIndexEnabledProvider = StateProvider<bool>((ref) => true);
+// Embedding initialization
+final embeddingInitializedProvider = FutureProvider<void>((ref) async {
+  final svc = ref.read(embeddingServiceProvider);
+  await svc.initialize();
+});

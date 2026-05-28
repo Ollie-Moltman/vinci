@@ -1,9 +1,42 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:typed_data';
 import '../theme/vinci_theme.dart';
 import '../../providers/providers.dart';
+import '../../data/repositories/photo_repository.dart';
+import '../../domain/entities/search_result.dart';
 import 'detail_screen.dart';
+import 'package:share_plus/share_plus.dart';
+
+/// In-memory thumbnail cache keyed by photo ID.
+final thumbCacheProvider =
+    StateNotifierProvider<ThumbCacheNotifier, Map<String, Uint8List>>(
+        (ref) => ThumbCacheNotifier());
+
+class ThumbCacheNotifier extends StateNotifier<Map<String, Uint8List>> {
+  ThumbCacheNotifier() : super({});
+
+  Future<void> preload(List<String> ids) async {
+    final repo = PhotoRepository();
+    for (final id in ids) {
+      if (state.containsKey(id)) continue;
+      final asset = await repo.getAssetById(id);
+      if (asset != null) {
+        final thumb = await asset.thumbnailDataWithSize(
+          const ThumbnailSize(300, 300),
+          quality: 85,
+        );
+        if (thumb != null) {
+          state = {...state, id: thumb};
+        }
+      }
+    }
+  }
+
+  void put(String id, Uint8List bytes) {
+    state = {...state, id: bytes};
+  }
+}
 
 class ResultsScreen extends ConsumerStatefulWidget {
   final String query;
@@ -18,9 +51,12 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
   @override
   void initState() {
     super.initState();
-    // Set search query in provider
     Future.microtask(() {
-      ref.read(searchQueryProvider.notifier).state = widget.query;
+      final results = ref.read(searchResultsProvider);
+      results.whenData((list) {
+        final ids = list.map((r) => r.photo.id).toList();
+        ref.read(thumbCacheProvider.notifier).preload(ids);
+      });
     });
   }
 
@@ -36,7 +72,7 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
             end: Alignment.bottomCenter,
             colors: [
               VinciTheme.backgroundLight,
-              VinciTheme.backgroundGradientEnd
+              VinciTheme.backgroundGradientEnd,
             ],
           ),
         ),
@@ -55,7 +91,7 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
                           gradient: const LinearGradient(
                             colors: [
                               VinciTheme.primary,
-                              VinciTheme.primaryDark
+                              VinciTheme.primaryDark,
                             ],
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -164,23 +200,60 @@ class _ResultsScreenState extends ConsumerState<ResultsScreen> {
   }
 }
 
-class _ResultCard extends StatefulWidget {
-  final dynamic result;
+class _ResultCard extends ConsumerStatefulWidget {
+  final SearchResult result;
 
   const _ResultCard({required this.result});
 
   @override
-  State<_ResultCard> createState() => _ResultCardState();
+  ConsumerState<_ResultCard> createState() => _ResultCardState();
 }
 
-class _ResultCardState extends State<_ResultCard> {
+class _ResultCardState extends ConsumerState<_ResultCard> {
   bool _hovered = false;
+  Uint8List? _thumbBytes;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadThumb();
+  }
+
+  Future<void> _loadThumb() async {
+    final cache = ref.read(thumbCacheProvider);
+    if (cache.containsKey(widget.result.photo.id)) {
+      if (mounted) setState(() => _thumbBytes = cache[widget.result.photo.id]);
+      return;
+    }
+
+    final asset =
+        await PhotoRepository().getAssetById(widget.result.photo.id);
+    if (asset != null && mounted) {
+      final thumb = await asset.thumbnailDataWithSize(
+        const ThumbnailSize(300, 300),
+        quality: 85,
+      );
+      if (mounted && thumb != null) {
+        ref
+            .read(thumbCacheProvider.notifier)
+            .put(widget.result.photo.id, thumb);
+        setState(() => _thumbBytes = thumb);
+      }
+    }
+  }
+
+  void _sharePhoto() async {
+    final asset =
+        await PhotoRepository().getAssetById(widget.result.photo.id);
+    if (asset == null) return;
+    final file = await asset.file;
+    if (file == null) return;
+    await Share.shareXFiles([XFile(file.path)]);
+  }
 
   @override
   Widget build(BuildContext context) {
     final result = widget.result;
-    final photo = result.photo;
-    // final path = photo.path;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovered = true),
@@ -200,12 +273,13 @@ class _ResultCardState extends State<_ResultCard> {
               offset: Offset(0, _hovered ? 6 : 4),
             ),
           ],
-          transform:
-              _hovered ? (Matrix4.identity()..translate(0.0, -2.0)) : Matrix4.identity(),
+          transform: _hovered
+              ? (Matrix4.identity()..translate(0.0, -2.0))
+              : Matrix4.identity(),
         ),
         child: Row(
           children: [
-            // Photo
+            // Photo thumbnail
             Expanded(
               flex: 9,
               child: Container(
@@ -213,19 +287,25 @@ class _ResultCardState extends State<_ResultCard> {
                 decoration: BoxDecoration(
                   color: VinciTheme.backgroundLight,
                   borderRadius: BorderRadius.circular(14),
-                  image: photo.path.isNotEmpty
-                      ? DecorationImage(
-                          image: FileImage(File(photo.path)),
-                          fit: BoxFit.cover,
-                        )
-                      : null,
                 ),
-                child: photo.path.isEmpty
-                    ? const Center(
-                        child: Icon(Icons.photo,
-                            color: VinciTheme.textSecondary, size: 40),
-                      )
-                    : null,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: _thumbBytes != null
+                      ? Image.memory(
+                          _thumbBytes!,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                        )
+                      : const Center(
+                          child: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child:
+                                CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        ),
+                ),
               ),
             ),
 
@@ -250,27 +330,25 @@ class _ResultCardState extends State<_ResultCard> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Share
                     _IconBtn(
                       icon: Icons.share_outlined,
                       label: 'Share',
-                      onTap: () {
-                        // TODO: implement share
-                      },
+                      onTap: _sharePhoto,
                     ),
                     const SizedBox(height: 8),
-                    // Save / Favorite
                     _IconBtn(
                       icon: result.isFavorited
                           ? Icons.favorite
                           : Icons.favorite_border,
                       label: 'Save',
                       onTap: () {
-                        // TODO: implement favorite toggle
+                        setState(() {
+                          widget.result.isFavorited =
+                              !widget.result.isFavorited;
+                        });
                       },
                     ),
                     const SizedBox(height: 8),
-                    // View in folder / gallery
                     _IconBtn(
                       icon: Icons.folder_outlined,
                       label: 'Folder',
@@ -320,11 +398,7 @@ class _IconBtnState extends State<_IconBtn> {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: _active
-              ? const LinearGradient(
-                  colors: [VinciTheme.primary, VinciTheme.primaryDark],
-                )
-              : Colors.white,
+          color: _active ? null : Colors.white,
           gradient: _active
               ? const LinearGradient(
                   colors: [VinciTheme.primary, VinciTheme.primaryDark],
@@ -332,9 +406,10 @@ class _IconBtnState extends State<_IconBtn> {
               : null,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-              color: _active
-                  ? Colors.transparent
-                  : VinciTheme.primary.withOpacity(0.3)),
+            color: _active
+                ? Colors.transparent
+                : VinciTheme.primary.withOpacity(0.3),
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.04),
@@ -346,9 +421,7 @@ class _IconBtnState extends State<_IconBtn> {
         child: Icon(
           widget.icon,
           size: 18,
-          color: _active
-              ? Colors.white
-              : VinciTheme.textSecondary,
+          color: _active ? Colors.white : VinciTheme.textSecondary,
         ),
       ),
     );

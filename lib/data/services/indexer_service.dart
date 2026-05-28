@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:photo_manager/photo_manager.dart';
+import '../../domain/entities/photo_entity.dart';
 import 'embedding_service.dart';
 import 'vector_store.dart';
 
@@ -14,25 +15,24 @@ class IndexerService {
 
   IndexerService(this._embeddingService, this._vectorStore);
 
-  /// Index a batch of photos, returns number successfully indexed.
-  Future<int> indexPhotos(List<dynamic> photos) async {
+  /// Index a batch of PhotoEntity objects.
+  /// Loads the file bytes from disk and generates + stores the embedding.
+  Future<int> indexPhotos(List<PhotoEntity> photos) async {
     int indexed = 0;
     for (final photo in photos) {
       try {
-        final file = await (photo as AssetEntity).file;
-        if (file == null) continue;
+        final file = File(photo.path);
+        if (!await file.exists()) continue;
 
         final bytes = await file.readAsBytes();
         final embedding = await _embeddingService.embedImage(bytes);
 
         await _vectorStore.indexPhoto(
           photoId: photo.id,
-          path: file.path,
+          path: photo.path,
           embedding: embedding.toList(),
-          createdAt: photo.createDateTime,
-          location: photo.latitude != null
-              ? '${photo.latitude}, ${photo.longitude}'
-              : null,
+          createdAt: photo.createdAt,
+          location: photo.location,
         );
         indexed++;
       } catch (e) {
@@ -43,29 +43,31 @@ class IndexerService {
     return indexed;
   }
 
-  /// Index all photos from the device in pages.
-  /// Calls [onProgress] after each page with (indexedCount, totalCount).
-  Future<void> indexAllPhotos({
-    required Future<int> Function(int page, int size) loadPage,
-    required Future<int> Function() getTotal,
-    required void Function(int done, int total) onProgress,
-  }) async {
-    int page = 0;
-    const size = 50;
-    int total = await getTotal();
+  /// Index assets directly (used during real indexing from photo_manager).
+  Future<int> indexAssetEntities(List<AssetEntity> assets) async {
+    int indexed = 0;
+    for (final asset in assets) {
+      try {
+        final file = await asset.file;
+        if (file == null) continue;
 
-    while (true) {
-      final photos = await loadPage(page, size);
-      if (photos == 0) break;
+        final bytes = await file.readAsBytes();
+        final embedding = await _embeddingService.embedImage(bytes);
 
-      await indexPhotos(photos);
-      final done = _vectorStore.indexedCount;
-      onProgress(done, total);
-
-      if (photos < size) break;
-      page++;
+        await _vectorStore.indexPhoto(
+          photoId: asset.id,
+          path: file.path,
+          embedding: embedding.toList(),
+          createdAt: asset.createDateTime,
+          location: asset.latitude != null
+              ? '${asset.latitude}, ${asset.longitude}'
+              : null,
+        );
+        indexed++;
+      } catch (e) {
+        continue;
+      }
     }
-
-    await _vectorStore.saveIndex();
+    return indexed;
   }
 }

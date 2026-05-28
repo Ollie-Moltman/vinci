@@ -1,10 +1,14 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import '../theme/vinci_theme.dart';
+import '../../data/repositories/photo_repository.dart';
 import '../../domain/entities/search_result.dart';
+import '../../ui/screens/results_screen.dart';
 
-class DetailScreen extends ConsumerWidget {
+class DetailScreen extends ConsumerStatefulWidget {
   final SearchResult result;
   final String query;
 
@@ -14,14 +18,50 @@ class DetailScreen extends ConsumerWidget {
     required this.query,
   });
 
+  @override
+  ConsumerState<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends ConsumerState<DetailScreen> {
+  Uint8List? _fullBytes;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFullImage();
+  }
+
+  Future<void> _loadFullImage() async {
+    final asset =
+        await PhotoRepository().getAssetById(widget.result.photo.id);
+    if (asset != null && mounted) {
+      // Load a larger thumbnail for detail view
+      final bytes = await asset.thumbnailDataWithSize(
+        const ThumbnailSize(1200, 1200),
+        quality: 95,
+      );
+      if (mounted && bytes != null) {
+        setState(() => _fullBytes = bytes);
+      }
+    }
+  }
+
   String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year}';
   }
 
+  void _sharePhoto() async {
+    final asset =
+        await PhotoRepository().getAssetById(widget.result.photo.id);
+    if (asset == null) return;
+    final file = await asset.file;
+    if (file == null) return;
+    await Share.shareXFiles([XFile(file.path)]);
+  }
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final photo = result.photo;
-    final hasValidPath = photo.path.isNotEmpty;
+  Widget build(BuildContext context) {
+    final photo = widget.result.photo;
 
     return Scaffold(
       body: Container(
@@ -45,8 +85,8 @@ class DetailScreen extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: IconButton(
-                        icon:
-                            const Icon(Icons.arrow_back, color: Colors.white, size: 18),
+                        icon: const Icon(Icons.arrow_back,
+                            color: Colors.white, size: 18),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),
@@ -62,7 +102,7 @@ class DetailScreen extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        '${(result.similarityScore * 100).toInt()}% match',
+                        '${(widget.result.similarityScore * 100).toInt()}% match',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -73,15 +113,18 @@ class DetailScreen extends ConsumerWidget {
                     const Spacer(),
                     IconButton(
                       icon: Icon(
-                        result.isFavorited
+                        widget.result.isFavorited
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        color: result.isFavorited
+                        color: widget.result.isFavorited
                             ? Colors.red
                             : VinciTheme.textPrimary,
                       ),
                       onPressed: () {
-                        // TODO: toggle favorite
+                        setState(() {
+                          widget.result.isFavorited =
+                              !widget.result.isFavorited;
+                        });
                       },
                     ),
                     IconButton(
@@ -116,14 +159,17 @@ class DetailScreen extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: AspectRatio(
                             aspectRatio: 3 / 4,
-                            child: hasValidPath
-                                ? Image.file(
-                                    File(photo.path),
+                            child: _fullBytes != null
+                                ? Image.memory(
+                                    _fullBytes!,
                                     fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) =>
-                                        _photoPlaceholder(),
                                   )
-                                : _photoPlaceholder(),
+                                : Container(
+                                    color: VinciTheme.backgroundLight,
+                                    child: const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
                           ),
                         ),
                       ),
@@ -158,7 +204,7 @@ class DetailScreen extends ConsumerWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '"$query"',
+                              '"${widget.query}"',
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -174,7 +220,8 @@ class DetailScreen extends ConsumerWidget {
                                 Text(
                                   _formatDate(photo.createdAt),
                                   style: const TextStyle(
-                                      fontSize: 13, color: VinciTheme.textSecondary),
+                                      fontSize: 13,
+                                      color: VinciTheme.textSecondary),
                                 ),
                               ],
                             ),
@@ -209,16 +256,15 @@ class DetailScreen extends ConsumerWidget {
                           children: [
                             Expanded(
                                 child: _ActionBtn(
-                                    icon: Icons.share, label: 'Share')),
+                                    icon: Icons.share, label: 'Share', onTap: _sharePhoto)),
                             const SizedBox(width: 8),
-                            Expanded(
+                            const Expanded(
                                 child: _ActionBtn(
                                     icon: Icons.add, label: 'Add to Library')),
                             const SizedBox(width: 8),
-                            Expanded(
+                            const Expanded(
                                 child: _ActionBtn(
-                                    icon: Icons.folder,
-                                    label: 'View in Gallery')),
+                                    icon: Icons.folder, label: 'View in Gallery')),
                           ],
                         ),
                       ),
@@ -243,15 +289,11 @@ class DetailScreen extends ConsumerWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     _NavItem(
-                        icon: Icons.search,
-                        label: 'Search',
-                        active: false),
+                        icon: Icons.search, label: 'Search', active: false),
                     _NavItem(
-                        icon: Icons.settings,
-                        label: 'Settings',
-                        active: false),
+                        icon: Icons.settings, label: 'Settings', active: false),
                   ],
                 ),
               ),
@@ -261,49 +303,45 @@ class DetailScreen extends ConsumerWidget {
       ),
     );
   }
-
-  Widget _photoPlaceholder() {
-    return Container(
-      color: VinciTheme.backgroundLight,
-      child: const Center(
-        child: Icon(Icons.photo, size: 80, color: VinciTheme.textSecondary),
-      ),
-    );
-  }
 }
 
 class _ActionBtn extends StatelessWidget {
   final IconData icon;
   final String label;
+  final VoidCallback? onTap;
 
-  const _ActionBtn({required this.icon, required this.label});
+  const _ActionBtn(
+      {required this.icon, required this.label, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: VinciTheme.borderColor),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(icon, color: VinciTheme.primary, size: 22),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: const TextStyle(
-                fontSize: 11, color: VinciTheme.textPrimary),
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: VinciTheme.borderColor),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Icon(icon, color: VinciTheme.primary, size: 22),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: const TextStyle(
+                  fontSize: 11, color: VinciTheme.textPrimary),
+            ),
+          ],
+        ),
       ),
     );
   }

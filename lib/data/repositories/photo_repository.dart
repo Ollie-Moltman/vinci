@@ -1,8 +1,11 @@
 import 'package:photo_manager/photo_manager.dart';
 import '../../domain/entities/photo_entity.dart';
+import '../services/thumbnail_loader.dart';
 
 /// Repository for accessing photos from the device's photo library.
 class PhotoRepository {
+  final _thumbLoader = ThumbnailLoader();
+
   /// Load all photos from the device, most recent first.
   Future<List<PhotoEntity>> loadPhotos({int page = 0, int size = 50}) async {
     final albums = await PhotoManager.getAssetPathList(
@@ -19,17 +22,12 @@ class PhotoRepository {
 
     if (albums.isEmpty) return [];
 
-    // Get the "Recent" or first album
     final album = albums.first;
     final assets = await album.getAssetListPaged(page: page, size: size);
 
     final photos = <PhotoEntity>[];
     for (final asset in assets) {
-      final file = await asset.file;
-      final entity = PhotoEntity.fromAsset(asset).copyWith(
-        path: file?.path ?? '',
-      );
-      photos.add(entity);
+      photos.add(PhotoEntity.fromAsset(asset));
     }
 
     return photos;
@@ -42,5 +40,10 @@ class PhotoRepository {
     );
     if (albums.isEmpty) return 0;
     return albums.first.assetCount;
+  }
+
+  /// Load a single asset by ID.
+  Future<AssetEntity?> getAssetById(String id) async {
+    return await AssetEntity.fromId(id);
   }
 }

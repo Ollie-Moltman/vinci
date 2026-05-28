@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:photo_manager/photo_manager.dart';
 import 'package:path_provider/path_provider.dart';
 import '../providers/providers.dart';
 import '../data/services/vector_store.dart';
@@ -13,12 +12,13 @@ Future<void> runIndexing(WidgetRef ref) async {
   final vectorStore = ref.read(vectorStoreProvider);
   final photoRepo = ref.read(photoRepositoryProvider);
 
-  // Initialize vectors — load existing index from disk
+  // Load existing index from disk first
   await vectorStore.loadIndex();
 
-  // If we already have photos indexed, don't re-index from scratch
+  // Skip if already indexed (unless count is 0 to force re-index on demand)
   if (vectorStore.indexedCount > 0) {
     ref.read(indexedCountProvider.notifier).state = vectorStore.indexedCount;
+    ref.read(lastIndexedProvider.notifier).state = DateTime.now();
     return;
   }
 
@@ -37,7 +37,8 @@ Future<void> runIndexing(WidgetRef ref) async {
       final photos = await photoRepo.loadPhotos(page: page, size: size);
       if (photos.isEmpty) break;
 
-      await indexer.indexPhotos(photos);
+      // Index the batch — use indexAssetEntities for raw AssetEntity inputs
+      await indexer.indexAssetEntities(photos);
       final done = vectorStore.indexedCount;
       ref.read(indexProgressProvider.notifier).state = (done, total);
       ref.read(indexedCountProvider.notifier).state = done;
@@ -54,9 +55,13 @@ Future<void> runIndexing(WidgetRef ref) async {
   }
 }
 
-/// Load persisted index state on app startup (call once at app launch).
+/// Load persisted index state on app startup.
 Future<void> loadPersistedState(WidgetRef ref) async {
   final vectorStore = ref.read(vectorStoreProvider);
+  final dir = await getApplicationDocumentsDirectory();
+  // Update index dir
+  ref.read(indexDirProvider.notifier).state = dir.path;
+
   await vectorStore.loadIndex();
 
   if (vectorStore.indexedCount > 0) {
