@@ -4,6 +4,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
     <!-- For photo_manager on Android 13+ -->
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <!-- For android_intent_plus gallery opens -->
+    <uses-permission android:name="android.permission.VIEW_LOCAL_CONTENT" />
 
     <application
         android:label="vinci"

@@ -58,3 +58,27 @@ final embeddingInitializedProvider = FutureProvider<void>((ref) async {
   final svc = ref.read(embeddingServiceProvider);
   await svc.initialize();
 });
+
+// Favorites
+final favoritesStoreProvider = Provider((_) => FavoritesStore());
+final favoritesProvider = StateNotifierProvider<FavoritesNotifier, Set<String>>((ref) {
+  return FavoritesNotifier(ref.read(favoritesStoreProvider));
+});
+
+class FavoritesNotifier extends StateNotifier<Set<String>> {
+  final FavoritesStore _store;
+
+  FavoritesNotifier(this._store) : super({}) {
+    _load();
+  }
+
+  Future<void> _load() async {
+    state = await _store.loadFavorites();
+  }
+
+  Future<void> toggle(String id) async {
+    state = await _store.toggleFavorite(id);
+  }
+
+  bool isFavorite(String id) => state.contains(id);
+}
