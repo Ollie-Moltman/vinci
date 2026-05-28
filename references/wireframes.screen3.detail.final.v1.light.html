@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f0f2f8 0%, #e8ecf4 50%, #e2e7f0 100%); min-height: 100vh; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+h2 { color: rgba(30,30,60,0.8); margin-bottom: 16px; font-size: 14px; text-align: center; width: 100%; font-weight: 500; letter-spacing: 0.5px; }
+
+.phone {
+ width: 375px;
+ height: 667px;
+ background: #f8f9fc;
+ border-radius: 40px;
+ overflow: hidden;
+ box-shadow: 0 30px 80px rgba(60,80,180,0.12), 0 0 40px rgba(100,126,234,0.06);
+ position: relative;
+ border: 1px solid rgba(100,126,234,0.08);
+}
+
+.status-bar { height: 44px; background: #f8f9fc; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 24px 8px; }
+.status-time { font-size: 14px; font-weight: 600; color: #1a1a3e; letter-spacing: -0.2px; }
+.status-icons { display: flex; gap: 5px; align-items: center; }
+
+.home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 120px; height: 4px; background: rgba(102,126,234,0.35); border-radius: 2px; }
+
+.screen-body { background: #f8f9fc; height: calc(667px - 44px); display: flex; flex-direction: column; }
+
+.top-bar { display: flex; align-items: center; gap: 12px; padding: 16px 16px 12px; }
+.back-btn { width: 36px; height: 36px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; box-shadow: 0 4px 12px rgba(102,126,234,0.25); }
+.back-btn svg { color: #fff; width: 16px; height: 16px; }
+
+.match-badge { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.3px; }
+
+.top-actions { display: flex; gap: 8px; margin-left: auto; }
+.icon-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #fff; border: 1.5px solid rgba(102,126,234,0.1); border-radius: 12px; cursor: pointer; color: rgba(102,126,234,0.7); box-shadow: 0 2px 8px rgba(80,100,200,0.08); }
+.icon-btn svg { width: 16px; height: 16px; }
+
+/* Photo area */
+.photo-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 16px; overflow: hidden; }
+.photo-container { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 8px 32px rgba(80,100,200,0.12); }
+.photo-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Bottom info panel */
+.info-panel { background: #fff; padding: 16px 16px 90px; border-top: 1px solid rgba(100,126,234,0.08); box-shadow: 0 -4px 20px rgba(80,100,200,0.06); }
+
+.query-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.query-label { font-size: 10px; color: rgba(30,30,60,0.4); font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; }
+.query-text { font-size: 13px; color: rgba(30,30,60,0.9); font-weight: 500; background: rgba(102,126,234,0.06); border: 1px solid rgba(102,126,234,0.1); padding: 6px 12px; border-radius: 10px; flex: 1; }
+
+.meta-row { display: flex; gap: 16px; margin-bottom: 16px; }
+.meta-item { display: flex; align-items: center; gap: 6px; }
+.meta-item svg { width: 14px; height: 14px; color: rgba(30,30,60,0.4); }
+.meta-item span { font-size: 11px; color: rgba(30,30,60,0.5); font-weight: 400; }
+
+.action-row { display: flex; gap: 10px; justify-content: center; }
+.action-btn {
+ flex: 1;
+ max-width: 110px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 6px;
+ padding: 12px 8px;
+ background: #fff;
+ border: 1.5px solid rgba(102,126,234,0.1);
+ border-radius: 16px;
+ cursor: pointer;
+ transition: all 0.2s ease;
+ box-shadow: 0 2px 8px rgba(80,100,200,0.06);
+}
+.action-btn:active { background: rgba(102,126,234,0.08); border-color: rgba(102,126,234,0.25); transform: scale(0.95); }
+.action-btn svg { width: 20px; height: 20px; color: rgba(102,126,234,0.7); }
+.action-btn span { font-size: 10px; color: rgba(30,30,60,0.5); font-weight: 500; letter-spacing: 0.3px; }
+
+/* Bottom nav */
+.bottom-nav {
+ position: absolute;
+ bottom: 0;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 375px;
+ display: flex;
+ gap: 0;
+ background: rgba(255,255,255,0.98);
+ border-top: 1px solid rgba(100,126,234,0.07);
+ padding: 8px 20px 20px;
+ backdrop-filter: blur(20px);
+}
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0; cursor: pointer; position: relative; transition: all 0.3s; }
+.nav-item.active::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 20px; height: 2.5px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 2px; }
+.nav-item.active .nav-icon { color: #667eea; }
+.nav-item.active .nav-label { color: #667eea; font-weight: 600; }
+.nav-icon { font-size: 22px; color: rgba(30,30,60,0.35); }
+.nav-label { font-size: 8.5px; color: rgba(30,30,60,0.35); font-weight: 500; letter-spacing: 0.3px; }
+
+.screen-num { font-size: 10px; color: rgba(30,30,60,0.4); margin-bottom: 8px; font-weight: 500; letter-spacing: 0.8px; text-align: center; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<h2>Vinci — Screen 3 (Photo Detail)</h2>
+
+<div class="screen-num">3. Photo Detail</div>
+<div class="phone">
+ <div class="status-bar">
+ <div class="status-time">9:41</div>
+ <div class="status-icons">
+ <svg width="15" height="10" viewBox="0 0 15 10" fill="none"><rect x="0" y="3" width="12" height="7" rx="1.5" stroke="#1a1a3e" stroke-width="1"/><path d="M12 5h2" stroke="#1a1a3e" stroke-width="1" stroke-linecap="round"/></svg>
+ <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0" y="5" width="10" height="7" rx="1.5" stroke="#1a1a3e" stroke-width="1"/><path d="M10 7h4" stroke="#1a1a3e" stroke-width="1" stroke-linecap="round"/></svg>
+ <svg width="17" height="10" viewBox="0 0 17 10" fill="none"><rect x="0" y="2" width="14" height="8" rx="1.5" stroke="#1a1a3e" stroke-width="1"/><path d="M14 5h2" stroke="#1a1a3e" stroke-width="1" stroke-linecap="round"/><rect x="1.5" y="3" width="9" height="6" rx="1" fill="#1a1a3e" opacity="0.3"/></svg>
+ </div>
+ </div>
+
+ <div class="screen-body">
+ <!-- Top bar -->
+ <div class="top-bar">
+ <div class="back-btn">
+ <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l7-7M5 12l7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </div>
+ <div class="match-badge">94% match</div>
+ <div class="top-actions">
+ <div class="icon-btn" title="Favorite">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+ </div>
+ <div class="icon-btn" title="More">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/></svg>
+ </div>
+ </div>
+ </div>
+
+ <!-- Photo -->
+ <div class="photo-area">
+ <div class="photo-container">
+ <img src="https://picsum.photos/seed/vinci-detail/800/600" alt="">
+ </div>
+ </div>
+
+ <!-- Info panel -->
+ <div class="info-panel">
+ <div class="query-row">
+ <span class="query-label">Matched:</span>
+ <div class="query-text">sunset at the beach with friends</div>
+ </div>
+ <div class="meta-row">
+ <div class="meta-item">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+ <span>Dec 15, 2024</span>
+ </div>
+ <div class="meta-item">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+ <span>Goa, India</span>
+ </div>
+ </div>
+ <div class="action-row">
+ <div class="action-btn">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+ <span>Share</span>
+ </div>
+ <div class="action-btn">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+ <span>Add to Library</span>
+ </div>
+ <div class="action-btn">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+ <span>View in Gallery</span>
+ </div>
+ </div>
+ </div>
+
+ <div class="bottom-nav">
+ <div class="nav-item">
+ <div class="nav-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+ </div>
+ <div class="nav-label">Search</div>
+ </div>
+ <div class="nav-item">
+ <div class="nav-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+ </div>
+ <div class="nav-label">Library</div>
+ </div>
+ <div class="nav-item">
+ <div class="nav-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M4.9 19.1l2.1-2.1M16.9 7.1l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+ </div>
+ <div class="nav-label">Settings</div>
+ </div>
+ </div>
+ </div>
+
+ <div class="home-bar"></div>
+</div>
+
+</body>
+</html>

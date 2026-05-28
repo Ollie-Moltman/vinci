@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #eaeef4; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+h2 { color: #444; margin-bottom: 20px; font-size: 14px; text-align: center; width: 100%; font-weight: 500; letter-spacing: 0.3px; }
+
+.phone {
+  width: 375px;
+  min-height: 812px;
+  background: #f4f6fc;
+  border-radius: 44px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.12), 0 8px 32px rgba(0,0,0,0.08);
+}
+
+.status-bar { height: 44px; background: #f4f6fc; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 24px 8px; }
+.status-time { font-size: 14px; font-weight: 600; color: #1a1a1a; letter-spacing: -0.2px; }
+.status-icons { display: flex; gap: 5px; align-items: center; }
+
+.home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 134px; height: 5px; background: #1a1a1a; border-radius: 3px; opacity: 0.2; }
+
+.screen-body { padding: 20px 22px 40px; height: calc(812px - 44px); display: flex; flex-direction: column; }
+
+.page-title { font-size: 28px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 6px; }
+.page-subtitle { font-size: 14px; color: #7e8db8; letter-spacing: -0.1px; margin-bottom: 26px; }
+
+.search-card { background: #fff; border: 1px solid #e2e6f2; border-radius: 18px; padding: 16px; box-shadow: 0 2px 14px rgba(80,100,180,0.07); margin-bottom: 20px; }
+.search-inner { display: flex; align-items: center; gap: 12px; }
+.search-icon-wrap { width: 36px; height: 36px; background: linear-gradient(135deg, #5a7fd6, #4468b8); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.search-icon-wrap svg { opacity: 1; }
+.search-input { flex: 1; border: none; background: transparent; font-size: 15px; color: #1a1a1a; outline: none; padding: 0; }
+.search-input::placeholder { color: #bbb; }
+.search-divider { height: 1px; background: #e2e6f2; margin-top: 14px; }
+.search-hint { font-size: 11px; color: #a8b0d0; margin-top: 10px; text-align: center; letter-spacing: 0.2px; }
+
+.btn-primary { background: linear-gradient(135deg, #5a7fd6, #4468b8); color: #fff; border: none; border-radius: 14px; padding: 15px; width: 100%; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 16px rgba(80,110,200,0.3); letter-spacing: 0.2px; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(80,110,200,0.4); }
+
+.search-sources-box { background: #fff; border: 1px solid #e2e6f2; border-radius: 14px; padding: 14px 16px; margin-bottom: 22px; box-shadow: 0 1px 6px rgba(80,110,200,0.06); }
+.source-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.source-row:last-child { margin-bottom: 0; }
+.source-left { display: flex; align-items: center; gap: 10px; }
+.source-icon-wrap { width: 32px; height: 32px; background: linear-gradient(135deg, #5a7fd6, #4468b8); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.source-icon-wrap svg { width: 16px; height: 16px; }
+.source-name { font-size: 13px; font-weight: 500; color: #333; }
+.source-desc { font-size: 11px; color: #999; margin-top: 1px; }
+.source-toggle { width: 40px; height: 22px; background: #5a7fd6; border-radius: 11px; position: relative; cursor: pointer; }
+.source-toggle::after { content: ''; position: absolute; width: 18px; height: 18px; background: #fff; border-radius: 50%; top: 2px; right: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.source-toggle.off { background: #e2e6f2; }
+.source-toggle.off::after { right: 20px; }
+.index-left { display: flex; align-items: center; gap: 10px; }
+.index-dot { width: 9px; height: 9px; background: #22c55e; border-radius: 50%; }
+.index-text { font-size: 13px; color: #555; }
+.index-count { font-size: 13px; font-weight: 700; color: #5a7fd6; }
+
+.section-label { font-size: 11px; font-weight: 700; color: #a8b0d0; text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 12px; }
+
+.chips-scroll { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: auto; }
+.chip { background: #fff; border: 1.5px solid #e2e6f2; border-radius: 24px; padding: 9px 16px; font-size: 13px; color: #555; cursor: pointer; transition: all 0.2s; white-space: nowrap; letter-spacing: -0.1px; }
+.chip:hover { border-color: #5a7fd6; color: #5a7fd6; background: #f8f9fe; }
+
+.bottom-nav { display: flex; gap: 0; border-top: 1px solid #e2e6f2; padding-top: 12px; margin-top: 20px; }
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; cursor: pointer; }
+.nav-item.active .nav-icon { color: #5a7fd6; }
+.nav-item.active .nav-label { color: #5a7fd6; font-weight: 600; }
+.nav-icon { font-size: 22px; color: #ccc; }
+.nav-label { font-size: 10px; color: #ccc; font-weight: 500; }
+
+.powered { font-size: 10px; color: #ccc; text-align: center; margin-top: 14px; letter-spacing: 0.3px; }
+
+.screen-num { font-size: 11px; color: #999; margin-bottom: 8px; font-weight: 500; letter-spacing: 0.5px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h2>Vinci — Screen 1 (Search) — Soft Periwinkle Blue</h2>
+
+<div class="screen-num">1. Search Screen</div>
+<div class="phone">
+  <div class="status-bar">
+    <div class="status-time">9:41</div>
+    <div class="status-icons">
+      <svg width="15" height="10" viewBox="0 0 15 10" fill="none"><rect x="0" y="3" width="12" height="7" rx="1.5" stroke="#1a1a1a" stroke-width="1"/><path d="M12 5h2" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0" y="5" width="10" height="7" rx="1.5" stroke="#1a1a1a" stroke-width="1"/><path d="M10 7h4" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/></svg>
+      <svg width="17" height="10" viewBox="0 0 17 10" fill="none"><rect x="0" y="2" width="14" height="8" rx="1.5" stroke="#1a1a1a" stroke-width="1"/><path d="M14 5h2" stroke="#1a1a1a" stroke-width="1" stroke-linecap="round"/><rect x="1.5" y="3" width="9" height="6" rx="1" fill="#1a1a1a" opacity="0.3"/></svg>
+    </div>
+  </div>
+
+  <div class="screen-body">
+    <div class="page-title">Search<br>your photos</div>
+    <div class="page-subtitle">Describe what you're looking for</div>
+
+    <div class="search-card">
+      <div class="search-inner">
+        <div class="search-icon-wrap">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="white" stroke-width="2.5"/><path d="M16 16l4.5 4.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <input class="search-input" type="text" placeholder="e.g. sunset at the beach with friends" />
+      </div>
+      <div class="search-divider"></div>
+      <div class="search-hint">Powered by on-device AI &mdash; your photos never leave this device</div>
+    </div>
+
+    <button class="btn-primary">Search</button>
+
+    <div class="search-sources-box">
+      <div class="source-row">
+        <div class="source-left">
+          <div class="source-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/></svg>
+          </div>
+          <div>
+            <div class="source-name">Device Photos</div>
+            <div class="source-desc">12,450 photos</div>
+          </div>
+        </div>
+        <div class="source-toggle"></div>
+      </div>
+      <div class="source-row">
+        <div class="source-left">
+          <div class="source-icon-wrap" style="background: linear-gradient(135deg, #34a853, #1e8e3e);">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="source-name">Google Drive</div>
+            <div class="source-desc">Connect to search</div>
+          </div>
+        </div>
+        <div class="source-toggle off"></div>
+      </div>
+    </div>
+
+    <div class="section-label">Try these searches</div>
+    <div class="chips-scroll">
+      <div class="chip">Passport photo, formal wear</div>
+      <div class="chip">Beach photos with friends</div>
+      <div class="chip">Me in sunglasses</div>
+      <div class="chip">Dinner at restaurant</div>
+      <div class="chip">Birthday celebration</div>
+      <div class="chip">Office presentation</div>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item active">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="nav-label">Search</div>
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="nav-label">Library</div>
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M4.9 19.1l2.1-2.1M16.9 7.1l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="nav-label">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-bar"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; padding: 40px; }
+h2 { color: #333; margin-bottom: 20px; font-size: 14px; }
+.screens { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+.screen { background: #fff; border-radius: 28px; width: 240px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.10); }
+.screen-header { background: #f7f7f8; padding: 12px 16px; border-bottom: 1px solid #eee; font-size: 11px; color: #888; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.screen-body { padding: 24px 20px 28px; }
+.logo-area { text-align: center; margin-bottom: 22px; }
+.app-icon { width: 72px; height: 72px; background: linear-gradient(145deg, #2d2d2d, #1a1a1a); border-radius: 18px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(79,70,229,0.25), inset 0 1px 0 rgba(255,255,255,0.1); }
+.app-icon svg { width: 36px; height: 36px; }
+.app-name { font-size: 22px; font-weight: 700; color: #1a1a1a; letter-spacing: 0.5px; margin-bottom: 4px; }
+.app-tagline { font-size: 11px; color: #999; letter-spacing: 0.3px; }
+.divider { height: 1px; background: linear-gradient(90deg, transparent, #e0e0e0, transparent); margin: 18px 0; }
+.privacy-section { margin-bottom: 20px; }
+.privacy-section .label { font-size: 10px; font-weight: 700; color: #4f46e5; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; }
+.privacy-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fafafa; border-radius: 10px; margin-bottom: 8px; border: 1px solid #f0f0f0; }
+.privacy-item .icon { width: 32px; height: 32px; background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.privacy-item .icon svg { width: 16px; height: 16px; }
+.privacy-item .text { font-size: 12px; color: #333; line-height: 1.4; }
+.checkbox-area { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; padding: 14px; background: #fafafa; border-radius: 12px; border: 1px solid #eee; cursor: pointer; transition: border-color 0.2s; }
+.checkbox-area:hover { border-color: #4f46e5; }
+.checkbox-area input[type="checkbox"] { width: 18px; height: 18px; accent-color: #4f46e5; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+.checkbox-label { font-size: 11px; color: #666; line-height: 1.6; }
+.checkbox-label a { color: #4f46e5; text-decoration: none; font-weight: 500; }
+.checkbox-label a:hover { text-decoration: underline; }
+.btn-primary { background: linear-gradient(135deg, #4f46e5, #6d28d9); color: #fff; border: none; border-radius: 14px; padding: 15px; width: 100%; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(79,70,229,0.3); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79,70,229,0.4); }
+.btn-primary:disabled { background: #ccc; box-shadow: none; transform: none; cursor: not-allowed; }
+.note { font-size: 10px; color: #aaa; text-align: center; margin-top: 12px; line-height: 1.6; }
+.screen-num { font-size: 11px; color: #999; margin-bottom: 8px; font-weight: 500; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<h2>Vinci — Screen 0 Redesign</h2>
+
+<div class="screens">
+
+<div>
+<div class="screen-num">0. Permissions Screen</div>
+<div class="screen">
+  <div class="screen-header">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="#4f46e5"/></svg>
+    Permissions
+  </div>
+  <div class="screen-body">
+    <div class="logo-area">
+      <div class="app-icon">
+        <svg viewBox="0 0 36 36" fill="none">
+          <path d="M6 8L18 30L30 8" stroke="#a5b4fc" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 8L18 18L24 8" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="app-name">Vinci</div>
+      <div class="app-tagline">Search your photos by description</div>
+    </div>
+
+    <div class="privacy-section">
+      <div class="label" style="text-align:center;">Your privacy is my first priority</div>
+      <div class="privacy-item">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v4c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6l-8-4z" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="text">All processing happens on your phone</div>
+      </div>
+      <div class="privacy-item">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v4c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6l-8-4z" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="text">Your photos never leave your device</div>
+      </div>
+      <div class="privacy-item">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 8h-1V6c0-3.3-2.7-6-6-6S6 2.7 6 6v2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h13c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.7 1.3-3 3-3s3 1.3 3 3v2H9V6z" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+        <div class="text">Nothing is uploaded to any server</div>
+      </div>
+    </div>
+
+    <div class="checkbox-area">
+      <input type="checkbox" id="consent">
+      <label class="checkbox-label" for="consent">I have read and agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a></label>
+    </div>
+    <button class="btn-primary" disabled>Allow Photo Access</button>
+    <div class="note">A system dialog will appear to confirm<br>the actual permission grant</div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script>
+document.getElementById('consent').addEventListener('change', function(e) {
+  document.querySelector('.btn-primary').disabled = !e.target.checked;
+});
+</script>
+
+</body>
+</html>

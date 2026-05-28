@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f0f2f8 0%, #e8ecf4 50%, #e2e7f0 100%); min-height: 100vh; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+h2 { color: rgba(30,30,60,0.8); margin-bottom: 16px; font-size: 14px; text-align: center; width: 100%; font-weight: 500; letter-spacing: 0.5px; }
+
+.phone {
+ width: 375px;
+ height: 667px;
+ background: #f8f9fc;
+ border-radius: 40px;
+ overflow: hidden;
+ box-shadow: 0 30px 80px rgba(60,80,180,0.12), 0 0 40px rgba(100,126,234,0.06);
+ position: relative;
+ border: 1px solid rgba(100,126,234,0.08);
+}
+
+.status-bar { height: 44px; background: #f8f9fc; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 24px 8px; }
+.status-time { font-size: 14px; font-weight: 600; color: #1a1a3e; letter-spacing: -0.2px; }
+.status-icons { display: flex; gap: 5px; align-items: center; }
+
+.home-bar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 120px; height: 4px; background: rgba(102,126,234,0.35); border-radius: 2px; }
+
+.screen-body { background: #f8f9fc; height: calc(667px - 44px); display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 90px; }
+
+/* Header */
+.header { display: flex; align-items: center; gap: 12px; padding: 16px 16px 12px; }
+.back-btn { width: 36px; height: 36px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; box-shadow: 0 4px 12px rgba(102,126,234,0.25); }
+.back-btn svg { color: #fff; width: 16px; height: 16px; }
+.header-title { font-size: 18px; font-weight: 700; color: #1a1a3e; letter-spacing: -0.3px; }
+
+/* Section */
+.section { padding: 0 16px 16px; }
+.section-label { font-size: 10px; color: rgba(30,30,60,0.4); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; padding-left: 4px; }
+
+/* Settings card */
+.settings-card {
+ background: #fff;
+ border-radius: 16px;
+ overflow: hidden;
+ box-shadow: 0 2px 12px rgba(80,100,200,0.08);
+ border: 1px solid rgba(100,126,234,0.06);
+ margin-bottom: 12px;
+}
+
+.setting-item {
+ display: flex;
+ align-items: center;
+ padding: 14px 16px;
+ border-bottom: 1px solid rgba(100,126,234,0.05);
+}
+.setting-item:last-child { border-bottom: none; }
+
+.setting-icon {
+ width: 36px;
+ height: 36px;
+ background: rgba(102,126,234,0.08);
+ border-radius: 10px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-shrink: 0;
+ margin-right: 12px;
+}
+.setting-icon svg { width: 16px; height: 16px; color: #667eea; }
+
+.setting-info { flex: 1; }
+.setting-info .setting-title { font-size: 14px; font-weight: 500; color: #1a1a3e; }
+.setting-info .setting-desc { font-size: 11px; color: rgba(30,30,60,0.4); margin-top: 2px; }
+
+.setting-action { margin-left: auto; }
+.setting-action svg { width: 18px; height: 18px; color: rgba(30,30,60,0.25); }
+
+/* Toggle switch */
+.toggle {
+ width: 44px;
+ height: 26px;
+ background: rgba(102,126,234,0.15);
+ border-radius: 13px;
+ position: relative;
+ cursor: pointer;
+ transition: all 0.25s ease;
+}
+.toggle.active { background: linear-gradient(135deg, #667eea, #764ba2); }
+.toggle::after {
+ content: '';
+ position: absolute;
+ top: 3px;
+ left: 3px;
+ width: 20px;
+ height: 20px;
+ background: #fff;
+ border-radius: 50%;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+ transition: all 0.25s ease;
+}
+.toggle.active::after { left: 21px; }
+
+/* Stats row */
+.stats-row { display: flex; gap: 12px; margin-top: 6px; }
+.stat-item { flex: 1; background: rgba(102,126,234,0.05); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.stat-value { font-size: 16px; font-weight: 700; color: #667eea; }
+.stat-label { font-size: 9px; color: rgba(30,30,60,0.4); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Bottom nav */
+.bottom-nav {
+ position: absolute;
+ bottom: 0;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 375px;
+ display: flex;
+ gap: 0;
+ background: rgba(255,255,255,0.98);
+ border-top: 1px solid rgba(100,126,234,0.07);
+ padding: 8px 20px 20px;
+ backdrop-filter: blur(20px);
+}
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0; cursor: pointer; position: relative; transition: all 0.3s; }
+.nav-item.active::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 20px; height: 2.5px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 2px; }
+.nav-item.active .nav-icon { color: #667eea; }
+.nav-item.active .nav-label { color: #667eea; font-weight: 600; }
+.nav-icon { font-size: 22px; color: rgba(30,30,60,0.35); }
+.nav-label { font-size: 8.5px; color: rgba(30,30,60,0.35); font-weight: 500; letter-spacing: 0.3px; }
+
+.screen-num { font-size: 10px; color: rgba(30,30,60,0.4); margin-bottom: 8px; font-weight: 500; letter-spacing: 0.8px; text-align: center; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<h2>Vinci — Screen 4 (Settings)</h2>
+
+<div class="screen-num">4. Settings</div>
+<div class="phone">
+ <div class="status-bar">
+ <div class="status-time">9:41</div>
+ <div class="status-icons">
+ <svg width="15" height="10" viewBox="0 0 15 10" fill="none"><rect x="0" y="3" width="12" height="7" rx="1.5" stroke="#1a1a3e" stroke-width="1"/><path d="M12 5h2" stroke="#1a1a3e" stroke-width="1" stroke-linecap="round"/></svg>
+ <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><rect x="0" y="5" width="10" height="7" rx="1.5" stroke="#1a1a3e" stroke-width="1"/><path d="M10 7h4" stroke="#1a1a3e" stroke-width="1" stroke-linecap="round"/></svg>
+ <svg width="17" height="10" viewBox="0 0 17 10" fill="none"><rect x="0" y="2" width="14" height="8" rx="1.5" stroke="#1a1a3e" stroke-width="1"/><path d="M14 5h2" stroke="#1a1a3e" stroke-width="1" stroke-linecap="round"/><rect x="1.5" y="3" width="9" height="6" rx="1" fill="#1a1a3e" opacity="0.3"/></svg>
+ </div>
+ </div>
+
+ <div class="screen-body">
+ <div class="header">
+ <div class="back-btn">
+ <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12l7-7M5 12l7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </div>
+ <div class="header-title">Settings</div>
+ </div>
+
+ <!-- Indexing section -->
+ <div class="section">
+ <div class="section-label">Indexing</div>
+ <div class="settings-card">
+ <div class="setting-item">
+ <div class="setting-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+ </div>
+ <div class="setting-info">
+ <div class="setting-title">Auto-Index Photos</div>
+ <div class="setting-desc">Index new photos automatically when charging</div>
+ </div>
+ <div class="setting-action">
+ <div class="toggle active"></div>
+ </div>
+ </div>
+ <div class="setting-item">
+ <div class="setting-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+ </div>
+ <div class="setting-info">
+ <div class="setting-title">Re-Index Library</div>
+ <div class="setting-desc">Rescan all photos from scratch</div>
+ </div>
+ <div class="setting-action">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Stats section -->
+ <div class="section">
+ <div class="section-label">Library Stats</div>
+ <div class="settings-card">
+ <div class="setting-item">
+ <div class="setting-info" style="flex: none;">
+ <div class="setting-title" style="margin-bottom: 10px;">1,847 photos indexed</div>
+ <div class="stats-row">
+ <div class="stat-item">
+ <div class="stat-value">1.2 GB</div>
+ <div class="stat-label">Index Size</div>
+ </div>
+ <div class="stat-item">
+ <div class="stat-value">3m ago</div>
+ <div class="stat-label">Last Index</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Data section -->
+ <div class="section">
+ <div class="section-label">Data & Privacy</div>
+ <div class="settings-card">
+ <div class="setting-item">
+ <div class="setting-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+ </div>
+ <div class="setting-info">
+ <div class="setting-title">Photo Source</div>
+ <div class="setting-desc">Device gallery only</div>
+ </div>
+ <div class="setting-action">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+ </div>
+ </div>
+ <div class="setting-item">
+ <div class="setting-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-8V5l-8-3-8 3v9c0 4 8 8 8 8z"/></svg>
+ </div>
+ <div class="setting-info">
+ <div class="setting-title">Privacy Policy</div>
+ <div class="setting-desc">Your photos never leave your device</div>
+ </div>
+ <div class="setting-action">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- About section -->
+ <div class="section">
+ <div class="section-label">About</div>
+ <div class="settings-card">
+ <div class="setting-item">
+ <div class="setting-icon">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+ </div>
+ <div class="setting-info">
+ <div class="setting-title">Vinci v1.0</div>
+ <div class="setting-desc">AI-powered photo search</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="bottom-nav">
+ <div class="nav-item">
+ <div class="nav-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+ </div>
+ <div class="nav-label">Search</div>
+ </div>
+ <div class="nav-item">
+ <div class="nav-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
+ </div>
+ <div class="nav-label">Library</div>
+ </div>
+ <div class="nav-item active">
+ <div class="nav-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M4.9 19.1l2.1-2.1M16.9 7.1l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+ </div>
+ <div class="nav-label">Settings</div>
+ </div>
+ </div>
+ </div>
+
+ <div class="home-bar"></div>
+</div>
+
+</body>
+</html>
