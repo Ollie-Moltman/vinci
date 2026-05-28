@@ -1,18 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/vinci_theme.dart';
+import '../../core/indexing_runner.dart';
+import '../../providers/providers.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _autoIndex = true;
   int _indexedCount = 0;
   String _indexSize = '0 MB';
   DateTime? _lastIndexed;
+
+  @override
+  void initState() {
+    super.initState();
+    // Sync providers → local state
+    Future.microtask(() {
+      _indexedCount = ref.read(indexedCountProvider);
+      _lastIndexed = ref.read(lastIndexedProvider);
+    });
+  }
+
+  void _syncFromProviders() {
+    final count = ref.read(indexedCountProvider);
+    final last = ref.read(lastIndexedProvider);
+    setState(() {
+      _indexedCount = count;
+      _lastIndexed = last;
+    });
+  }
+
+  Future<void> _reindexLibrary() async {
+    // Show progress dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
+            Consumer(
+              builder: (_, ref, __) {
+                final progress = ref.watch(indexProgressProvider);
+                return Text(
+                  'Indexing ${progress.$1}/${progress.$2}...',
+                  style: const TextStyle(fontSize: 14),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+
+    try {
+      await runIndexing(ref);
+      _syncFromProviders();
+      if (mounted) Navigator.of(context).pop();
+    } catch (e) {
+      if (mounted) {
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Indexing failed: $e')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +100,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.arrow_back, color: Colors.white, size: 18),
+                        child: const Icon(Icons.arrow_back,
+                            color: Colors.white, size: 18),
                       ),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
@@ -52,7 +115,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                     const Spacer(),
-                    const SizedBox(width: 48), // balance
+                    const SizedBox(width: 48),
                   ],
                 ),
               ),
@@ -69,14 +132,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         icon: Icons.auto_fix_high,
                         title: 'Auto-index new photos',
                         subtitle: 'Run when device is charging',
-                        value: _autoIndex,
-                        onChanged: (v) => setState(() => _autoIndex = v),
+                        value: ref.watch(autoIndexEnabledProvider),
+                        onChanged: (v) {
+                          ref.read(autoIndexEnabledProvider.notifier).state = v;
+                          setState(() => _autoIndex = v);
+                        },
                       ),
                       const Divider(height: 1),
                       _ActionRow(
                         icon: Icons.refresh,
                         title: 'Re-index Library',
-                        subtitle: 'Scan all photos again',
+                        subtitle: 'Rescan all photos',
                         onTap: _reindexLibrary,
                       ),
                     ]),
@@ -86,18 +152,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     // Library stats
                     _SectionHeader('Library Stats'),
                     const SizedBox(height: 12),
-                    _SettingsCard([
-                      _InfoRow(label: 'Photos indexed', value: '$_indexedCount'),
-                      const Divider(height: 1),
-                      _InfoRow(label: 'Index size', value: _indexSize),
-                      const Divider(height: 1),
-                      _InfoRow(
-                        label: 'Last indexed',
-                        value: _lastIndexed != null
-                            ? '${_lastIndexed!.day}/${_lastIndexed!.month}/${_lastIndexed!.year}'
-                            : 'Never',
-                      ),
-                    ]),
+                    Consumer(
+                      builder: (_, ref, __) {
+                        return _SettingsCard([
+                          _InfoRow(
+                              label: 'Photos indexed',
+                              value: '${ref.watch(indexedCountProvider)}'),
+                          const Divider(height: 1),
+                          _InfoRow(
+                            label: 'Index size',
+                            value: _indexedCount > 0 ? _indexSize : '0 MB',
+                          ),
+                          const Divider(height: 1),
+                          _InfoRow(
+                            label: 'Last indexed',
+                            value: _lastIndexed != null
+                                ? '${_lastIndexed!.day}/${_lastIndexed!.month}/${_lastIndexed!.year}'
+                                : 'Never',
+                          ),
+                        ]);
+                      },
+                    ),
 
                     const SizedBox(height: 24),
 
@@ -105,7 +180,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     _SectionHeader('Data & Privacy'),
                     const SizedBox(height: 12),
                     _SettingsCard([
-                      _InfoRow(label: 'Photo source', value: 'Device storage'),
+                      const _InfoRow(label: 'Photo source', value: 'Device storage'),
                       const Divider(height: 1),
                       _InfoRow(label: 'Privacy policy', value: 'View →'),
                     ]),
@@ -118,7 +193,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     _SettingsCard([
                       const _InfoRow(label: 'Version', value: '1.0.0'),
                       const Divider(height: 1),
-                      const _InfoRow(label: 'Vinci', value: 'AI Photo Search'),
+                      _InfoRow(label: 'Vinci', value: 'AI Photo Search'),
                     ]),
 
                     const SizedBox(height: 32),
@@ -129,12 +204,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  void _reindexLibrary() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Starting re-index...')),
     );
   }
 }
@@ -218,7 +287,8 @@ class _ToggleRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title,
-                    style: const TextStyle(fontSize: 15, color: VinciTheme.textPrimary)),
+                    style:
+                        const TextStyle(fontSize: 15, color: VinciTheme.textPrimary)),
                 Text(subtitle,
                     style:
                         const TextStyle(fontSize: 12, color: VinciTheme.textSecondary)),
@@ -266,20 +336,19 @@ class _ActionRow extends StatelessWidget {
               child: Icon(icon, color: VinciTheme.primary, size: 20),
             ),
             const SizedBox(width: 12),
-            if (subtitle.isNotEmpty)
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title,
-                        style:
-                            const TextStyle(fontSize: 15, color: VinciTheme.textPrimary)),
-                    Text(subtitle,
-                        style: const TextStyle(
-                            fontSize: 12, color: VinciTheme.textSecondary)),
-                  ],
-                ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: const TextStyle(
+                          fontSize: 15, color: VinciTheme.textPrimary)),
+                  Text(subtitle,
+                      style: const TextStyle(
+                          fontSize: 12, color: VinciTheme.textSecondary)),
+                ],
               ),
+            ),
             const Icon(Icons.chevron_right, color: VinciTheme.textSecondary),
           ],
         ),

@@ -1,4 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Photo library access -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
+    <!-- For photo_manager on Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
     <application
         android:label="vinci"
         android:name="${applicationName}"

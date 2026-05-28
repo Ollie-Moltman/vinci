@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
 import '../theme/vinci_theme.dart';
+import '../../core/indexing_runner.dart';
 import '../../providers/providers.dart';
 import 'results_screen.dart';
 
@@ -15,6 +17,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   bool _isSearching = false;
+  bool _indexChecked = false;
 
   final _quickQueries = [
     'Photos with my family',
@@ -23,6 +26,26 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     'Food photography',
     'Nature and scenery',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    // On first entry: load persisted state, then auto-index if needed
+    Future.microtask(() async {
+      // Load existing index from disk
+      await loadPersistedState(ref);
+
+      // Provide app doc dir to vector store
+      final dir = await getApplicationDocumentsDirectory();
+      ref.read(indexDirProvider.notifier).state = dir.path;
+
+      // Auto-index if library is empty
+      final count = ref.read(indexedCountProvider);
+      if (count == 0) {
+        await runIndexing(ref);
+      }
+    });
+  }
 
   void _startSearch() {
     final query = _controller.text.trim();
