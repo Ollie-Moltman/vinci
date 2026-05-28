@@ -6,9 +6,28 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+  actions: write
+  pages: none
+  attestations: none
+  checks: write
+  pull-requests: write
+  repository-projects: none
+  security-events: none
+  statuses: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+      pull-requests: write
+      id-token: none
+      attestations: none
+      checks: write
+      statuses: write
     steps:
       - uses: actions/checkout@v4
 
