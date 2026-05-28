@@ -71,3 +71,4 @@ flutter build apk --release
 3. **Add Face Detection** for person-specific search
 
 4. **iOS build** — same codebase, test on iOS device
+# Debug marker
