@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'ui/theme/vinci_theme.dart';
 import 'ui/screens/permissions_screen.dart';
 import 'ui/screens/search_screen.dart';
+import 'ui/screens/settings_screen.dart';
+import 'providers/providers.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +14,7 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-  runApp(const VinciApp());
+  runApp(const ProviderScope(child: VinciApp()));
 }
 
 class VinciApp extends StatelessWidget {
@@ -27,42 +29,37 @@ class VinciApp extends StatelessWidget {
       home: const PermissionsScreenWrapper(),
       routes: {
         '/search': (_) => const SearchScreen(),
-        '/settings': (_) => const _SettingsRoute(),
+        '/settings': (_) => const SettingsScreen(),
       },
     );
   }
 }
 
-class PermissionsScreenWrapper extends StatefulWidget {
+class PermissionsScreenWrapper extends ConsumerStatefulWidget {
   const PermissionsScreenWrapper({super.key});
 
   @override
-  State<PermissionsScreenWrapper> createState() => _PermissionsScreenWrapperState();
+  ConsumerState<PermissionsScreenWrapper> createState() =>
+      _PermissionsScreenWrapperState();
 }
 
-class _PermissionsScreenWrapperState extends State<PermissionsScreenWrapper> {
+class _PermissionsScreenWrapperState
+    extends ConsumerState<PermissionsScreenWrapper> {
   bool _granted = false;
 
   @override
   Widget build(BuildContext context) {
-    if (_granted) {
+    final hasPermission = ref.watch(hasPermissionProvider);
+    final granted = _granted || hasPermission;
+
+    if (granted) {
       return const SearchScreen();
     }
     return PermissionsScreen(
-      onGranted: () => setState(() => _granted = true),
-    );
-  }
-}
-
-// Minimal settings route shell — real screen coming next
-class _SettingsRoute extends StatelessWidget {
-  const _SettingsRoute();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: const Center(child: Text('Settings coming soon')),
+      onGranted: () {
+        ref.read(hasPermissionProvider.notifier).state = true;
+        setState(() => _granted = true);
+      },
     );
   }
 }

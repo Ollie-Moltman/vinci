@@ -1,3 +1,4 @@
+import '../../domain/entities/photo_entity.dart';
 import '../../domain/entities/search_result.dart';
 import 'embedding_service.dart';
 import 'vector_store.dart';
@@ -23,17 +24,20 @@ class SearchService {
       k: limit,
     );
 
-    // 3. Map to SearchResult entities
+    // 3. Map hits to SearchResult entities
     return hits.map((hit) {
+      final photo = PhotoEntity(
+        id: hit.metadata.photoId,
+        path: hit.metadata.path,
+        createdAt: hit.metadata.createdAt,
+        width: 0,
+        height: 0,
+        location: hit.metadata.location,
+      );
       return SearchResult(
-        photo: _photoFromMetadata(hit.metadata),
+        photo: photo,
         similarityScore: hit.similarity,
       );
     }).toList();
-  }
-
-  dynamic _photoFromMetadata(dynamic metadata) {
-    // Simple conversion from metadata to PhotoEntity
-    return metadata;
   }
 }

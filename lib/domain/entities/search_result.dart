@@ -4,9 +4,11 @@ import 'photo_entity.dart';
 class SearchResult {
   final PhotoEntity photo;
   final double similarityScore; // 0.0 to 1.0
+  bool isFavorited;
 
   SearchResult({
     required this.photo,
     required this.similarityScore,
+    this.isFavorited = false,
   });
 }

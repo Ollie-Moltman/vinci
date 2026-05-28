@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/vinci_theme.dart';
-import '../../domain/entities/search_result.dart';
+import '../../providers/providers.dart';
 import 'results_screen.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   bool _isSearching = false;
 
-  // Quick search chips
   final _quickQueries = [
     'Photos with my family',
     'Beach vacations',
@@ -29,6 +29,7 @@ class _SearchScreenState extends State<SearchScreen> {
     if (query.isEmpty) return;
 
     setState(() => _isSearching = true);
+    ref.read(searchQueryProvider.notifier).state = query;
 
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -97,10 +98,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   decoration: InputDecoration(
                     hintText: 'Describe the photo you\'re looking for...',
                     hintStyle: const TextStyle(color: VinciTheme.textSecondary),
-                    prefixIcon: const Icon(Icons.search, color: VinciTheme.primary),
+                    prefixIcon:
+                        const Icon(Icons.search, color: VinciTheme.primary),
                     suffixIcon: _controller.text.isNotEmpty
                         ? IconButton(
-                            icon: const Icon(Icons.clear, color: VinciTheme.textSecondary),
+                            icon: const Icon(Icons.clear,
+                                color: VinciTheme.textSecondary),
                             onPressed: () {
                               _controller.clear();
                               setState(() {});
@@ -157,6 +160,64 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
 
               const Spacer(),
+
+              // Index status banner
+              Consumer(
+                builder: (_, ref, __) {
+                  final isIndexing = ref.watch(isIndexingProvider);
+                  final progress = ref.watch(indexProgressProvider);
+                  final count = ref.watch(indexedCountProvider);
+                  if (isIndexing) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: VinciTheme.primary.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 16,
+                            height: 16,
+                            child:
+                                CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            'Indexing ${progress.$1}/${progress.$2} photos...',
+                            style: const TextStyle(fontSize: 13),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  if (count > 0) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade50,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.check_circle,
+                              color: Colors.green.shade600, size: 16),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$count photos indexed',
+                            style: const TextStyle(fontSize: 13),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+
+              const SizedBox(height: 12),
 
               // Search button
               Padding(

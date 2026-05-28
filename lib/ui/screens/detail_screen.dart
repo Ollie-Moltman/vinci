@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/vinci_theme.dart';
 import '../../domain/entities/search_result.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends ConsumerWidget {
   final SearchResult result;
   final String query;
 
@@ -17,8 +19,9 @@ class DetailScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final photo = result.photo;
+    final hasValidPath = photo.path.isNotEmpty;
 
     return Scaffold(
       body: Container(
@@ -42,14 +45,16 @@ class DetailScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: IconButton(
-                        icon: const Icon(Icons.arrow_back, color: Colors.white, size: 18),
+                        icon:
+                            const Icon(Icons.arrow_back, color: Colors.white, size: 18),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ),
                     const SizedBox(width: 12),
                     // Match badge
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [VinciTheme.primary, VinciTheme.primaryDark],
@@ -67,14 +72,24 @@ class DetailScreen extends StatelessWidget {
                     ),
                     const Spacer(),
                     IconButton(
-                      icon: const Icon(Icons.favorite_border,
-                          color: VinciTheme.textPrimary),
-                      onPressed: () {},
+                      icon: Icon(
+                        result.isFavorited
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: result.isFavorited
+                            ? Colors.red
+                            : VinciTheme.textPrimary,
+                      ),
+                      onPressed: () {
+                        // TODO: toggle favorite
+                      },
                     ),
                     IconButton(
                       icon: const Icon(Icons.more_vert,
                           color: VinciTheme.textPrimary),
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO: more options
+                      },
                     ),
                   ],
                 ),
@@ -101,13 +116,14 @@ class DetailScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: AspectRatio(
                             aspectRatio: 3 / 4,
-                            child: Container(
-                              color: VinciTheme.backgroundLight,
-                              child: const Center(
-                                child: Icon(Icons.photo,
-                                    size: 80, color: VinciTheme.textSecondary),
-                              ),
-                            ),
+                            child: hasValidPath
+                                ? Image.file(
+                                    File(photo.path),
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (_, __, ___) =>
+                                        _photoPlaceholder(),
+                                  )
+                                : _photoPlaceholder(),
                           ),
                         ),
                       ),
@@ -149,17 +165,33 @@ class DetailScreen extends StatelessWidget {
                                 color: VinciTheme.textPrimary,
                               ),
                             ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                const Icon(Icons.calendar_today_outlined,
+                                    size: 16, color: VinciTheme.textSecondary),
+                                const SizedBox(width: 4),
+                                Text(
+                                  _formatDate(photo.createdAt),
+                                  style: const TextStyle(
+                                      fontSize: 13, color: VinciTheme.textSecondary),
+                                ),
+                              ],
+                            ),
                             if (photo.location != null) ...[
-                              const SizedBox(height: 12),
+                              const SizedBox(height: 8),
                               Row(
                                 children: [
                                   const Icon(Icons.location_on_outlined,
                                       size: 16, color: VinciTheme.textSecondary),
                                   const SizedBox(width: 4),
-                                  Text(
-                                    photo.location!,
-                                    style: const TextStyle(
-                                        fontSize: 13, color: VinciTheme.textSecondary),
+                                  Expanded(
+                                    child: Text(
+                                      photo.location!,
+                                      style: const TextStyle(
+                                          fontSize: 13,
+                                          color: VinciTheme.textSecondary),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -175,11 +207,18 @@ class DetailScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           children: [
-                            Expanded(child: _ActionBtn(icon: Icons.share, label: 'Share')),
+                            Expanded(
+                                child: _ActionBtn(
+                                    icon: Icons.share, label: 'Share')),
                             const SizedBox(width: 8),
-                            Expanded(child: _ActionBtn(icon: Icons.add, label: 'Add to Library')),
+                            Expanded(
+                                child: _ActionBtn(
+                                    icon: Icons.add, label: 'Add to Library')),
                             const SizedBox(width: 8),
-                            Expanded(child: _ActionBtn(icon: Icons.folder, label: 'View in Gallery')),
+                            Expanded(
+                                child: _ActionBtn(
+                                    icon: Icons.folder,
+                                    label: 'View in Gallery')),
                           ],
                         ),
                       ),
@@ -188,9 +227,10 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
 
-              // Bottom nav placeholder
+              // Bottom nav
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.85),
                   boxShadow: [
@@ -204,14 +244,29 @@ class DetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _NavItem(icon: Icons.search, label: 'Search', active: false),
-                    _NavItem(icon: Icons.settings, label: 'Settings', active: false),
+                    _NavItem(
+                        icon: Icons.search,
+                        label: 'Search',
+                        active: false),
+                    _NavItem(
+                        icon: Icons.settings,
+                        label: 'Settings',
+                        active: false),
                   ],
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _photoPlaceholder() {
+    return Container(
+      color: VinciTheme.backgroundLight,
+      child: const Center(
+        child: Icon(Icons.photo, size: 80, color: VinciTheme.textSecondary),
       ),
     );
   }
@@ -245,7 +300,8 @@ class _ActionBtn extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: const TextStyle(fontSize: 11, color: VinciTheme.textPrimary),
+            style: const TextStyle(
+                fontSize: 11, color: VinciTheme.textPrimary),
           ),
         ],
       ),
@@ -269,7 +325,11 @@ class _NavItem extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, color: active ? VinciTheme.primary : VinciTheme.textSecondary, size: 22),
+        Icon(
+          icon,
+          color: active ? VinciTheme.primary : VinciTheme.textSecondary,
+          size: 22,
+        ),
         const SizedBox(height: 4),
         Text(
           label,
