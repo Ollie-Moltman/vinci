@@ -39,8 +39,10 @@ jobs:
       - name: Install Flutter
         run: |
           git clone --depth 1 --branch stable https://github.com/flutter/flutter.git /opt/flutter
-          echo "/opt/flutter/bin" >> $GITHUB_PATH
-          flutter precache
+        shell: bash
+
+      - name: Add Flutter to PATH
+        run: echo "/opt/flutter/bin" >> $GITHUB_PATH
 
       - run: flutter --version
 
