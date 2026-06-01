@@ -71,7 +71,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/models/
+    - assets/models/tokenizer.json
+    - assets/models/tokenizer_config.json
+    - assets/models/merges.txt
+    - assets/models/special_tokens_map.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -41,7 +41,7 @@ class VinciTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
-      cardTheme: CardThemeData(
+      cardTheme: CardTheme(
         color: cardBackground,
         elevation: 0,
         shape: RoundedRectangleBorder(

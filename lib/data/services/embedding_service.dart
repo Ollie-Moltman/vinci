@@ -1,50 +1,89 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/services.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:image/image.dart' as img;
+import 'package:path_provider/path_provider.dart';
 import 'dart:math' as math;
+import 'clip_tokenizer.dart';
 
 /// MobileCLIP-based embedding service using TFLite.
 ///
 /// Embeds images and text into a shared 512-dim vector space.
 /// Cosine similarity between text embedding and image embedding = match score.
+///
+/// Model I/O (from TFLite schema inspection):
+///   Image input:  args_0:0  → shape [1, 3, 256, 256], float32, NCHW RGB
+///   Text input:   args_1:0  → shape [1, 77], int64 token IDs
+///   Text output:  StatefulPartitionedCall:0 → [1, 512], float32
+///   Image output: StatefulPartitionedCall:1 → [1, 512], float32
+///
+/// Models are loaded from the app's documents directory (~/.vinci/models/)
+/// instead of Flutter assets, keeping the APK small.
 class EmbeddingService {
   Interpreter? _imageInterpreter;
   Interpreter? _textInterpreter;
   bool _isInitialized = false;
 
-  static const int _embeddingDim = 512;
+  CLIPTokenizer? _tokenizer;
 
-  /// Initialize the TFLite interpreters from assets.
-  /// Falls back gracefully if model files are not yet present.
+  static const int _embeddingDim = 512;
+  static const int _imageSize = 256;
+  static const int _maxTokens = 77;
+
+  /// MobileCLIP ImageNet normalization
+  static const List<double> _mean = [0.485, 0.456, 0.406];
+  static const List<double> _std = [0.229, 0.224, 0.225];
+
+  /// Returns the directory where model files should be placed.
+  Future<Directory> get _modelDir async {
+    final appDir = await getApplicationDocumentsDirectory();
+    final modelDir = Directory('${appDir.path}/.vinci/models');
+    if (!await modelDir.exists()) {
+      await modelDir.create(recursive: true);
+    }
+    return modelDir;
+  }
+
+  /// Initialize the TFLite interpreters and CLIP tokenizer from disk.
+  /// Models must be placed in the app's documents directory:
+  ///   ~/.vinci/models/mobileclip_image_embedding.tflite
+  ///   ~/.vinci/models/mobileclip_text_embedding.tflite
   Future<void> initialize() async {
     if (_isInitialized) return;
 
     try {
-      _imageInterpreter = await tflite_flutter.createInterpreter(
-        'assets/models/mobileclip_image_embedding.tflite',
-      );
-      _imageInterpreter?.invoke();
+      // Load CLIP tokenizer (always from assets, small file)
+      _tokenizer = CLIPTokenizer();
+      await _tokenizer!.load();
 
-      _textInterpreter = await tflite_flutter.createInterpreter(
-        'assets/models/mobileclip_text_embedding.tflite',
-      );
-      _textInterpreter?.invoke();
+      // Load TFLite models from documents directory
+      final modelDir = await _modelDir;
+      final imageModelPath = '${modelDir.path}/mobileclip_image_embedding.tflite';
+      final textModelPath = '${modelDir.path}/mobileclip_text_embedding.tflite';
 
-      _isInitialized = true;
+      final imageFile = File(imageModelPath);
+      final textFile = File(textModelPath);
+
+      if (await imageFile.exists() && await textFile.exists()) {
+        _imageInterpreter = await Interpreter.fromFile(imageFile);
+        _imageInterpreter!.allocateTensors();
+
+        _textInterpreter = await Interpreter.fromFile(textFile);
+        _textInterpreter!.allocateTensors();
+
+        _isInitialized = true;
+      }
+      // If models not found, service stays uninitialized — embeddings use fake fallback
     } catch (e) {
-      // Models not yet downloaded — stay in prototype mode
       _isInitialized = false;
     }
   }
 
   /// Generate a text embedding for a search query.
   Future<Float32List> embedText(String query) async {
-    if (_isInitialized && _textInterpreter != null) {
+    if (_isInitialized && _textInterpreter != null && _tokenizer != null) {
       return _runTextEmbedding(query);
     }
-    // Prototype fallback — deterministic from text hash
     return _fakeEmbedding(query.hashCode);
   }
 
@@ -53,7 +92,6 @@ class EmbeddingService {
     if (_isInitialized && _imageInterpreter != null) {
       return _runImageEmbedding(imageBytes);
     }
-    // Prototype fallback — deterministic from image size
     return _fakeEmbedding(imageBytes.length);
   }
 
@@ -61,73 +99,94 @@ class EmbeddingService {
   // Real inference paths
   // -------------------------------------------------------------------------
 
+  /// Run text query through the text model.
+  /// Takes text tokens [1, 77] int64 + dummy image [1,3,256,256] float32.
+  /// Returns text embedding [1, 512] float32 (output index 0).
   Float32List _runTextEmbedding(String text) {
-    // Tokenize text → run through text encoder TFLite model
-    // Output: Float32List[512]
-    final input = _tokenize(text);
-    final output = Float32List(_embeddingDim);
+    final tokens = _tokenize(text);
 
-    _textInterpreter?.run(input, output);
-    _normalize(output);
-    return output;
+    final dummyImage = Float32List(3 * _imageSize * _imageSize);
+    final textOutput = Float32List(_embeddingDim);
+    final imgOutput = Float32List(_embeddingDim);
+    final dummyOut = Float32List(1);
+
+    _textInterpreter!.runForMultipleInputs(
+      [dummyImage, tokens],
+      {0: textOutput, 1: imgOutput, 2: dummyOut},
+    );
+
+    _normalize(textOutput);
+    return textOutput;
   }
 
+  /// Run image through the image model.
+  /// Takes image [1, 3, 256, 256] float32 + empty text tokens [1, 77].
+  /// Returns image embedding [1, 512] float32 (output index 1).
   Float32List _runImageEmbedding(Uint8List bytes) {
-    // Decode image → resize to model input (e.g. 224x224) → normalize
-    // Run through image encoder TFLite model
-    // Output: Float32List[512]
     final image = img.decodeImage(bytes);
     if (image == null) return _fakeEmbedding(bytes.length);
 
-    final resized = img.copyResize(image, width: 224, height: 224);
-    final input = _prepareImageInput(resized);
-    final output = Float32List(_embeddingDim);
+    final resized = img.copyResize(image, width: _imageSize, height: _imageSize);
+    final inputTensor = _preprocessImage(resized);
 
-    _imageInterpreter?.run(input, output);
-    _normalize(output);
-    return output;
-  }
+    final emptyTokens = _createEmptyTokens();
 
-  /// Simple word-level tokenization + embedding lookup.
-  /// In production: use proper MobileCLIP tokenizer (SVG character-level).
-  List<List<double>> _tokenize(String text) {
-    final words = text.toLowerCase().split(RegExp(r'\\s+'));
-    // Create a sequence of int IDs from word hash (deterministic)
-    // Shape for TFLite: [1, seq_len]
-    final seqLen = 16;
-    final ids = List.generate(seqLen, (i) {
-      if (i < words.length) {
-        return (words[i].hashCode.abs() % 30000).toDouble();
-      }
-      return 0.0;
-    });
-    return [ids];
-  }
+    final imgOutput = Float32List(_embeddingDim);
+    final textOutput = Float32List(_embeddingDim);
+    final dummyOut = Float32List(1);
 
-  /// Convert decoded image to NCHW Float32 tensor.
-  List<List<List<List<double>>>> _prepareImageInput(img.Image image) {
-    // Shape: [1, 3, 224, 224]
-    final input = List.generate(
-      1,
-      (_) => List.generate(
-        3,
-        (_) => List.generate(
-          224,
-          (_) => List.generate(224, (_) => 0.0),
-        ),
-      ),
+    _imageInterpreter!.runForMultipleInputs(
+      [inputTensor, emptyTokens],
+      {0: textOutput, 1: imgOutput, 2: dummyOut},
     );
 
-    for (var y = 0; y < 224; y++) {
-      for (var x = 0; x < 224; x++) {
-        final px = image.getPixel(x, y);
-        input[0][0][y][x] = px.r / 255.0;
-        input[0][1][y][x] = px.g / 255.0;
-        input[0][2][y][x] = px.b / 255.0;
+    _normalize(imgOutput);
+    return imgOutput;
+  }
+
+  // -------------------------------------------------------------------------
+  // Tokenization (CLIP BPE)
+  // -------------------------------------------------------------------------
+
+  /// Convert text string to token IDs [1, 77] float64 (TFLite int64 input).
+  Float32List _tokenize(String text) {
+    final tokenIds = _tokenizer!.encodeWithTokens(text);
+    final result = Float32List(_maxTokens);
+    for (var i = 0; i < _maxTokens; i++) {
+      result[i] = tokenIds[i].toDouble();
+    }
+    return result;
+  }
+
+  /// Create zero-filled tokens for image-only encoding.
+  Float32List _createEmptyTokens() {
+    return Float32List(_maxTokens);
+  }
+
+  // -------------------------------------------------------------------------
+  // Image preprocessing
+  // -------------------------------------------------------------------------
+
+  /// Preprocess image to [1, 3, 256, 256] NCHW Float32 tensor.
+  /// Normalized with MobileCLIP ImageNet mean/std.
+  Float32List _preprocessImage(img.Image image) {
+    final tensor = Float32List(3 * _imageSize * _imageSize);
+    var idx = 0;
+    for (var c = 0; c < 3; c++) {
+      for (var y = 0; y < _imageSize; y++) {
+        for (var x = 0; x < _imageSize; x++) {
+          final px = image.getPixel(x, y);
+          final vals = [px.r, px.g, px.b];
+          tensor[idx++] = ((vals[c] / 255.0) - _mean[c]) / _std[c];
+        }
       }
     }
-    return input;
+    return tensor;
   }
+
+  // -------------------------------------------------------------------------
+  // Utilities
+  // -------------------------------------------------------------------------
 
   void _normalize(Float32List vec) {
     double norm = 0;
@@ -142,7 +201,7 @@ class EmbeddingService {
     }
   }
 
-  /// Deterministic fallback embedding — for use before model files are downloaded.
+  /// Deterministic fallback embedding (used when model not loaded).
   Float32List _fakeEmbedding(int seed) {
     final rng = math.Random(seed.toUnsigned(32));
     final vec = Float32List(_embeddingDim);
