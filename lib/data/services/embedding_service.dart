@@ -56,18 +56,23 @@ class EmbeddingService {
       _tokenizer = CLIPTokenizer();
       await _tokenizer!.load();
 
-      // Load TFLite models from documents directory
+      // Load TFLite models from documents directory (~/.vinci/models/)
       final modelDir = await _modelDir;
-      // Load TFLite models
-      _imageInterpreter = await Interpreter.fromAsset(
-        'assets/models/mobileclip_image_embedding.tflite',
-      );
-      _imageInterpreter!.allocateTensors();
+      final imageModelPath = '${modelDir.path}/mobileclip_image_embedding.tflite';
+      final textModelPath = '${modelDir.path}/mobileclip_text_embedding.tflite';
 
-      _textInterpreter = await Interpreter.fromFile(
-        File('${(await _modelDir).path}/mobileclip_text_embedding.tflite'),
-      );
-      _textInterpreter!.allocateTensors();
+      final imageFile = File(imageModelPath);
+      final textFile = File(textModelPath);
+
+      if (await imageFile.exists() && await textFile.exists()) {
+        _imageInterpreter = await Interpreter.fromFile(imageFile);
+        _imageInterpreter!.allocateTensors();
+
+        _textInterpreter = await Interpreter.fromFile(textFile);
+        _textInterpreter!.allocateTensors();
+
+        _isInitialized = true;
+      }
       // If models not found, service stays uninitialized — embeddings use fake fallback
     } catch (e) {
       _isInitialized = false;

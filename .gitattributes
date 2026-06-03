@@ -1,0 +1,3 @@
+*.tflite filter=lfs diff=lfs merge=lfs
+*.apk filter=lfs diff=lfs merge=lfs
+build/ filter=lfs diff=lfs merge=lfs

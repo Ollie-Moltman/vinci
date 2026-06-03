@@ -71,7 +71,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/models/mobileclip_image_embedding.tflite
     - assets/models/tokenizer.json
     - assets/models/tokenizer_config.json
     - assets/models/merges.txt
