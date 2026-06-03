@@ -46,8 +46,8 @@ class EmbeddingService {
 
   /// Initialize the TFLite interpreters and CLIP tokenizer from disk.
   /// Models must be placed in the app's documents directory:
-  ///   ~/.vinci/models/mobileclip_image_embedding.tflite
-  ///   ~/.vinci/models/mobileclip_text_embedding.tflite
+  ///   ~/.vinci/models/mobileclip_s2_image.tflite
+  ///   ~/.vinci/models/mobileclip_s2_text.tflite
   Future<void> initialize() async {
     if (_isInitialized) return;
 
@@ -58,8 +58,8 @@ class EmbeddingService {
 
       // Load TFLite models from documents directory (~/.vinci/models/)
       final modelDir = await _modelDir;
-      final imageModelPath = '${modelDir.path}/mobileclip_image_embedding.tflite';
-      final textModelPath = '${modelDir.path}/mobileclip_text_embedding.tflite';
+      final imageModelPath = '${modelDir.path}/mobileclip_s2_image.tflite';
+      final textModelPath = '${modelDir.path}/mobileclip_s2_text.tflite';
 
       final imageFile = File(imageModelPath);
       final textFile = File(textModelPath);

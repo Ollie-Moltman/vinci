@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path_provider/path_provider.dart';
 import 'ui/theme/vinci_theme.dart';
 import 'ui/screens/splash_screen.dart';
+import 'ui/screens/model_download_screen.dart';
 import 'ui/screens/permissions_screen.dart';
 import 'ui/screens/search_screen.dart';
 import 'ui/screens/settings_screen.dart';
 import 'providers/providers.dart';
+import 'data/services/model_download_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +31,7 @@ class VinciApp extends StatelessWidget {
       title: 'Vinci',
       debugShowCheckedModeBanner: false,
       theme: VinciTheme.lightTheme,
-      home: const SplashWrapper(),
+      home: const StartupFlow(),
       routes: {
         '/permissions': (_) => const PermissionsScreenWrapper(),
         '/search': (_) => const SearchScreen(),
@@ -39,28 +42,65 @@ class VinciApp extends StatelessWidget {
   }
 }
 
-/// Brief splash before permission check.
-class SplashWrapper extends StatefulWidget {
-  const SplashWrapper({super.key});
+/// Root widget that manages the startup sequence:
+/// 1. Splash (brief)
+/// 2. If models missing → Model download screen
+/// 3. Permissions check
+/// 4. Home
+class StartupFlow extends StatefulWidget {
+  const StartupFlow({super.key});
 
   @override
-  State<SplashWrapper> createState() => _SplashWrapperState();
+  State<StartupFlow> createState() => _StartupFlowState();
 }
 
-class _SplashWrapperState extends State<SplashWrapper> {
+class _StartupFlowState extends State<StartupFlow> {
+  static const _splashDuration = Duration(milliseconds: 900);
+
+  _StartupStep _step = _StartupStep.splash;
+  bool? _modelsReady;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 800), () {
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed('/permissions');
-      }
+    _checkModels();
+  }
+
+  Future<void> _checkModels() async {
+    await Future.delayed(_splashDuration);
+    if (!mounted) return;
+
+    final appDir = await getApplicationDocumentsDirectory();
+    final service = ModelDownloadService('${appDir.path}/.vinci/models');
+    _modelsReady = await service.modelsReady();
+
+    setState(() {
+      _step = _modelsReady == true
+          ? _StartupStep.permissions
+          : _StartupStep.modelDownload;
     });
   }
 
+  void _onModelsReady() {
+    if (mounted) {
+      setState(() => _step = _StartupStep.permissions);
+    }
+  }
+
   @override
-  Widget build(BuildContext context) => const SplashScreen();
+  Widget build(BuildContext context) {
+    switch (_step) {
+      case _StartupStep.splash:
+        return const SplashScreen();
+      case _StartupStep.modelDownload:
+        return ModelDownloadScreen(onComplete: _onModelsReady);
+      case _StartupStep.permissions:
+        return const PermissionsScreenWrapper();
+    }
+  }
 }
+
+enum _StartupStep { splash, modelDownload, permissions }
 
 /// Permissions check → then to home.
 class PermissionsScreenWrapper extends ConsumerStatefulWidget {

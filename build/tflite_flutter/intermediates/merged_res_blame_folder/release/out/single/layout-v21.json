@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout-v21/notification_template_icon_group.xml",
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout-v21/notification_action_tombstone.xml",
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout-v21/notification_action.xml",
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout-v21/notification_template_custom_big.xml",
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout-v21/notification_template_custom_big.xml"
+    }
+]
