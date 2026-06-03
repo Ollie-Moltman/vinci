@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../theme/vinci_theme.dart';
 
 class PermissionsScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
         content: const Text('Permission required to search your photos'),
         action: SnackBarAction(
           label: 'Settings',
-          onPressed: () => PhotoManager.openAppSetting(),
+          onPressed: () => openAppSettings(),
         ),
       ),
     );
@@ -105,21 +106,21 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.green.shade.shade50,
+                    color: Colors.green.shade50,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.green.shade.shade200),
+                    border: Border.all(color: Colors.green.shade200),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.lock_outline,
-                          size: 16, color: Colors.green.shade.shade700),
+                          size: 16, color: Colors.green.shade700),
                       const SizedBox(width: 6),
                       Text(
                         '100% on-device — never leaves your phone',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.green.shade.shade700,
+                          color: Colors.green.shade700,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -161,7 +162,7 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextButton(
-                  onPressed: () => PhotoManager.openAppSetting(),
+                  onPressed: () => openAppSettings(),
                   child: const Text(
                     'Open Settings Instead',
                     style: TextStyle(

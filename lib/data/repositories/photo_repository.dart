@@ -33,14 +33,32 @@ class PhotoRepository {
     return photos;
   }
 
+  /// Load raw AssetEntity objects for internal indexing use.
+  Future<List<AssetEntity>> loadAssetEntities({int page = 0, int size = 50}) async {
+    final albums = await PhotoManager.getAssetPathList(
+      type: RequestType.image,
+      filterOption: FilterOptionGroup(
+        imageOption: const FilterOption(
+          sizeConstraint: SizeConstraint(ignoreSize: true),
+        ),
+        orders: [
+          const OrderOption(type: OrderOptionType.createDate, asc: false),
+        ],
+      ),
+    );
+
+    if (albums.isEmpty) return [];
+    return await albums.first.getAssetListPaged(page: page, size: size);
+  }
+
   /// Get total photo count across all albums.
   Future<int> getTotalPhotoCount() async {
     final albums = await PhotoManager.getAssetPathList(
       type: RequestType.image,
     );
     if (albums.isEmpty) return 0;
-    final allAssets = await albums.first.getAssetList();
-    return allAssets.length;
+    final count = await albums.first.assetCountAsync;
+    return count;
   }
 
   /// Load a single asset by ID.

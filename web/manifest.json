@@ -1,0 +1,9 @@
+{
+  "name": "Vinci Test",
+  "short_name": "Vinci",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f0f4ff",
+  "theme_color": "#5a7fd6",
+  "icons": []
+}

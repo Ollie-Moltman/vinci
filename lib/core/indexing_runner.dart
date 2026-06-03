@@ -34,16 +34,15 @@ Future<void> runIndexing(WidgetRef ref) async {
     const size = 50;
 
     while (true) {
-      final photos = await photoRepo.loadPhotos(page: page, size: size);
-      if (photos.isEmpty) break;
+      final assets = await photoRepo.loadAssetEntities(page: page, size: size);
+      if (assets.isEmpty) break;
 
-      // Index the batch using AssetEntity directly
-      await indexer.indexAssetEntities(photos);
+      await indexer.indexAssetEntities(assets);
       final done = vectorStore.indexedCount;
       ref.read(indexProgressProvider.notifier).state = (done, total);
       ref.read(indexedCountProvider.notifier).state = done;
 
-      if (photos.length < size) break;
+      if (assets.length < size) break;
       page++;
     }
 

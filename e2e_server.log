@@ -1,0 +1,820 @@
+127.0.0.1 - - [31/May/2026 11:25:51] "GET /api/search?q=dog HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:26:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:26:22] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:26:22] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:26:22] code 404, message File not found
+127.0.0.1 - - [31/May/2026 11:26:22] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [31/May/2026 11:28:08] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:28:08] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:28:09] "GET /canvaskit/canvaskit.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:28:29] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:28:36] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:28:48] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:00] "GET /api_test.html HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:19] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:29] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:29] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:46] "GET /api_test.html HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:46] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:29:47] "GET /api/search?q=dog HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 11:29:47] "GET /api/indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 11:30:20] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:30:21] "GET /api/search?q=dog HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:31:03] "GET /e2e_test.html HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:31:03] "GET /api/health HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 11:31:04] "GET /api/indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 11:31:40] "GET /api/health HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:31:48] "GET /api/search?q=dog HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 11:32:33] "GET /_test.html HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:12:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:12:32] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:12:32] code 404, message File not found
+127.0.0.1 - - [31/May/2026 13:12:32] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [31/May/2026 13:12:32] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:14:30] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:14:30] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:14:31] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:17:03] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:17:04] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:17:04] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:18:35] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:18:36] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:18:36] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:20:03] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:20:28] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:21:08] "GET /canvaskit/canvaskit.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:21:17] "GET /main.dart.mjs HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:21:38] "GET /main.dart.wasm HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:22:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:22:49] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:22:49] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:25:28] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:25:29] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:25:29] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:27:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:27:28] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:27:28] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:27:35] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:27:35] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:27:35] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:30:40] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:30:40] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:30:41] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:30:42] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:30:42] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:30:42] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 13:30:57] "GET /flutter.js HTTP/1.1" 304 -
+127.0.0.1 - - [31/May/2026 13:31:26] "HEAD /canvaskit/canvaskit.wasm HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:32:11] "GET /flutter.js HTTP/1.1" 304 -
+127.0.0.1 - - [31/May/2026 13:32:12] "GET /main.dart.js HTTP/1.1" 304 -
+127.0.0.1 - - [31/May/2026 13:32:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:32:55] "GET /canvaskit/canvaskit.wasm HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:32:55] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:32:56] "GET /canvaskit/canvaskit.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:34:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:34:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:34:26] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:34:27] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:38:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:38:42] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:38:43] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:38:43] "GET /favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:46:55] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:46:58] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:46:59] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:46:59] "GET /manifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:49:02] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:49:19] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:49:30] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:49:31] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:49:31] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:49:31] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:49:32] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:49:32] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:49:38] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:49:38] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 13:51:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:51:27] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:52:51] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:52:51] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:53:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:53:40] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:55:07] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:55:07] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:56:24] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:56:24] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:35] "HEAD /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:45] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:45] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:45] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:45] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:46] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:46] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:58:46] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:58:46] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 13:58:47] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 13:59:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:59:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 13:59:49] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:01:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:01:21] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:02:39] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:02:39] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:03:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:03:19] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:05:18] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:05:18] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:06:37] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:06:37] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:08:48] "HEAD /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:08:48] "HEAD /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:08:48] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:09:17] "HEAD /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:09:17] "HEAD /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:09:35] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:09:35] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:09:35] "GET /favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:10:57] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:10:57] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:12:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:12:10] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:13:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:13:20] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:15:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:15:06] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:16:17] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:16:17] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:17:01] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:17:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:18:24] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:18:24] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:18:54] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:18:54] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:18:54] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:18:54] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:18:55] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:19:51] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:19:51] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:19:51] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:38] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:38] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:38] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:39] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:39] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:22:39] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:22:40] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:23:46] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:23:46] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:23:46] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:23:46] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:23:47] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:23:47] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:23:47] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:23:47] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:25:15] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:25:15] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:25:43] "GET /api/health HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:25:43] "GET /api/indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:25:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:25:43] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:25:43] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:25:43] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:25:44] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:25:44] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:25:44] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:25:44] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:27:11] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:27:12] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:28:46] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:28:46] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:28:46] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:28:46] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:28:47] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:28:47] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:28:47] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:28:47] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:31:03] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:31:03] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:31:03] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:31:03] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:31:04] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:31:04] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:31:04] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:31:04] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:33:02] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:33:02] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:33:02] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:33:02] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:33:03] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:33:03] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:33:03] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:33:04] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:34:55] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:34:55] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:34:55] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:34:56] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:34:56] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:34:56] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:34:56] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:34:57] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:36:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:36:54] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:36:54] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:36:55] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:36:55] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:36:55] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:36:55] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:36:56] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:38:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:38:42] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:38:42] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:38:42] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:38:43] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:38:43] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:38:43] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:38:44] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:40:30] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:40:30] "GET /flutter_bootstrap.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:40:30] "GET /flutter.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:40:30] "GET /main.dart.js HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:40:31] "GET /assets/FontManifest.json HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:40:31] "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2026 14:40:31] "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:40:31] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:43:03] "GET /indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:43:03] "GET /indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:43:08] code 404, message File not found
+127.0.0.1 - - [31/May/2026 14:43:08] "GET /indexed/ HTTP/1.1" 404 -
+127.0.0.1 - - [31/May/2026 14:43:08] code 404, message File not found
+127.0.0.1 - - [31/May/2026 14:43:08] "GET /indexed/ HTTP/1.1" 404 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:43:08] "GET /api/indexed HTTP/1.1" 502 -
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/e2e_server.py", line 42, in proxy_api
+    with urllib.request.urlopen(req, timeout=30) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 495, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.13/urllib/request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python3.13/urllib/request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/urllib/request.py", line 466, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.13/urllib/request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+127.0.0.1 - - [31/May/2026 14:43:08] "GET /api/indexed HTTP/1.1" 502 -
+127.0.0.1 - - [31/May/2026 14:43:33] "GET / HTTP/1.1" 200 -

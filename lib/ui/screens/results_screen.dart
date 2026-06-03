@@ -263,6 +263,7 @@ class _ResultCardState extends ConsumerState<_ResultCard> {
         duration: const Duration(milliseconds: 150),
         height: 155,
         margin: const EdgeInsets.only(bottom: 12),
+        transform: Matrix4.identity()..translate(0.0, _hovered ? -2.0 : 0.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -274,7 +275,6 @@ class _ResultCardState extends ConsumerState<_ResultCard> {
               offset: Offset(0, _hovered ? 6 : 4),
             ),
           ],
-          transform: Matrix4.identity()..translate(0.0, _hovered ? -2.0 : 0.0),
         ),
         child: Row(
           children: [

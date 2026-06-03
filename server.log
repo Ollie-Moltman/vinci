@@ -1,0 +1,39 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780206511.541390   10504 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+I0000 00:00:1780206511.808934   10504 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780206513.580699   10504 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+/data/.local/lib/python3.13/site-packages/tensorflow/lite/python/interpreter.py:457: UserWarning:     Warning: tf.lite.Interpreter is deprecated and is scheduled for deletion in
+    TF 2.20. Please use the LiteRT interpreter from the ai_edge_litert package.
+    See the [migration guide](https://ai.google.dev/edge/litert/migration)
+    for details.
+    
+  warnings.warn(_INTERPRETER_DELETION_WARNING)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+Loading tokenizer…
+  vocab size=49408, merges=48894
+  text model outputs: {d['index']: d['shape'] for d in _txt_interp.get_output_details()}
+  image model outputs: {d['index']: d['shape'] for d in _img_interp.get_output_details()}
+
+✅ Test server ready on http://localhost:8765
+Endpoints:
+  GET  /health           — server status
+  GET  /tokenize?q=..    — tokenize text, returns IDs
+  GET  /embed_text?q=..  — embed text, returns FULL 512-dim vector
+  GET  /search?q=..      — search indexed images by text
+  POST /index            — {"path":"/tmp/test.jpg"} index from path
+  POST /index_bytes      — {"data":b64, "name":fname} index from bytes
+  GET  /indexed          — list all indexed images
+
+Traceback (most recent call last):
+  File "/data/.openclaw/workspace/vinci/test_server.py", line 296, in <module>
+    with ReuseAddrTCPServer(("", PORT), Handler) as srv:
+         ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 98] Address already in use
