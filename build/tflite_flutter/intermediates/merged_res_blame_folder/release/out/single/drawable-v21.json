@@ -1,6 +1,0 @@
-[
-    {
-        "merged": "org.tensorflow.tflite_flutter-merged_res-23:/drawable-v21/notification_action_background.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/drawable-v21/notification_action_background.xml"
-    }
-]

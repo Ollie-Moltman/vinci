@@ -1,4 +1,0 @@
-#Wed Jun 03 09:33:48 IST 2026
-base.0=/data/.openclaw/workspace/vinci/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
