@@ -53,7 +53,7 @@ class ModelDownloadProgress {
 }
 
 /// Streams download of MobileCLIP TFLite model files from GitHub releases.
-/// Uses HTTP streaming to disk.
+/// Uses HTTP streaming to disk with retry logic on failure.
 class ModelDownloadService {
   /// URLs for MobileCLIP-S2 TFLite models from GitHub releases.
   static const modelFiles = [
@@ -71,12 +71,16 @@ class ModelDownloadService {
     ),
   ];
 
+  /// Maximum retry attempts per file.
+  static const maxRetries = 3;
+
   final String _targetDir;
 
   ModelDownloadService(this._targetDir);
 
   /// Stream-download all model files, reporting progress via callback.
-  /// Throws on any download failure.
+  /// Retries failed files up to [maxRetries] times with exponential backoff.
+  /// Throws after all retries exhausted.
   Future<void> downloadAll({
     required void Function(ModelDownloadProgress) onProgress,
   }) async {
@@ -94,9 +98,9 @@ class ModelDownloadService {
 
     for (var i = 0; i < modelFiles.length; i++) {
       final file = modelFiles[i];
-      final destPath = '$_targetDir/${file.name}';
 
       // Skip if already exists with correct size
+      final destPath = '$_targetDir/${file.name}';
       final destFile = File(destPath);
       if (await destFile.exists()) {
         final stat = await destFile.stat();
@@ -114,10 +118,14 @@ class ModelDownloadService {
             totalSizeBytes: totalSizeAll,
           ));
           continue;
+        } else {
+          // Size mismatch — delete the partial/corrupt file and re-download
+          await destFile.delete().catchError((_) {});
         }
       }
 
-      await _downloadFile(
+      // Download with retry
+      await _downloadFileWithRetry(
         url: file.url,
         destPath: destPath,
         fileName: file.name,
@@ -126,6 +134,60 @@ class ModelDownloadService {
         totalSizeAll: totalSizeAll,
         onProgress: onProgress,
       );
+    }
+  }
+
+  Future<void> _downloadFileWithRetry({
+    required String url,
+    required String destPath,
+    required String fileName,
+    required int fileIndex,
+    required int totalSize,
+    required int totalSizeAll,
+    required void Function(ModelDownloadProgress) onProgress,
+    int attempt = 1,
+  }) async {
+    try {
+      await _downloadFile(
+        url: url,
+        destPath: destPath,
+        fileName: fileName,
+        fileIndex: fileIndex,
+        totalSize: totalSize,
+        totalSizeAll: totalSizeAll,
+        onProgress: onProgress,
+      );
+    } catch (e) {
+      if (attempt < maxRetries) {
+        // Exponential backoff: 2s, 4s, 8s
+        final delayMs = 2000 * (1 << (attempt - 1));
+        // Delete partial file before retry
+        await File(destPath).delete().catchError((_) {});
+        onProgress(ModelDownloadProgress(
+          fileName: fileName,
+          downloadedBytes: 0,
+          totalBytes: totalSize,
+          fileIndex: fileIndex,
+          totalFiles: modelFiles.length,
+          totalDownloadedBytes: (fileIndex - 1) * totalSize,
+          totalSizeBytes: totalSizeAll,
+        ));
+        await Future.delayed(Duration(milliseconds: delayMs));
+        await _downloadFileWithRetry(
+          url: url,
+          destPath: destPath,
+          fileName: fileName,
+          fileIndex: fileIndex,
+          totalSize: totalSize,
+          totalSizeAll: totalSizeAll,
+          onProgress: onProgress,
+          attempt: attempt + 1,
+        );
+      } else {
+        throw Exception(
+          'Failed to download $fileName after $maxRetries attempts: $e',
+        );
+      }
     }
   }
 
@@ -149,22 +211,52 @@ class ModelDownloadService {
 
       final sink = File(destPath).openWrite();
       var received = 0;
+      var lastProgressTime = DateTime.now();
+      const progressReportInterval = 200; // ms between UI updates
 
       await for (final chunk in response.stream) {
         sink.add(chunk);
         received += chunk.length;
-        onProgress(ModelDownloadProgress(
-          fileName: fileName,
-          downloadedBytes: received,
-          totalBytes: totalSize,
-          fileIndex: fileIndex,
-          totalFiles: modelFiles.length,
-          totalDownloadedBytes: (fileIndex - 1) * totalSize + received,
-          totalSizeBytes: totalSizeAll,
-        ));
+
+        // Throttle UI updates to avoid flooding the Flutter UI
+        final now = DateTime.now();
+        if (now.difference(lastProgressTime).inMilliseconds >=
+            progressReportInterval) {
+          lastProgressTime = now;
+          onProgress(ModelDownloadProgress(
+            fileName: fileName,
+            downloadedBytes: received,
+            totalBytes: totalSize,
+            fileIndex: fileIndex,
+            totalFiles: modelFiles.length,
+            totalDownloadedBytes: (fileIndex - 1) * totalSize + received,
+            totalSizeBytes: totalSizeAll,
+          ));
+        }
       }
 
+      // Final progress update at 100%
+      onProgress(ModelDownloadProgress(
+        fileName: fileName,
+        downloadedBytes: totalSize,
+        totalBytes: totalSize,
+        fileIndex: fileIndex,
+        totalFiles: modelFiles.length,
+        totalDownloadedBytes: fileIndex * totalSize,
+        totalSizeBytes: totalSizeAll,
+      ));
+
       await sink.close();
+
+      // Verify downloaded size matches expected
+      final file = File(destPath);
+      final stat = await file.stat();
+      if (stat.size != totalSize) {
+        await file.delete();
+        throw Exception(
+          'Download corrupted: expected $totalSize bytes but got ${stat.size}',
+        );
+      }
     } finally {
       client.close();
     }
