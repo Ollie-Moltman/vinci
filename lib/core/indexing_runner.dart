@@ -12,6 +12,9 @@ Future<void> runIndexing(WidgetRef ref) async {
   final vectorStore = ref.read(vectorStoreProvider);
   final photoRepo = ref.read(photoRepositoryProvider);
 
+  // IMPORTANT: initialize the embedding service before indexing
+  await embeddingService.initialize();
+
   // Load existing index from disk first
   await vectorStore.loadIndex();
 
@@ -56,11 +59,16 @@ Future<void> runIndexing(WidgetRef ref) async {
 
 /// Load persisted index state on app startup.
 Future<void> loadPersistedState(WidgetRef ref) async {
-  final vectorStore = ref.read(vectorStoreProvider);
-  final dir = await getApplicationDocumentsDirectory();
-  // Update index dir
-  ref.read(indexDirProvider.notifier).state = dir.path;
+  final embeddingService = ref.read(embeddingServiceProvider);
 
+  // Initialize embedding service at startup
+  await embeddingService.initialize();
+
+  final vectorStore = ref.read(vectorStoreProvider);
+
+  // Set the index directory path before loading
+  final dir = await getApplicationDocumentsDirectory();
+  ref.read(indexDirProvider.notifier).state = dir.path;
   await vectorStore.loadIndex();
 
   if (vectorStore.indexedCount > 0) {

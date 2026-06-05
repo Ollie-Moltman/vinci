@@ -15,6 +15,9 @@ class SearchService {
 
   /// Search for photos matching a text query.
   Future<List<SearchResult>> search(String query, {int limit = 20}) async {
+    // Ensure embedding service is initialized before search
+    await _embeddingService.initialize();
+
     // 1. Embed the text query
     final queryEmbedding = await _embeddingService.embedText(query);
 

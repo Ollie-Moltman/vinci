@@ -1,0 +1,19 @@
+<lint-module
+    format="1"
+    dir="/data/.pub-cache/hosted/pub.dev/photo_manager-3.9.0/android"
+    name=":photo_manager"
+    type="LIBRARY"
+    maven="com.fluttercandies.photo_manager:photo_manager:"
+    agpVersion="8.2.0"
+    buildFolder="/data/.openclaw/workspace/vinci/build/photo_manager"
+    bootClassPath="/data/android-sdk/platforms/android-36/android.jar:/data/android-sdk/build-tools/34.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="17"
+    compileTarget="android-36"
+    neverShrinking="true">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

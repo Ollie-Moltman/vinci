@@ -55,12 +55,16 @@ class _ModelDownloadScreenState extends State<ModelDownloadScreen>
     if (await _downloadService.modelsReady()) {
       setState(() {
         _statusText = 'Models ready!';
+        final totalSize = ModelDownloadService.modelFiles
+            .fold<int>(0, (sum, f) => sum + f.size);
         _progress = ModelDownloadProgress(
-          fileName: 'Done',
-          downloadedBytes: 2,
-          totalBytes: 2,
-          fileIndex: 2,
-          totalFiles: 2,
+          fileName: 'All files ready',
+          downloadedBytes: totalSize,
+          totalBytes: totalSize,
+          fileIndex: ModelDownloadService.modelFiles.length,
+          totalFiles: ModelDownloadService.modelFiles.length,
+          totalDownloadedBytes: totalSize,
+          totalSizeBytes: totalSize,
         );
         _done = true;
       });
@@ -201,6 +205,7 @@ class _ProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final isError = errorMessage != null;
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -217,15 +222,13 @@ class _ProgressCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // File name
+          // File name + overall percent
           Row(
             children: [
               Icon(
-                errorMessage != null
-                    ? Icons.error_outline
-                    : Icons.description_outlined,
+                isError ? Icons.error_outline : Icons.description_outlined,
                 size: 18,
-                color: errorMessage != null ? Colors.red[400] : Colors.grey[500],
+                color: isError ? Colors.red[400] : Colors.grey[500],
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -234,64 +237,101 @@ class _ProgressCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: errorMessage != null ? Colors.red[400] : Colors.grey[700],
+                    color: isError ? Colors.red[400] : Colors.grey[700],
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              if (progress.fraction > 0 || errorMessage != null)
-                Text(
-                  '${(progress.overallFraction * 100).toStringAsFixed(0)}%',
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: isError
+                      ? Colors.red[50]
+                      : colorScheme.primary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  '${progress.overallPercent}%',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: errorMessage != null ? Colors.red[400] : colorScheme.primary,
+                    color: isError ? Colors.red[400] : colorScheme.primary,
                   ),
                 ),
+              ),
             ],
           ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
 
-          // Progress bar
+          // Overall progress bar
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: LinearProgressIndicator(
-              value: errorMessage != null ? 0 : progress.fraction,
-              minHeight: 8,
+              value: isError ? 0 : progress.overallFraction,
+              minHeight: 12,
               backgroundColor: Colors.grey[200],
               valueColor: AlwaysStoppedAnimation(
-                errorMessage != null ? Colors.red[300]! : colorScheme.primary,
+                isError ? Colors.red[300]! : colorScheme.primary,
               ),
             ),
           ),
 
           const SizedBox(height: 12),
 
-          // Byte progress
+          // MB downloaded / total + file counter
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                progress.overallMB + ' MB',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[500],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${progress.overallDownloadedMB} / ${progress.overallTotalMB} MB',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Downloaded',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                'File ${progress.fileIndex} of ${progress.totalFiles}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[500],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'File ${progress.fileIndex} of ${progress.totalFiles}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${progress.downloadedMB} / ${progress.totalMB} MB',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
 
           // Error + retry
           if (errorMessage != null) ...[
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             Text(
               errorMessage!,
               style: TextStyle(

@@ -32,12 +32,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     super.initState();
     // On first entry: load persisted state, then auto-index if needed
     Future.microtask(() async {
-      // Load existing index from disk
+      // Load existing index and initialize embedding service
       await loadPersistedState(ref);
-
-      // Provide app doc dir to vector store
-      final dir = await getApplicationDocumentsDirectory();
-      ref.read(indexDirProvider.notifier).state = dir.path;
 
       // Auto-index if library is empty
       final count = ref.read(indexedCountProvider);
