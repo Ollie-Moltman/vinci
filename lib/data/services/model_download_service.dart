@@ -4,10 +4,14 @@ import 'package:http/http.dart' as http;
 /// Progress info for one file download.
 class ModelDownloadProgress {
   final String fileName;
-  final int downloadedBytes;
-  final int totalBytes;
-  final int fileIndex; // 1-based
+  final int downloadedBytes; // bytes received so far for current file
+  final int totalBytes;      // total size of current file
+  final int fileIndex;       // 1-based
   final int totalFiles;
+  /// Cumulative bytes downloaded across ALL files (for overall progress)
+  final int totalDownloadedBytes;
+  /// Total size of ALL files combined
+  final int totalSizeBytes;
 
   ModelDownloadProgress({
     required this.fileName,
@@ -15,39 +19,55 @@ class ModelDownloadProgress {
     required this.totalBytes,
     required this.fileIndex,
     required this.totalFiles,
+    required this.totalDownloadedBytes,
+    required this.totalSizeBytes,
   });
 
-  double get fraction => totalBytes > 0 ? downloadedBytes / totalBytes : 0;
-  double get overallFraction {
-    final done = fileIndex - 1 + fraction;
-    return done / totalFiles;
-  }
+  /// Fraction complete for CURRENT file (0.0 to 1.0)
+  double get fileFraction =>
+      totalBytes > 0 ? downloadedBytes / totalBytes : 0;
 
-  String get downloadedMB => (downloadedBytes / (1024 * 1024)).toStringAsFixed(1);
-  String get totalMB => (totalBytes / (1024 * 1024)).toStringAsFixed(1);
-  String get overallMB {
-    final done = (fileIndex - 1) * totalBytes + downloadedBytes;
-    final total = totalFiles * totalBytes;
-    return '${(done / (1024 * 1024)).toStringAsFixed(1)} / ${(total / (1024 * 1024)).toStringAsFixed(1)}';
-  }
+  /// Overall fraction across ALL files (0.0 to 1.0)
+  double get overallFraction =>
+      totalSizeBytes > 0 ? totalDownloadedBytes / totalSizeBytes : 0;
+
+  /// Current file MB received
+  String get downloadedMB =>
+      (downloadedBytes / (1024 * 1024)).toStringAsFixed(1);
+
+  /// Current file total MB
+  String get totalMB =>
+      (totalBytes / (1024 * 1024)).toStringAsFixed(1);
+
+  /// Cumulative MB downloaded (all files so far)
+  String get overallDownloadedMB =>
+      (totalDownloadedBytes / (1024 * 1024)).toStringAsFixed(1);
+
+  /// Total MB across all files
+  String get overallTotalMB =>
+      (totalSizeBytes / (1024 * 1024)).toStringAsFixed(1);
+
+  /// Overall percentage as integer string
+  String get overallPercent =>
+      (overallFraction * 100).toStringAsFixed(0);
 }
 
-/// Streams download of MobileCLIP TFLite model files from HuggingFace.
-/// Uses HTTP range requests for progress tracking and streams to disk.
+/// Streams download of MobileCLIP TFLite model files from GitHub releases.
+/// Uses HTTP streaming to disk.
 class ModelDownloadService {
-  /// URLs for MobileCLIP-S2 TFLite models from plainhub mirror.
+  /// URLs for MobileCLIP-S2 TFLite models from GitHub releases.
   static const modelFiles = [
     (
       name: 'mobileclip_s2_image.tflite',
       url:
-          'https://huggingface.co/plainhub/mobileclip-s2-tflite/resolve/main/mobileclip_s2_image.tflite',
-      size: 144120668,
+          'https://github.com/Ollie-Moltman/vinci/releases/download/v1.0.2/mobileclip_s2_image.tflite',
+      size: 396881784,
     ),
     (
       name: 'mobileclip_s2_text.tflite',
       url:
-          'https://huggingface.co/plainhub/mobileclip-s2-tflite/resolve/main/mobileclip_s2_text.tflite',
-      size: 253874828,
+          'https://github.com/Ollie-Moltman/vinci/releases/download/v1.0.2/mobileclip_s2_text.tflite',
+      size: 396881784,
     ),
   ];
 
@@ -60,6 +80,12 @@ class ModelDownloadService {
   Future<void> downloadAll({
     required void Function(ModelDownloadProgress) onProgress,
   }) async {
+    // Precompute total size across all files
+    int totalSizeAll = 0;
+    for (final f in modelFiles) {
+      totalSizeAll += f.size;
+    }
+
     for (var i = 0; i < modelFiles.length; i++) {
       final file = modelFiles[i];
       final destPath = '$_targetDir/${file.name}';
@@ -69,12 +95,17 @@ class ModelDownloadService {
       if (await destFile.exists()) {
         final stat = await destFile.stat();
         if (stat.size == file.size) {
+          // Report skipped file as already complete
+          int skipCumulative = 0;
+          for (var j = 0; j <= i; j++) skipCumulative += modelFiles[j].size;
           onProgress(ModelDownloadProgress(
             fileName: file.name,
             downloadedBytes: file.size,
             totalBytes: file.size,
             fileIndex: i + 1,
             totalFiles: modelFiles.length,
+            totalDownloadedBytes: skipCumulative,
+            totalSizeBytes: totalSizeAll,
           ));
           continue;
         }
@@ -86,6 +117,7 @@ class ModelDownloadService {
         fileName: file.name,
         fileIndex: i + 1,
         totalSize: file.size,
+        totalSizeAll: totalSizeAll,
         onProgress: onProgress,
       );
     }
@@ -97,6 +129,7 @@ class ModelDownloadService {
     required String fileName,
     required int fileIndex,
     required int totalSize,
+    required int totalSizeAll,
     required void Function(ModelDownloadProgress) onProgress,
   }) async {
     final client = http.Client();
@@ -120,6 +153,8 @@ class ModelDownloadService {
           totalBytes: totalSize,
           fileIndex: fileIndex,
           totalFiles: modelFiles.length,
+          totalDownloadedBytes: (fileIndex - 1) * totalSize + received,
+          totalSizeBytes: totalSizeAll,
         ));
       }
 
