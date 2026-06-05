@@ -1,7 +1,7 @@
 -- Merging decision tree log ---
 application
-INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:10:5-41:19
-INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:10:5-41:19
+INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:12:5-43:19
+INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:12:5-43:19
 MERGED from [:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:7:5-33:19
 MERGED from [:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:7:5-33:19
 MERGED from [:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:7:5-12:19
@@ -29,17 +29,17 @@ MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] /data/.gradle/caches/tra
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:label
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:11:9-30
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:13:9-30
 	android:icon
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:13:9-43
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:15:9-43
 	android:name
 		INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:12:9-42
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:14:9-42
 manifest
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-53:12
-INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-53:12
-INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-53:12
-INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-53:12
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-55:12
+INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-55:12
+INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-55:12
+INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:1-55:12
 MERGED from [:android_intent_plus] /data/.openclaw/workspace/vinci/build/android_intent_plus/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] /data/.openclaw/workspace/vinci/build/path_provider_android/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-7:12
 MERGED from [:permission_handler_android] /data/.openclaw/workspace/vinci/build/permission_handler_android/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-7:12
@@ -114,78 +114,82 @@ MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] /data/.gradle/caches/tra
 		INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:1:11-69
-uses-permission#android.permission.READ_MEDIA_IMAGES
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:5-75
+uses-permission#android.permission.INTERNET
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:5-66
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:22-73
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:22-64
+uses-permission#android.permission.READ_MEDIA_IMAGES
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:5:5-75
+	android:name
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:5:22-73
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:4:5-106
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:5-106
 MERGED from [:photo_manager] /data/.openclaw/workspace/vinci/build/photo_manager/intermediates/merged_manifest/release/AndroidManifest.xml:7:5-9:38
 MERGED from [:photo_manager] /data/.openclaw/workspace/vinci/build/photo_manager/intermediates/merged_manifest/release/AndroidManifest.xml:7:5-9:38
 	android:maxSdkVersion
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:4:78-104
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:78-104
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:4:22-77
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:22-77
 uses-permission#android.permission.READ_MEDIA_VIDEO
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:5-75
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:5-75
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:22-72
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:22-72
 uses-permission#android.permission.VIEW_LOCAL_CONTENT
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:5-77
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:10:5-77
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:22-74
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:10:22-74
 queries
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:47:5-52:15
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:49:5-54:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:48:9-51:18
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:50:9-53:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:49:13-72
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:51:13-72
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:49:21-70
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:51:21-70
 data
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:50:13-50
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:52:13-50
 	android:mimeType
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:50:19-48
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:52:19-48
 activity#com.vinci.vinci.MainActivity
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:14:9-35:20
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:16:9-37:20
 	android:launchMode
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:17:13-43
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:19:13-43
 	android:hardwareAccelerated
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:21:13-47
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:23:13-47
 	android:windowSoftInputMode
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:22:13-55
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:24:13-55
 	android:exported
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:16:13-36
-	android:configChanges
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:20:13-163
-	android:theme
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:19:13-47
-	android:taskAffinity
 		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:18:13-36
+	android:configChanges
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:22:13-163
+	android:theme
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:21:13-47
+	android:taskAffinity
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:20:13-36
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:15:13-41
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:17:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:27:13-30:17
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:29:13-32:17
 	android:resource
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:29:15-52
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:31:15-52
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:28:15-70
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:30:15-70
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:31:13-34:29
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:33:13-36:29
 action#android.intent.action.MAIN
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:32:17-68
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:34:17-68
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:32:25-66
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:34:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:33:17-76
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:35:17-76
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:33:27-74
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:35:27-74
 meta-data#flutterEmbedding
-ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:38:9-40:33
+ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:40:9-42:33
 	android:value
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:40:13-30
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:42:13-30
 	android:name
-		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:39:13-44
+		ADDED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:41:13-44
 uses-sdk
 INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -71,7 +73,15 @@ class _StartupFlowState extends State<StartupFlow> {
     if (!mounted) return;
 
     final appDir = await getApplicationDocumentsDirectory();
-    final service = ModelDownloadService('${appDir.path}/.vinci/models');
+    final modelDir = '${appDir.path}/.vinci/models';
+
+    // Ensure directory exists before checking or downloading
+    final dir = Directory(modelDir);
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+
+    final service = ModelDownloadService(modelDir);
     _modelsReady = await service.modelsReady();
 
     setState(() {

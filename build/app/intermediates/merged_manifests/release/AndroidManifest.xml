@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="24"
         android:targetSdkVersion="36" />
+    <!-- Internet access for downloading AI models -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- Photo library access -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission

@@ -7,239 +7,243 @@
 7    <uses-sdk
 8        android:minSdkVersion="24"
 9        android:targetSdkVersion="36" />
-10    <!-- Photo library access -->
-11    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-11-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:5-75
-11-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:22-73
-12    <uses-permission
-12-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:4:5-106
-13        android:name="android.permission.READ_EXTERNAL_STORAGE"
-13-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:4:22-77
-14        android:maxSdkVersion="32" />
-14-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:4:78-104
-15    <!-- For photo_manager on Android 13+ -->
-16    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
-16-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:5-75
-16-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:22-72
-17    <!-- For android_intent_plus gallery opens -->
-18    <uses-permission android:name="android.permission.VIEW_LOCAL_CONTENT" />
-18-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:5-77
-18-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:22-74
-19    <!--
-20         Required to query activities that can process text, see:
-21         https://developer.android.com/training/package-visibility and
-22         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
-23
-24         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
-25    -->
-26    <queries>
-26-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:47:5-52:15
-27        <intent>
-27-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:48:9-51:18
-28            <action android:name="android.intent.action.PROCESS_TEXT" />
-28-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:49:13-72
-28-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:49:21-70
-29
-30            <data android:mimeType="text/plain" />
-30-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:50:13-50
-30-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:50:19-48
-31        </intent>
-32    </queries>
-33
-34    <permission
-34-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
-35        android:name="com.vinci.vinci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-35-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
-36        android:protectionLevel="signature" />
-36-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
-37
-38    <uses-permission android:name="com.vinci.vinci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-38-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
-38-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+10    <!-- Internet access for downloading AI models -->
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:5-66
+11-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:3:22-64
+12    <!-- Photo library access -->
+13    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+13-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:5:5-75
+13-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:5:22-73
+14    <uses-permission
+14-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:5-106
+15        android:name="android.permission.READ_EXTERNAL_STORAGE"
+15-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:22-77
+16        android:maxSdkVersion="32" />
+16-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:6:78-104
+17    <!-- For photo_manager on Android 13+ -->
+18    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+18-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:5-75
+18-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:8:22-72
+19    <!-- For android_intent_plus gallery opens -->
+20    <uses-permission android:name="android.permission.VIEW_LOCAL_CONTENT" />
+20-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:10:5-77
+20-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:10:22-74
+21    <!--
+22         Required to query activities that can process text, see:
+23         https://developer.android.com/training/package-visibility and
+24         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+25
+26         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+27    -->
+28    <queries>
+28-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:49:5-54:15
+29        <intent>
+29-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:50:9-53:18
+30            <action android:name="android.intent.action.PROCESS_TEXT" />
+30-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:51:13-72
+30-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:51:21-70
+31
+32            <data android:mimeType="text/plain" />
+32-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:52:13-50
+32-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:52:19-48
+33        </intent>
+34    </queries>
+35
+36    <permission
+36-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+37        android:name="com.vinci.vinci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+37-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+38        android:protectionLevel="signature" />
+38-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
 39
-40    <application
-41        android:name="android.app.Application"
-41-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:12:9-42
-42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-42-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
-43        android:extractNativeLibs="false"
-44        android:icon="@mipmap/ic_launcher"
-44-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:13:9-43
-45        android:label="vinci" >
-45-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:11:9-30
-46        <activity
-46-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:14:9-35:20
-47            android:name="com.vinci.vinci.MainActivity"
-47-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:15:13-41
-48            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-48-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:20:13-163
-49            android:exported="true"
-49-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:16:13-36
-50            android:hardwareAccelerated="true"
-50-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:21:13-47
-51            android:launchMode="singleTop"
-51-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:17:13-43
-52            android:taskAffinity=""
-52-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:18:13-36
-53            android:theme="@style/LaunchTheme"
-53-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:19:13-47
-54            android:windowSoftInputMode="adjustResize" >
-54-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:22:13-55
-55
-56            <!--
-57                 Specifies an Android theme to apply to this Activity as soon as
-58                 the Android process has started. This theme is visible to the user
-59                 while the Flutter UI initializes. After that, this theme continues
-60                 to determine the Window background behind the Flutter UI.
-61            -->
-62            <meta-data
-62-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:27:13-30:17
-63                android:name="io.flutter.embedding.android.NormalTheme"
-63-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:28:15-70
-64                android:resource="@style/NormalTheme" />
-64-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:29:15-52
-65
-66            <intent-filter>
-66-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:31:13-34:29
-67                <action android:name="android.intent.action.MAIN" />
-67-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:32:17-68
-67-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:32:25-66
-68
-69                <category android:name="android.intent.category.LAUNCHER" />
-69-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:33:17-76
-69-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:33:27-74
-70            </intent-filter>
-71        </activity>
-72        <!--
-73             Don't delete the meta-data below.
-74             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-75        -->
-76        <meta-data
-76-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:38:9-40:33
-77            android:name="flutterEmbedding"
-77-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:39:13-44
-78            android:value="2" />
-78-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:40:13-30
-79        <!--
-80           Declares a provider which allows us to store files to share in
-81           '.../caches/share_plus' and grant the receiving action access
-82        -->
-83        <provider
-83-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:13:9-21:20
-84            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
-84-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-77
-85            android:authorities="com.vinci.vinci.flutter.share_provider"
-85-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:15:13-74
-86            android:exported="false"
-86-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:16:13-37
-87            android:grantUriPermissions="true" >
-87-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:17:13-47
-88            <meta-data
-88-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:18:13-20:68
-89                android:name="android.support.FILE_PROVIDER_PATHS"
-89-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:19:17-67
-90                android:resource="@xml/flutter_share_file_paths" />
-90-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:20:17-65
-91        </provider>
-92        <!--
-93           This manifest declared broadcast receiver allows us to use an explicit
-94           Intent when creating a PendingItent to be informed of the user's choice
-95        -->
-96        <receiver
-96-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:26:9-32:20
-97            android:name="dev.fluttercommunity.plus.share.SharePlusPendingIntent"
-97-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:27:13-82
-98            android:exported="false" >
-98-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:28:13-37
-99            <intent-filter>
-99-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:29:13-31:29
-100                <action android:name="EXTRA_CHOSEN_COMPONENT" />
-100-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:30:17-65
-100-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:30:25-62
-101            </intent-filter>
-102        </receiver>
-103
-104        <activity
-104-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:8:9-11:74
-105            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-105-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:9:13-74
-106            android:exported="false"
-106-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:13-37
-107            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-107-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-71
-108
-109        <uses-library
-109-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:23:9-25:40
-110            android:name="androidx.window.extensions"
-110-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:24:13-54
-111            android:required="false" />
-111-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:25:13-37
-112        <uses-library
-112-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:26:9-28:40
-113            android:name="androidx.window.sidecar"
-113-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:27:13-51
-114            android:required="false" />
-114-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:28:13-37
-115
-116        <provider
-116-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
-117            android:name="androidx.startup.InitializationProvider"
-117-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:25:13-67
-118            android:authorities="com.vinci.vinci.androidx-startup"
-118-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:26:13-68
-119            android:exported="false" >
-119-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:27:13-37
-120            <meta-data
-120-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
-121                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-121-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
-122                android:value="androidx.startup" />
-122-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
-123            <meta-data
-123-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-124                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-124-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-125                android:value="androidx.startup" />
-125-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-126        </provider>
-127
-128        <receiver
-128-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-129            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-129-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-130            android:directBootAware="false"
-130-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-131            android:enabled="true"
-131-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-132            android:exported="true"
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-133            android:permission="android.permission.DUMP" >
-133-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-134            <intent-filter>
-134-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-135                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-135-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-135-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-136            </intent-filter>
-137            <intent-filter>
-137-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-138                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-139            </intent-filter>
-140            <intent-filter>
-140-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-141                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-141-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-141-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-142            </intent-filter>
-143            <intent-filter>
-143-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-144                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-144-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-144-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-145            </intent-filter>
-146        </receiver>
-147    </application>
-148
-149</manifest>
+40    <uses-permission android:name="com.vinci.vinci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+40-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+40-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+41
+42    <application
+43        android:name="android.app.Application"
+43-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:14:9-42
+44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+44-->[androidx.core:core:1.13.1] /data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+45        android:extractNativeLibs="false"
+46        android:icon="@mipmap/ic_launcher"
+46-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:15:9-43
+47        android:label="vinci" >
+47-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:13:9-30
+48        <activity
+48-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:16:9-37:20
+49            android:name="com.vinci.vinci.MainActivity"
+49-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:17:13-41
+50            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+50-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:22:13-163
+51            android:exported="true"
+51-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:18:13-36
+52            android:hardwareAccelerated="true"
+52-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:23:13-47
+53            android:launchMode="singleTop"
+53-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:19:13-43
+54            android:taskAffinity=""
+54-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:20:13-36
+55            android:theme="@style/LaunchTheme"
+55-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:21:13-47
+56            android:windowSoftInputMode="adjustResize" >
+56-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:24:13-55
+57
+58            <!--
+59                 Specifies an Android theme to apply to this Activity as soon as
+60                 the Android process has started. This theme is visible to the user
+61                 while the Flutter UI initializes. After that, this theme continues
+62                 to determine the Window background behind the Flutter UI.
+63            -->
+64            <meta-data
+64-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:29:13-32:17
+65                android:name="io.flutter.embedding.android.NormalTheme"
+65-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:30:15-70
+66                android:resource="@style/NormalTheme" />
+66-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:31:15-52
+67
+68            <intent-filter>
+68-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:33:13-36:29
+69                <action android:name="android.intent.action.MAIN" />
+69-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:34:17-68
+69-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:34:25-66
+70
+71                <category android:name="android.intent.category.LAUNCHER" />
+71-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:35:17-76
+71-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:35:27-74
+72            </intent-filter>
+73        </activity>
+74        <!--
+75             Don't delete the meta-data below.
+76             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+77        -->
+78        <meta-data
+78-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:40:9-42:33
+79            android:name="flutterEmbedding"
+79-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:41:13-44
+80            android:value="2" />
+80-->/data/.openclaw/workspace/vinci/android/app/src/main/AndroidManifest.xml:42:13-30
+81        <!--
+82           Declares a provider which allows us to store files to share in
+83           '.../caches/share_plus' and grant the receiving action access
+84        -->
+85        <provider
+85-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:13:9-21:20
+86            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
+86-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-77
+87            android:authorities="com.vinci.vinci.flutter.share_provider"
+87-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:15:13-74
+88            android:exported="false"
+88-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:16:13-37
+89            android:grantUriPermissions="true" >
+89-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:17:13-47
+90            <meta-data
+90-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:18:13-20:68
+91                android:name="android.support.FILE_PROVIDER_PATHS"
+91-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:19:17-67
+92                android:resource="@xml/flutter_share_file_paths" />
+92-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:20:17-65
+93        </provider>
+94        <!--
+95           This manifest declared broadcast receiver allows us to use an explicit
+96           Intent when creating a PendingItent to be informed of the user's choice
+97        -->
+98        <receiver
+98-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:26:9-32:20
+99            android:name="dev.fluttercommunity.plus.share.SharePlusPendingIntent"
+99-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:27:13-82
+100            android:exported="false" >
+100-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:28:13-37
+101            <intent-filter>
+101-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:29:13-31:29
+102                <action android:name="EXTRA_CHOSEN_COMPONENT" />
+102-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:30:17-65
+102-->[:share_plus] /data/.openclaw/workspace/vinci/build/share_plus/intermediates/merged_manifest/release/AndroidManifest.xml:30:25-62
+103            </intent-filter>
+104        </receiver>
+105
+106        <activity
+106-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:8:9-11:74
+107            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+107-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:9:13-74
+108            android:exported="false"
+108-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:13-37
+109            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+109-->[:url_launcher_android] /data/.openclaw/workspace/vinci/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-71
+110
+111        <uses-library
+111-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:23:9-25:40
+112            android:name="androidx.window.extensions"
+112-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:24:13-54
+113            android:required="false" />
+113-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:25:13-37
+114        <uses-library
+114-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:26:9-28:40
+115            android:name="androidx.window.sidecar"
+115-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:27:13-51
+116            android:required="false" />
+116-->[androidx.window:window:1.2.0] /data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/AndroidManifest.xml:28:13-37
+117
+118        <provider
+118-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
+119            android:name="androidx.startup.InitializationProvider"
+119-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:25:13-67
+120            android:authorities="com.vinci.vinci.androidx-startup"
+120-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:26:13-68
+121            android:exported="false" >
+121-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:27:13-37
+122            <meta-data
+122-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+123                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+123-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+124                android:value="androidx.startup" />
+124-->[androidx.lifecycle:lifecycle-process:2.7.0] /data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+125            <meta-data
+125-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+126                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+127                android:value="androidx.startup" />
+127-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+128        </provider>
+129
+130        <receiver
+130-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+131            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+131-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+132            android:directBootAware="false"
+132-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+133            android:enabled="true"
+133-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+134            android:exported="true"
+134-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+135            android:permission="android.permission.DUMP" >
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+136            <intent-filter>
+136-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+137                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+137-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+137-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+138            </intent-filter>
+139            <intent-filter>
+139-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+140                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+140-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+140-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+141            </intent-filter>
+142            <intent-filter>
+142-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+143                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+143-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+143-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+144            </intent-filter>
+145            <intent-filter>
+145-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+146                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+146-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+146-->[androidx.profileinstaller:profileinstaller:1.3.1] /data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+147            </intent-filter>
+148        </receiver>
+149    </application>
+150
+151</manifest>

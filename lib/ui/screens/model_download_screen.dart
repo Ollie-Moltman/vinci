@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../data/services/model_download_service.dart';
@@ -49,6 +51,13 @@ class _ModelDownloadScreenState extends State<ModelDownloadScreen>
   Future<void> _initDownload() async {
     final appDir = await getApplicationDocumentsDirectory();
     final modelDir = '${appDir.path}/.vinci/models';
+
+    // Ensure directory exists before anything else
+    final dir = Directory(modelDir);
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+
     _downloadService = ModelDownloadService(modelDir);
 
     // Check if already downloaded

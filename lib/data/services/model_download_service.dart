@@ -80,6 +80,12 @@ class ModelDownloadService {
   Future<void> downloadAll({
     required void Function(ModelDownloadProgress) onProgress,
   }) async {
+    // Ensure the target directory exists before downloading
+    final dir = Directory(_targetDir);
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+
     // Precompute total size across all files
     int totalSizeAll = 0;
     for (final f in modelFiles) {
