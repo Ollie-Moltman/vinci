@@ -86,14 +86,15 @@ class VectorStore {
     if (!await file.exists()) return;
 
     final data = jsonDecode(await file.readAsString());
-    final embeddings = (data['embeddings'] as Map).cast<String, List<double>>();
-    final metadata = (data['metadata'] as Map).cast<String, Map<String, dynamic>>();
+    final embeddings = data['embeddings'] as Map<String, dynamic>;
+    final metadata = data['metadata'] as Map<String, dynamic>;
 
     _imageEmbeddings.clear();
     _metadata.clear();
 
     for (final e in embeddings.entries) {
-      _imageEmbeddings[e.key] = (e.value as List).map((x) => (x as num).toDouble()).toList();
+      final embeddingList = (e.value as List).map((x) => (x as num).toDouble()).toList();
+      _imageEmbeddings[e.key] = embeddingList;
     }
     for (final e in metadata.entries) {
       _metadata[e.key] = _PhotoMetadata(
