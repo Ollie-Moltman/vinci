@@ -12,7 +12,15 @@ class VectorStore {
   final Map<String, List<double>> _imageEmbeddings = {};
   final Map<String, _PhotoMetadata> _metadata = {};
 
-  VectorStore(this._indexDir);
+  /// Guard: if path is empty at construction time, throw a clear error
+  /// rather than silently failing loadIndex() later.
+  VectorStore(this._indexDir) {
+    if (_indexDir.isEmpty) {
+      throw StateError('VectorStore created with empty path — '
+          'indexDirProvider was not set before provider creation. '
+          'Fix: set indexDirProvider in main() before runApp().');
+    }
+  }
 
   /// Index a photo's embedding vector.
   Future<void> indexPhoto({

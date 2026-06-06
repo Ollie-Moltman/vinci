@@ -116,8 +116,7 @@ class EmbeddingService {
         {0: textOutput, 1: imgOutput, 2: dummyOut},
       );
     } catch (e) {
-      // Surface TFLite errors clearly rather than silently failing
-      throw Exception('TFLite text inference failed: $e');
+      throw Exception('TFLite text inference failed (token dtype corrected): $e');
     }
 
     _normalize(textOutput);
@@ -157,19 +156,20 @@ class EmbeddingService {
   // Tokenization (CLIP BPE)
   // -------------------------------------------------------------------------
 
-  /// Convert text string to token IDs [1, 77] float64 (TFLite int64 input).
-  Float32List _tokenize(String text) {
+  /// Convert text string to token IDs [1, 77] int64 (TFLite int64 input).
+  /// Must use Int64List so TFLite receives the correct dtype.
+  Int64List _tokenize(String text) {
     final tokenIds = _tokenizer!.encodeWithTokens(text);
-    final result = Float32List(_maxTokens);
+    final result = Int64List(_maxTokens);
     for (var i = 0; i < _maxTokens; i++) {
-      result[i] = tokenIds[i].toDouble();
+      result[i] = tokenIds[i];
     }
     return result;
   }
 
-  /// Create zero-filled tokens for image-only encoding.
-  Float32List _createEmptyTokens() {
-    return Float32List(_maxTokens);
+  /// Create zero-filled tokens for image-only encoding (int64 dtype).
+  Int64List _createEmptyTokens() {
+    return Int64List(_maxTokens);
   }
 
   // -------------------------------------------------------------------------

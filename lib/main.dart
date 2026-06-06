@@ -22,7 +22,26 @@ void main() async {
     ),
   );
 
-  runApp(const ProviderScope(child: VinciApp()));
+  // Compute the index directory path BEFORE runApp so that the
+  // indexDirProvider override captures the correct value from the start.
+  // Without this, vectorStoreProvider captures indexDirProvider='' (empty string)
+  // at provider creation time, before StartupFlow._checkModels() can set it.
+  final appDir = await getApplicationDocumentsDirectory();
+  final indexDir = '${appDir.path}/vectors';
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        // Override indexDirProvider with the precomputed path.
+        // This must be done BEFORE runApp() so the override is active when
+        // providers are first created (before StartupFlow._checkModels runs).
+        // The function returns T (String), which Riverpod wraps in a
+        // StateController internally — this is how StateProvider overrideWith works.
+        indexDirProvider.overrideWith((ref) => indexDir),
+      ],
+      child: const VinciApp(),
+    ),
+  );
 }
 
 class VinciApp extends StatelessWidget {
