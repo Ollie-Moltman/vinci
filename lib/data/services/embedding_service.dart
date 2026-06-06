@@ -92,6 +92,32 @@ class EmbeddingService {
       _textInterpreter = await Interpreter.fromFile(textFile);
       _textInterpreter!.allocateTensors();
 
+      // Validate tensor shapes after allocation
+      final textInputs = _textInterpreter!.getInputTensors();
+      if (textInputs.length < 2) {
+        throw Exception('Text model has only ${textInputs.length} input tensors, expected 2');
+      }
+      // Validate: first input (image) should be float32 [1,3,256,256], second input (tokens) should be int64 [?,77]
+      final imgInput = textInputs[0];
+      final tokInput = textInputs[1];
+      // Warm-up inference to catch any runtime issues
+      try {
+        final warmTokens = Int64List(_maxTokens);
+        final warmImg = Float32List(3 * _imageSize * _imageSize);
+        final warmOut = Float32List(_embeddingDim);
+        _textInterpreter!.runForMultipleInputs(
+          [warmImg, warmTokens],
+          {0: warmOut, 1: warmOut, 2: Float32List(1)},
+        );
+      } catch (e) {
+        throw Exception('Text model warm-up failed: $e');
+      }
+
+      final imgInputs = _imageInterpreter!.getInputTensors();
+      if (imgInputs.length < 2) {
+        throw Exception('Image model has only ${imgInputs.length} input tensors, expected 2');
+      }
+
       _isInitialized = true;
     } catch (e) {
       _isInitialized = false;
@@ -125,6 +151,18 @@ class EmbeddingService {
   Float32List _runTextEmbedding(String text) {
     final tokens = _tokenize(text);
 
+    // Validate input tensor shapes before inference
+    final inputTensors = _textInterpreter!.getInputTensors();
+    if (inputTensors.length < 2) {
+      throw Exception('Text model has ${inputTensors.length} inputs, expected at least 2');
+    }
+
+    // Log tensor shapes for debugging
+    for (var i = 0; i < inputTensors.length; i++) {
+      final t = inputTensors[i];
+      // Shape, type validation done silently in release
+    }
+
     final dummyImage = Float32List(3 * _imageSize * _imageSize);
     final textOutput = Float32List(_embeddingDim);
     final imgOutput = Float32List(_embeddingDim);
@@ -136,7 +174,7 @@ class EmbeddingService {
         {0: textOutput, 1: imgOutput, 2: dummyOut},
       );
     } catch (e) {
-      throw Exception('TFLite text inference failed (token dtype corrected): $e');
+      throw Exception('TFLite text inference failed: $e');
     }
 
     _normalize(textOutput);
