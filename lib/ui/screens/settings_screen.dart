@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/vinci_theme.dart';
 import '../../core/indexing_runner.dart';
 import '../../providers/providers.dart';
@@ -131,7 +132,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       _ToggleRow(
                         icon: Icons.auto_fix_high,
                         title: 'Auto-index new photos',
-                        subtitle: 'Run when device is charging',
+                        subtitle: 'Index new photos as they are added',
                         value: ref.watch(autoIndexEnabledProvider),
                         onChanged: (v) {
                           ref.read(autoIndexEnabledProvider.notifier).state = v;
@@ -182,7 +183,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     _SettingsCard([
                       const _InfoRow(label: 'Photo source', value: 'Device storage'),
                       const Divider(height: 1),
-                      _InfoRow(label: 'Privacy policy', value: 'View →'),
+                      _PrivacyPolicyRow(),
                     ]),
 
                     const SizedBox(height: 24),
@@ -375,6 +376,60 @@ class _InfoRow extends StatelessWidget {
           Text(value,
               style: const TextStyle(fontSize: 15, color: VinciTheme.textSecondary)),
         ],
+      ),
+    );
+  }
+}
+
+class _PrivacyPolicyRow extends StatelessWidget {
+  const _PrivacyPolicyRow();
+
+  Future<void> _openPrivacyPolicy(BuildContext context) async {
+    const privacyUrl = 'https://vinci.app/privacy';
+    final uri = Uri.parse(privacyUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not open privacy policy')),
+        );
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => _openPrivacyPolicy(context),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Privacy policy',
+              style: TextStyle(fontSize: 15, color: VinciTheme.textPrimary),
+            ),
+            Row(
+              children: [
+                Text(
+                  'View',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Icon(
+                  Icons.open_in_new,
+                  size: 14,
+                  color: Colors.grey.shade500,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

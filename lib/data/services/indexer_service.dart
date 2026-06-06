@@ -15,7 +15,8 @@ class IndexerService {
   IndexerService(this._embeddingService, this._vectorStore);
 
   /// Index assets directly (used during real indexing from photo_manager).
-  Future<int> indexAssetEntities(List<AssetEntity> assets) async {
+  /// Yields after each asset so the caller can update progress UI.
+  Stream<int> indexAssetEntitiesStream(List<AssetEntity> assets) async* {
     int indexed = 0;
     for (final asset in assets) {
       try {
@@ -35,9 +36,18 @@ class IndexerService {
               : null,
         );
         indexed++;
+        yield indexed; // Yield after each photo so UI can update
       } catch (e) {
         continue;
       }
+    }
+  }
+
+  /// Non-stream version for batch calls.
+  Future<int> indexAssetEntities(List<AssetEntity> assets) async {
+    int indexed = 0;
+    await for (final count in indexAssetEntitiesStream(assets)) {
+      indexed = count;
     }
     return indexed;
   }

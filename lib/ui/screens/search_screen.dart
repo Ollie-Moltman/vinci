@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
 import '../theme/vinci_theme.dart';
 import '../../core/indexing_runner.dart';
 import '../../providers/providers.dart';
@@ -189,24 +188,60 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   if (isIndexing) {
                     return Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: VinciTheme.primary.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
+                        color: VinciTheme.primary.withOpacity(0.08),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: VinciTheme.primary.withOpacity(0.2),
+                        ),
                       ),
-                      child: Row(
+                      child: Column(
                         children: [
-                          const SizedBox(
-                            width: 16,
-                            height: 16,
-                            child:
-                                CircularProgressIndicator(strokeWidth: 2),
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2.5,
+                                  color: VinciTheme.primary,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Text(
+                                'Indexing ${progress.$1}/${progress.$2} photos',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: VinciTheme.textPrimary,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 12),
-                          Text(
-                            'Indexing ${progress.$1}/${progress.$2} photos...',
-                            style: const TextStyle(fontSize: 13),
-                          ),
+                          if (progress.$2 > 0) ...[
+                            const SizedBox(height: 10),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: LinearProgressIndicator(
+                                value: progress.$1 / progress.$2,
+                                backgroundColor:
+                                    VinciTheme.primary.withOpacity(0.15),
+                                valueColor: const AlwaysStoppedAnimation(
+                                  VinciTheme.primary,
+                                ),
+                                minHeight: 5,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              'This runs in the background — you can search anytime',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                     );

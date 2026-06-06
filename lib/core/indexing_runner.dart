@@ -7,6 +7,7 @@ import '../data/services/indexer_service.dart';
 import '../data/repositories/photo_repository.dart';
 
 /// Run a full library indexing pass, updating Riverpod state as we go.
+/// Uses a stream-based approach so progress updates after every photo.
 Future<void> runIndexing(WidgetRef ref) async {
   final embeddingService = ref.read(embeddingServiceProvider);
   final vectorStore = ref.read(vectorStoreProvider);
@@ -18,7 +19,7 @@ Future<void> runIndexing(WidgetRef ref) async {
   // Load existing index from disk first
   await vectorStore.loadIndex();
 
-  // Skip if already indexed (unless count is 0 to force re-index on demand)
+  // Skip if already indexed
   if (vectorStore.indexedCount > 0) {
     ref.read(indexedCountProvider.notifier).state = vectorStore.indexedCount;
     ref.read(lastIndexedProvider.notifier).state = DateTime.now();
@@ -26,24 +27,34 @@ Future<void> runIndexing(WidgetRef ref) async {
   }
 
   ref.read(isIndexingProvider.notifier).state = true;
-  ref.read(indexProgressProvider.notifier).state = (0, 1);
 
   try {
     final indexer = IndexerService(embeddingService, vectorStore);
     final total = await photoRepo.getTotalPhotoCount();
+
+    if (total == 0) {
+      ref.read(indexProgressProvider.notifier).state = (0, 0);
+      return;
+    }
+
     ref.read(indexProgressProvider.notifier).state = (0, total);
 
     int page = 0;
-    const size = 50;
+    const size = 20; // Smaller batches to stay responsive
+    int runningTotal = 0;
 
     while (true) {
       final assets = await photoRepo.loadAssetEntities(page: page, size: size);
       if (assets.isEmpty) break;
 
-      await indexer.indexAssetEntities(assets);
-      final done = vectorStore.indexedCount;
-      ref.read(indexProgressProvider.notifier).state = (done, total);
-      ref.read(indexedCountProvider.notifier).state = done;
+      // Use stream to get per-photo progress updates
+      int pageIndexed = 0;
+      await for (final count in indexer.indexAssetEntitiesStream(assets)) {
+        pageIndexed = count - runningTotal;
+        runningTotal = count;
+        ref.read(indexProgressProvider.notifier).state = (runningTotal, total);
+        ref.read(indexedCountProvider.notifier).state = runningTotal;
+      }
 
       if (assets.length < size) break;
       page++;
