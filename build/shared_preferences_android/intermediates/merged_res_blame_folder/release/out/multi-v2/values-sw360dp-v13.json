@@ -4,7 +4,7 @@
             "outputFile": "io.flutter.plugins.sharedpreferences.shared_preferences_android-mergeReleaseResources-36:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
-                    "source": "/data/.gradle/caches/transforms-4/490c65f1f45a6b688e440e38432e9385/transformed/preference-1.2.1/res/values-sw360dp-v13/values-sw360dp-v13.xml",
+                    "source": "/data/.gradle/caches/transforms-4/47b33a8d81e71ef1e84a7e759369e36a/transformed/preference-1.2.1/res/values-sw360dp-v13/values-sw360dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -19,7 +19,7 @@
             "outputFile": "io.flutter.plugins.sharedpreferences.shared_preferences_android-merged_res-38:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
-                    "source": "/data/.gradle/caches/transforms-4/490c65f1f45a6b688e440e38432e9385/transformed/preference-1.2.1/res/values-sw360dp-v13/values-sw360dp-v13.xml",
+                    "source": "/data/.gradle/caches/transforms-4/47b33a8d81e71ef1e84a7e759369e36a/transformed/preference-1.2.1/res/values-sw360dp-v13/values-sw360dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

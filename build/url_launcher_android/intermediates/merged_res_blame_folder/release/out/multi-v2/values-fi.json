@@ -4,24 +4,7 @@
             "outputFile": "io.flutter.plugins.urllauncher.url_launcher_android-mergeReleaseResources-22:/values-fi/values-fi.xml",
             "map": [
                 {
-                    "source": "/data/.gradle/caches/transforms-4/b068f5ee99f14057ed78c87d3a336719/transformed/browser-1.8.0/res/values-fi/values-fi.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,158,259,368",
-                        "endColumns": "102,100,108,98",
-                        "endOffsets": "153,254,363,462"
-                    },
-                    "to": {
-                        "startLines": "9,10,11,12",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "789,892,993,1102",
-                        "endColumns": "102,100,108,98",
-                        "endOffsets": "887,988,1097,1196"
-                    }
-                },
-                {
-                    "source": "/data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/res/values-fi/values-fi.xml",
+                    "source": "/data/.gradle/caches/transforms-4/b18de8e2321e8da2eff93d5a60d6bc4e/transformed/core-1.13.1/res/values-fi/values-fi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -35,6 +18,23 @@
                         "startOffsets": "55,151,253,351,456,561,673,1201",
                         "endColumns": "95,101,97,104,104,111,115,100",
                         "endOffsets": "146,248,346,451,556,668,784,1297"
+                    }
+                },
+                {
+                    "source": "/data/.gradle/caches/transforms-4/2108d8fb215be89915a30de33e7ed5b6/transformed/browser-1.8.0/res/values-fi/values-fi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,158,259,368",
+                        "endColumns": "102,100,108,98",
+                        "endOffsets": "153,254,363,462"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "789,892,993,1102",
+                        "endColumns": "102,100,108,98",
+                        "endOffsets": "887,988,1097,1196"
                     }
                 }
             ]
@@ -43,24 +43,7 @@
             "outputFile": "io.flutter.plugins.urllauncher.url_launcher_android-merged_res-24:/values-fi/values-fi.xml",
             "map": [
                 {
-                    "source": "/data/.gradle/caches/transforms-4/b068f5ee99f14057ed78c87d3a336719/transformed/browser-1.8.0/res/values-fi/values-fi.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,158,259,368",
-                        "endColumns": "102,100,108,98",
-                        "endOffsets": "153,254,363,462"
-                    },
-                    "to": {
-                        "startLines": "9,10,11,12",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "789,892,993,1102",
-                        "endColumns": "102,100,108,98",
-                        "endOffsets": "887,988,1097,1196"
-                    }
-                },
-                {
-                    "source": "/data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/res/values-fi/values-fi.xml",
+                    "source": "/data/.gradle/caches/transforms-4/b18de8e2321e8da2eff93d5a60d6bc4e/transformed/core-1.13.1/res/values-fi/values-fi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -74,6 +57,23 @@
                         "startOffsets": "55,151,253,351,456,561,673,1201",
                         "endColumns": "95,101,97,104,104,111,115,100",
                         "endOffsets": "146,248,346,451,556,668,784,1297"
+                    }
+                },
+                {
+                    "source": "/data/.gradle/caches/transforms-4/2108d8fb215be89915a30de33e7ed5b6/transformed/browser-1.8.0/res/values-fi/values-fi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,158,259,368",
+                        "endColumns": "102,100,108,98",
+                        "endOffsets": "153,254,363,462"
+                    },
+                    "to": {
+                        "startLines": "9,10,11,12",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "789,892,993,1102",
+                        "endColumns": "102,100,108,98",
+                        "endOffsets": "887,988,1097,1196"
                     }
                 }
             ]

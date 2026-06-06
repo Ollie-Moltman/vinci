@@ -4,41 +4,24 @@
             "outputFile": "com.vinci.vinci.app-mergeReleaseResources-43:/values-ky/values-ky.xml",
             "map": [
                 {
-                    "source": "/data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/res/values-ky/values-ky.xml",
+                    "source": "/data/.gradle/caches/transforms-4/47b33a8d81e71ef1e84a7e759369e36a/transformed/preference-1.2.1/res/values-ky/values-ky.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,155,257,360,467,571,675,786",
-                        "endColumns": "99,101,102,106,103,103,110,100",
-                        "endOffsets": "150,252,355,462,566,670,781,882"
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "105,176,268,347,488,657,738",
+                        "endColumns": "70,91,78,140,168,80,78",
+                        "endOffsets": "171,263,342,483,652,733,812"
                     },
                     "to": {
-                        "startLines": "29,30,31,32,33,34,35,45",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "2820,2920,3022,3125,3232,3336,3440,4434",
-                        "endColumns": "99,101,102,106,103,103,110,100",
-                        "endOffsets": "2915,3017,3120,3227,3331,3435,3546,4530"
+                        "startLines": "36,38,42,43,46,47,48",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "3551,3721,4133,4212,4535,4704,4785",
+                        "endColumns": "70,91,78,140,168,80,78",
+                        "endOffsets": "3617,3808,4207,4348,4699,4780,4859"
                     }
                 },
                 {
-                    "source": "/data/.gradle/caches/transforms-4/b068f5ee99f14057ed78c87d3a336719/transformed/browser-1.8.0/res/values-ky/values-ky.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,154,259,368",
-                        "endColumns": "98,104,108,105",
-                        "endOffsets": "149,254,363,469"
-                    },
-                    "to": {
-                        "startLines": "37,39,40,41",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "3622,3813,3918,4027",
-                        "endColumns": "98,104,108,105",
-                        "endOffsets": "3716,3913,4022,4128"
-                    }
-                },
-                {
-                    "source": "/data/.gradle/caches/transforms-4/49dd37931871a90246024b54fa542d74/transformed/appcompat-1.1.0/res/values-ky/values-ky.xml",
+                    "source": "/data/.gradle/caches/transforms-4/46f242fb4d98263bb21b6698e5f626f1/transformed/appcompat-1.1.0/res/values-ky/values-ky.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,20 +38,37 @@
                     }
                 },
                 {
-                    "source": "/data/.gradle/caches/transforms-4/490c65f1f45a6b688e440e38432e9385/transformed/preference-1.2.1/res/values-ky/values-ky.xml",
+                    "source": "/data/.gradle/caches/transforms-4/2108d8fb215be89915a30de33e7ed5b6/transformed/browser-1.8.0/res/values-ky/values-ky.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "105,176,268,347,488,657,738",
-                        "endColumns": "70,91,78,140,168,80,78",
-                        "endOffsets": "171,263,342,483,652,733,812"
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,154,259,368",
+                        "endColumns": "98,104,108,105",
+                        "endOffsets": "149,254,363,469"
                     },
                     "to": {
-                        "startLines": "36,38,42,43,46,47,48",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "3551,3721,4133,4212,4535,4704,4785",
-                        "endColumns": "70,91,78,140,168,80,78",
-                        "endOffsets": "3617,3808,4207,4348,4699,4780,4859"
+                        "startLines": "37,39,40,41",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3622,3813,3918,4027",
+                        "endColumns": "98,104,108,105",
+                        "endOffsets": "3716,3913,4022,4128"
+                    }
+                },
+                {
+                    "source": "/data/.gradle/caches/transforms-4/b18de8e2321e8da2eff93d5a60d6bc4e/transformed/core-1.13.1/res/values-ky/values-ky.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,155,257,360,467,571,675,786",
+                        "endColumns": "99,101,102,106,103,103,110,100",
+                        "endOffsets": "150,252,355,462,566,670,781,882"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,45",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2820,2920,3022,3125,3232,3336,3440,4434",
+                        "endColumns": "99,101,102,106,103,103,110,100",
+                        "endOffsets": "2915,3017,3120,3227,3331,3435,3546,4530"
                     }
                 }
             ]

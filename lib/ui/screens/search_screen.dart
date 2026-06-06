@@ -31,8 +31,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     super.initState();
     // On first entry: load persisted state, then auto-index if needed
     Future.microtask(() async {
-      // Load existing index and initialize embedding service
-      await loadPersistedState(ref);
+      try {
+        await loadPersistedState(ref);
+      } catch (e) {
+        // loadPersistedState errors are handled inside that function
+      }
 
       // Auto-index if library is empty
       final count = ref.read(indexedCountProvider);
@@ -185,6 +188,36 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                   final isIndexing = ref.watch(isIndexingProvider);
                   final progress = ref.watch(indexProgressProvider);
                   final count = ref.watch(indexedCountProvider);
+                  final error = ref.watch(indexingErrorProvider);
+
+                  if (error != null) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: Colors.red.shade50,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.red.shade200),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.error_outline,
+                              color: Colors.red.shade600, size: 18),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              error,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.red.shade700,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
                   if (isIndexing) {
                     return Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -210,7 +243,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               ),
                               const SizedBox(width: 12),
                               Text(
-                                'Indexing ${progress.$1}/${progress.$2} photos',
+                                progress.$2 == 0
+                                    ? 'Counting photos...'
+                                    : 'Indexing ${progress.$1}/${progress.$2} photos',
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -235,7 +270,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             ),
                             const SizedBox(height: 6),
                             Text(
-                              'This runs in the background — you can search anytime',
+                              'Runs in background — search is available anytime',
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Colors.grey.shade600,
@@ -267,7 +302,48 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ),
                     );
                   }
-                  return const SizedBox.shrink();
+                  // Nothing indexed, not indexing, no error — show idle state
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.shade50,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.orange.shade200),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.photo_library_outlined,
+                            color: Colors.orange.shade600, size: 16),
+                        const SizedBox(width: 8),
+                        const Expanded(
+                          child: Text(
+                            'No photos indexed yet',
+                            style: TextStyle(fontSize: 13),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => runIndexing(ref),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: VinciTheme.primary,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Text(
+                              'Start',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
 

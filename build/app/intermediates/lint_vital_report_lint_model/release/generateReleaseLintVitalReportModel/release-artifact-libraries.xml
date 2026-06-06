@@ -28,14 +28,14 @@
       name=":@@:url_launcher_android::release"
       project=":url_launcher_android"/>
   <library
-      name="io.flutter:flutter_embedding_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f@jar"
-      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/flutter_embedding_release/1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f/be503c14c11d0b9e0576ab352c15bc6fef02d540/flutter_embedding_release-1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f.jar"
-      resolved="io.flutter:flutter_embedding_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f"/>
+      name="io.flutter:flutter_embedding_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262@jar"
+      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/flutter_embedding_release/1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262/73e796dcc72053d1d78a3515b9474d76b17795c/flutter_embedding_release-1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262.jar"
+      resolved="io.flutter:flutter_embedding_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262"/>
   <library
       name="androidx.fragment:fragment:1.7.1@aar"
-      jars="/data/.gradle/caches/transforms-4/963f385262497681791dcb5fd7cd9fb2/transformed/fragment-1.7.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/1a723bb732131530c3f68549441d1fb0/transformed/fragment-1.7.1/jars/classes.jar"
       resolved="androidx.fragment:fragment:1.7.1"
-      folder="/data/.gradle/caches/transforms-4/963f385262497681791dcb5fd7cd9fb2/transformed/fragment-1.7.1"
+      folder="/data/.gradle/caches/transforms-4/1a723bb732131530c3f68549441d1fb0/transformed/fragment-1.7.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -46,9 +46,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.activity:activity:1.8.1@aar"
-      jars="/data/.gradle/caches/transforms-4/ab7a1a2754e4cf9813f924c9386a74d7/transformed/activity-1.8.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/afbb3d2cd4478576399dee37624eae31/transformed/activity-1.8.1/jars/classes.jar"
       resolved="androidx.activity:activity:1.8.1"
-      folder="/data/.gradle/caches/transforms-4/ab7a1a2754e4cf9813f924c9386a74d7/transformed/activity-1.8.1"
+      folder="/data/.gradle/caches/transforms-4/afbb3d2cd4478576399dee37624eae31/transformed/activity-1.8.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -59,9 +59,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.loader:loader:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/a86dbe052831a3245a0a19a7f5a9e2fc/transformed/loader-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/b9f23155b68f92980d93fff508dde6b5/transformed/loader-1.0.0/jars/classes.jar"
       resolved="androidx.loader:loader:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/a86dbe052831a3245a0a19a7f5a9e2fc/transformed/loader-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/b9f23155b68f92980d93fff508dde6b5/transformed/loader-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -72,9 +72,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/d7d5f07630e8ae44980e7c15da81346a/transformed/lifecycle-livedata-core-ktx-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/fff56417691f93d81430cc84fc7329e7/transformed/lifecycle-livedata-core-ktx-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/d7d5f07630e8ae44980e7c15da81346a/transformed/lifecycle-livedata-core-ktx-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/fff56417691f93d81430cc84fc7329e7/transformed/lifecycle-livedata-core-ktx-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -85,9 +85,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-livedata:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/b22e0f2f41b94c75c7759f5cab3957c2/transformed/lifecycle-livedata-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/926c98c81962671b2ddf9e6059024fec/transformed/lifecycle-livedata-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-livedata:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/b22e0f2f41b94c75c7759f5cab3957c2/transformed/lifecycle-livedata-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/926c98c81962671b2ddf9e6059024fec/transformed/lifecycle-livedata-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -98,9 +98,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-viewmodel:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/39ba48ef09bf9df2ffcca4db33568c53/transformed/lifecycle-viewmodel-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/e93551bd1c205db1dc14ce112be64d62/transformed/lifecycle-viewmodel-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/39ba48ef09bf9df2ffcca4db33568c53/transformed/lifecycle-viewmodel-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/e93551bd1c205db1dc14ce112be64d62/transformed/lifecycle-viewmodel-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -111,9 +111,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-livedata-core:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/a3b203ac937ef56161ddb87f0ab842ae/transformed/lifecycle-livedata-core-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/6267cc4d491430ab3a3bdd7717ee98d0/transformed/lifecycle-livedata-core-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-livedata-core:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/a3b203ac937ef56161ddb87f0ab842ae/transformed/lifecycle-livedata-core-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/6267cc4d491430ab3a3bdd7717ee98d0/transformed/lifecycle-livedata-core-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -124,9 +124,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/aab1aad8287bfb132f3f07efb14abd5a/transformed/lifecycle-viewmodel-savedstate-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/72203ba53ea66f82c3e49674997dae56/transformed/lifecycle-viewmodel-savedstate-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/aab1aad8287bfb132f3f07efb14abd5a/transformed/lifecycle-viewmodel-savedstate-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/72203ba53ea66f82c3e49674997dae56/transformed/lifecycle-viewmodel-savedstate-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -137,9 +137,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.core:core-ktx:1.13.1@aar"
-      jars="/data/.gradle/caches/transforms-4/7d98ae1481cdca1cc4a54e95c8fb226a/transformed/core-ktx-1.13.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/e13efc9fba6b9d107ebdf0515e354acb/transformed/core-ktx-1.13.1/jars/classes.jar"
       resolved="androidx.core:core-ktx:1.13.1"
-      folder="/data/.gradle/caches/transforms-4/7d98ae1481cdca1cc4a54e95c8fb226a/transformed/core-ktx-1.13.1"
+      folder="/data/.gradle/caches/transforms-4/e13efc9fba6b9d107ebdf0515e354acb/transformed/core-ktx-1.13.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -150,9 +150,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.viewpager:viewpager:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/e50f2f4aff6c5aed2199c42db7ff44ba/transformed/viewpager-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/edf97a9220af96720658b699e777aace/transformed/viewpager-1.0.0/jars/classes.jar"
       resolved="androidx.viewpager:viewpager:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/e50f2f4aff6c5aed2199c42db7ff44ba/transformed/viewpager-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/edf97a9220af96720658b699e777aace/transformed/viewpager-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -163,9 +163,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.customview:customview:1.1.0@aar"
-      jars="/data/.gradle/caches/transforms-4/1409cc2dd91cec35579f23d8537d8062/transformed/customview-1.1.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/8c6532c12d61cc939f5f8694ad74e186/transformed/customview-1.1.0/jars/classes.jar"
       resolved="androidx.customview:customview:1.1.0"
-      folder="/data/.gradle/caches/transforms-4/1409cc2dd91cec35579f23d8537d8062/transformed/customview-1.1.0"
+      folder="/data/.gradle/caches/transforms-4/8c6532c12d61cc939f5f8694ad74e186/transformed/customview-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -176,9 +176,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.core:core:1.13.1@aar"
-      jars="/data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/b18de8e2321e8da2eff93d5a60d6bc4e/transformed/core-1.13.1/jars/classes.jar"
       resolved="androidx.core:core:1.13.1"
-      folder="/data/.gradle/caches/transforms-4/1d36050774a16dedde0ee7eda0edc83b/transformed/core-1.13.1"
+      folder="/data/.gradle/caches/transforms-4/b18de8e2321e8da2eff93d5a60d6bc4e/transformed/core-1.13.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -189,9 +189,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-runtime:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/13e1f3a02ccb8d6d28c8945fd0509c75/transformed/lifecycle-runtime-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/46ddf1d820450c539314261eab6942aa/transformed/lifecycle-runtime-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-runtime:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/13e1f3a02ccb8d6d28c8945fd0509c75/transformed/lifecycle-runtime-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/46ddf1d820450c539314261eab6942aa/transformed/lifecycle-runtime-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -202,9 +202,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-process:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/c46a6e80a54a3176b2bfb4c85aad9851/transformed/lifecycle-process-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-process:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/636188e17d805fded491794a1a50e16d/transformed/lifecycle-process-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/c46a6e80a54a3176b2bfb4c85aad9851/transformed/lifecycle-process-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -223,9 +223,9 @@
       resolved="androidx.lifecycle:lifecycle-common:2.7.0"/>
   <library
       name="androidx.window:window:1.2.0@aar"
-      jars="/data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/deb2e53815c1227dbd1e3a3faf73ad4f/transformed/window-1.2.0/jars/classes.jar"
       resolved="androidx.window:window:1.2.0"
-      folder="/data/.gradle/caches/transforms-4/f7ca2b5674da36f91c05dec2e85e415c/transformed/window-1.2.0"
+      folder="/data/.gradle/caches/transforms-4/deb2e53815c1227dbd1e3a3faf73ad4f/transformed/window-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -236,9 +236,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.window:window-java:1.2.0@aar"
-      jars="/data/.gradle/caches/transforms-4/eb12f8134e23a3451d6eaf6371f02344/transformed/window-java-1.2.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/7a78ed16540cf722548d5368a684e742/transformed/window-java-1.2.0/jars/classes.jar"
       resolved="androidx.window:window-java:1.2.0"
-      folder="/data/.gradle/caches/transforms-4/eb12f8134e23a3451d6eaf6371f02344/transformed/window-java-1.2.0"
+      folder="/data/.gradle/caches/transforms-4/7a78ed16540cf722548d5368a684e742/transformed/window-java-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -249,9 +249,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.annotation:annotation-experimental:1.4.0@aar"
-      jars="/data/.gradle/caches/transforms-4/657e2d4dfb7b8c39f46bf77194223ef0/transformed/annotation-experimental-1.4.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/16aa067c269010ab51eb81226bbd8ea3/transformed/annotation-experimental-1.4.0/jars/classes.jar"
       resolved="androidx.annotation:annotation-experimental:1.4.0"
-      folder="/data/.gradle/caches/transforms-4/657e2d4dfb7b8c39f46bf77194223ef0/transformed/annotation-experimental-1.4.0"
+      folder="/data/.gradle/caches/transforms-4/16aa067c269010ab51eb81226bbd8ea3/transformed/annotation-experimental-1.4.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -262,9 +262,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.savedstate:savedstate:1.2.1@aar"
-      jars="/data/.gradle/caches/transforms-4/0c8e69ffb477134f54f6e8b9b75f0dc8/transformed/savedstate-1.2.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/3bf6f6f04ff3a0db8bf2e21444c5b3b6/transformed/savedstate-1.2.1/jars/classes.jar"
       resolved="androidx.savedstate:savedstate:1.2.1"
-      folder="/data/.gradle/caches/transforms-4/0c8e69ffb477134f54f6e8b9b75f0dc8/transformed/savedstate-1.2.1"
+      folder="/data/.gradle/caches/transforms-4/3bf6f6f04ff3a0db8bf2e21444c5b3b6/transformed/savedstate-1.2.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -275,9 +275,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.arch.core:core-runtime:2.2.0@aar"
-      jars="/data/.gradle/caches/transforms-4/af7c400de75672722155eec679f27dd8/transformed/core-runtime-2.2.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/19d90628501fd5f07492ec9e1746b526/transformed/core-runtime-2.2.0/jars/classes.jar"
       resolved="androidx.arch.core:core-runtime:2.2.0"
-      folder="/data/.gradle/caches/transforms-4/af7c400de75672722155eec679f27dd8/transformed/core-runtime-2.2.0"
+      folder="/data/.gradle/caches/transforms-4/19d90628501fd5f07492ec9e1746b526/transformed/core-runtime-2.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -292,9 +292,9 @@
       resolved="androidx.arch.core:core-common:2.2.0"/>
   <library
       name="androidx.versionedparcelable:versionedparcelable:1.1.1@aar"
-      jars="/data/.gradle/caches/transforms-4/fa920d9493cd645bb63e04e04a0fe067/transformed/versionedparcelable-1.1.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/40c42c14f84c51c59c1a8c5285a769d3/transformed/versionedparcelable-1.1.1/jars/classes.jar"
       resolved="androidx.versionedparcelable:versionedparcelable:1.1.1"
-      folder="/data/.gradle/caches/transforms-4/fa920d9493cd645bb63e04e04a0fe067/transformed/versionedparcelable-1.1.1"
+      folder="/data/.gradle/caches/transforms-4/40c42c14f84c51c59c1a8c5285a769d3/transformed/versionedparcelable-1.1.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -332,26 +332,26 @@
       jars="/data/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.9.24/9928532f12c66ad816a625b3f9984f8368ca6d2b/kotlin-stdlib-1.9.24.jar"
       resolved="org.jetbrains.kotlin:kotlin-stdlib:1.9.24"/>
   <library
-      name="io.flutter:armeabi_v7a_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f@jar"
-      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/armeabi_v7a_release/1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f/dd7197e5735f57f05dad09c16bb3807ec5a3f98b/armeabi_v7a_release-1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f.jar"
-      resolved="io.flutter:armeabi_v7a_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f"/>
+      name="io.flutter:armeabi_v7a_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262@jar"
+      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/armeabi_v7a_release/1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262/bbd9a7ebd348cb2894ee724b000124de1081b410/armeabi_v7a_release-1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262.jar"
+      resolved="io.flutter:armeabi_v7a_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262"/>
   <library
-      name="io.flutter:arm64_v8a_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f@jar"
-      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/arm64_v8a_release/1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f/567b4bc0fcd07cd266cb6dbba9872053f3ddba0e/arm64_v8a_release-1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f.jar"
-      resolved="io.flutter:arm64_v8a_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f"/>
+      name="io.flutter:arm64_v8a_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262@jar"
+      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/arm64_v8a_release/1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262/8c929b4a6a7d5c0c95c3b83de32118e636263386/arm64_v8a_release-1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262.jar"
+      resolved="io.flutter:arm64_v8a_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262"/>
   <library
-      name="io.flutter:x86_64_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f@jar"
-      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/x86_64_release/1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f/c2bf249593bfb89c6d0a30a324fd6bbdeb5cff07/x86_64_release-1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f.jar"
-      resolved="io.flutter:x86_64_release:1.0.0-b8800d88be4866db1b15f8b954ab2573bba9960f"/>
+      name="io.flutter:x86_64_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262@jar"
+      jars="/data/.gradle/caches/modules-2/files-2.1/io.flutter/x86_64_release/1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262/aa3f9d8baa7bbc9dbf7f12e756ea325333f3506c/x86_64_release-1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262.jar"
+      resolved="io.flutter:x86_64_release:1.0.0-a18df97ca57a249df5d8d68cd0820600223ce262"/>
   <library
       name="org.jetbrains:annotations:23.0.0@jar"
       jars="/data/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/23.0.0/8cc20c07506ec18e0834947b84a864bfc094484e/annotations-23.0.0.jar"
       resolved="org.jetbrains:annotations:23.0.0"/>
   <library
       name="androidx.startup:startup-runtime:1.1.1@aar"
-      jars="/data/.gradle/caches/transforms-4/8ad590d8727894d3a3adce2bd00ab833/transformed/startup-runtime-1.1.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/e9a003f66735cc8d77643dca529a52da/transformed/startup-runtime-1.1.1/jars/classes.jar"
       resolved="androidx.startup:startup-runtime:1.1.1"
-      folder="/data/.gradle/caches/transforms-4/8ad590d8727894d3a3adce2bd00ab833/transformed/startup-runtime-1.1.1"
+      folder="/data/.gradle/caches/transforms-4/e9a003f66735cc8d77643dca529a52da/transformed/startup-runtime-1.1.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -362,9 +362,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.tracing:tracing:1.2.0@aar"
-      jars="/data/.gradle/caches/transforms-4/d00c3c32b024cb0bafdf075d7d9deb78/transformed/tracing-1.2.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/2e56cbe40c5ee9d6e094ec1941ba6d3c/transformed/tracing-1.2.0/jars/classes.jar"
       resolved="androidx.tracing:tracing:1.2.0"
-      folder="/data/.gradle/caches/transforms-4/d00c3c32b024cb0bafdf075d7d9deb78/transformed/tracing-1.2.0"
+      folder="/data/.gradle/caches/transforms-4/2e56cbe40c5ee9d6e094ec1941ba6d3c/transformed/tracing-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -375,9 +375,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.preference:preference:1.2.1@aar"
-      jars="/data/.gradle/caches/transforms-4/490c65f1f45a6b688e440e38432e9385/transformed/preference-1.2.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/47b33a8d81e71ef1e84a7e759369e36a/transformed/preference-1.2.1/jars/classes.jar"
       resolved="androidx.preference:preference:1.2.1"
-      folder="/data/.gradle/caches/transforms-4/490c65f1f45a6b688e440e38432e9385/transformed/preference-1.2.1"
+      folder="/data/.gradle/caches/transforms-4/47b33a8d81e71ef1e84a7e759369e36a/transformed/preference-1.2.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -388,9 +388,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.browser:browser:1.8.0@aar"
-      jars="/data/.gradle/caches/transforms-4/b068f5ee99f14057ed78c87d3a336719/transformed/browser-1.8.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/2108d8fb215be89915a30de33e7ed5b6/transformed/browser-1.8.0/jars/classes.jar"
       resolved="androidx.browser:browser:1.8.0"
-      folder="/data/.gradle/caches/transforms-4/b068f5ee99f14057ed78c87d3a336719/transformed/browser-1.8.0"
+      folder="/data/.gradle/caches/transforms-4/2108d8fb215be89915a30de33e7ed5b6/transformed/browser-1.8.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -401,9 +401,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.recyclerview:recyclerview:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/53ed923592e586dbcbbae5ae7dd1157c/transformed/recyclerview-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/e73d9b2acd5f2dbf7235ee2ab2930d3a/transformed/recyclerview-1.0.0/jars/classes.jar"
       resolved="androidx.recyclerview:recyclerview:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/53ed923592e586dbcbbae5ae7dd1157c/transformed/recyclerview-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/e73d9b2acd5f2dbf7235ee2ab2930d3a/transformed/recyclerview-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -414,9 +414,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.legacy:legacy-support-core-ui:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/ea3574bbd593be3ea8815a0956360197/transformed/legacy-support-core-ui-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/f5c6464563cc52671fdad55403e0235f/transformed/legacy-support-core-ui-1.0.0/jars/classes.jar"
       resolved="androidx.legacy:legacy-support-core-ui:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/ea3574bbd593be3ea8815a0956360197/transformed/legacy-support-core-ui-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/f5c6464563cc52671fdad55403e0235f/transformed/legacy-support-core-ui-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -427,9 +427,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.slidingpanelayout:slidingpanelayout:1.2.0@aar"
-      jars="/data/.gradle/caches/transforms-4/68f54259c8f9e2f4ccf7c40fad779dea/transformed/slidingpanelayout-1.2.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/ee0683c00bf929fd9a9280657ef3e693/transformed/slidingpanelayout-1.2.0/jars/classes.jar"
       resolved="androidx.slidingpanelayout:slidingpanelayout:1.2.0"
-      folder="/data/.gradle/caches/transforms-4/68f54259c8f9e2f4ccf7c40fad779dea/transformed/slidingpanelayout-1.2.0"
+      folder="/data/.gradle/caches/transforms-4/ee0683c00bf929fd9a9280657ef3e693/transformed/slidingpanelayout-1.2.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -440,9 +440,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.appcompat:appcompat:1.1.0@aar"
-      jars="/data/.gradle/caches/transforms-4/49dd37931871a90246024b54fa542d74/transformed/appcompat-1.1.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/46f242fb4d98263bb21b6698e5f626f1/transformed/appcompat-1.1.0/jars/classes.jar"
       resolved="androidx.appcompat:appcompat:1.1.0"
-      folder="/data/.gradle/caches/transforms-4/49dd37931871a90246024b54fa542d74/transformed/appcompat-1.1.0"
+      folder="/data/.gradle/caches/transforms-4/46f242fb4d98263bb21b6698e5f626f1/transformed/appcompat-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -453,9 +453,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.github.bumptech.glide:glide:4.16.0@aar"
-      jars="/data/.gradle/caches/transforms-4/4aa84e43965df4c1aa778ad08c0a73f6/transformed/glide-4.16.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/5bb337842d060e2c3960a3922d8e105b/transformed/glide-4.16.0/jars/classes.jar"
       resolved="com.github.bumptech.glide:glide:4.16.0"
-      folder="/data/.gradle/caches/transforms-4/4aa84e43965df4c1aa778ad08c0a73f6/transformed/glide-4.16.0"
+      folder="/data/.gradle/caches/transforms-4/5bb337842d060e2c3960a3922d8e105b/transformed/glide-4.16.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -466,9 +466,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.fragment:fragment-ktx:1.7.1@aar"
-      jars="/data/.gradle/caches/transforms-4/2976b5694a498484959fb406c77a2438/transformed/fragment-ktx-1.7.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/a4bd9eab268487fd42fd48acec5caee9/transformed/fragment-ktx-1.7.1/jars/classes.jar"
       resolved="androidx.fragment:fragment-ktx:1.7.1"
-      folder="/data/.gradle/caches/transforms-4/2976b5694a498484959fb406c77a2438/transformed/fragment-ktx-1.7.1"
+      folder="/data/.gradle/caches/transforms-4/a4bd9eab268487fd42fd48acec5caee9/transformed/fragment-ktx-1.7.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -479,9 +479,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.activity:activity-ktx:1.8.1@aar"
-      jars="/data/.gradle/caches/transforms-4/65fef0a1b07aff7f629818d473484a0a/transformed/activity-ktx-1.8.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/1e8743074efcc79bf83285ee6e9155df/transformed/activity-ktx-1.8.1/jars/classes.jar"
       resolved="androidx.activity:activity-ktx:1.8.1"
-      folder="/data/.gradle/caches/transforms-4/65fef0a1b07aff7f629818d473484a0a/transformed/activity-ktx-1.8.1"
+      folder="/data/.gradle/caches/transforms-4/1e8743074efcc79bf83285ee6e9155df/transformed/activity-ktx-1.8.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -492,9 +492,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.legacy:legacy-support-core-utils:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/824ab7c2e0fd170d0cac83701662c075/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/b4be0bdaf6320fd8a3e8dc0ab64852b6/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar"
       resolved="androidx.legacy:legacy-support-core-utils:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/824ab7c2e0fd170d0cac83701662c075/transformed/legacy-support-core-utils-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/b4be0bdaf6320fd8a3e8dc0ab64852b6/transformed/legacy-support-core-utils-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -505,9 +505,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.appcompat:appcompat-resources:1.1.0@aar"
-      jars="/data/.gradle/caches/transforms-4/08cb802a6bc362c80028fe2dccef09cf/transformed/appcompat-resources-1.1.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/ed75940c50cae20d6d68a111cf4edccb/transformed/appcompat-resources-1.1.0/jars/classes.jar"
       resolved="androidx.appcompat:appcompat-resources:1.1.0"
-      folder="/data/.gradle/caches/transforms-4/08cb802a6bc362c80028fe2dccef09cf/transformed/appcompat-resources-1.1.0"
+      folder="/data/.gradle/caches/transforms-4/ed75940c50cae20d6d68a111cf4edccb/transformed/appcompat-resources-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -518,9 +518,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.vectordrawable:vectordrawable-animated:1.1.0@aar"
-      jars="/data/.gradle/caches/transforms-4/ffd072f27b37bec014277d9fa9ca8746/transformed/vectordrawable-animated-1.1.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/075dfa196d39a278990f77f229153a3e/transformed/vectordrawable-animated-1.1.0/jars/classes.jar"
       resolved="androidx.vectordrawable:vectordrawable-animated:1.1.0"
-      folder="/data/.gradle/caches/transforms-4/ffd072f27b37bec014277d9fa9ca8746/transformed/vectordrawable-animated-1.1.0"
+      folder="/data/.gradle/caches/transforms-4/075dfa196d39a278990f77f229153a3e/transformed/vectordrawable-animated-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -531,9 +531,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.vectordrawable:vectordrawable:1.1.0@aar"
-      jars="/data/.gradle/caches/transforms-4/832763fb2dccbe6358a24c47997a4d8d/transformed/vectordrawable-1.1.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/153c739acc51f8e2ee3e06b3f9ba0bf7/transformed/vectordrawable-1.1.0/jars/classes.jar"
       resolved="androidx.vectordrawable:vectordrawable:1.1.0"
-      folder="/data/.gradle/caches/transforms-4/832763fb2dccbe6358a24c47997a4d8d/transformed/vectordrawable-1.1.0"
+      folder="/data/.gradle/caches/transforms-4/153c739acc51f8e2ee3e06b3f9ba0bf7/transformed/vectordrawable-1.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -544,9 +544,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.drawerlayout:drawerlayout:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/187b83962e54d27a117988e7a42dc562/transformed/drawerlayout-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/6a2d9fbcb3498706df482f4a75cbb617/transformed/drawerlayout-1.0.0/jars/classes.jar"
       resolved="androidx.drawerlayout:drawerlayout:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/187b83962e54d27a117988e7a42dc562/transformed/drawerlayout-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/6a2d9fbcb3498706df482f4a75cbb617/transformed/drawerlayout-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -557,9 +557,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.coordinatorlayout:coordinatorlayout:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/f2f227bce862b23e42acf0b7c35cfafd/transformed/coordinatorlayout-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/560044b3210b9b9b9616473906463410/transformed/coordinatorlayout-1.0.0/jars/classes.jar"
       resolved="androidx.coordinatorlayout:coordinatorlayout:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/f2f227bce862b23e42acf0b7c35cfafd/transformed/coordinatorlayout-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/560044b3210b9b9b9616473906463410/transformed/coordinatorlayout-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -570,9 +570,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.transition:transition:1.4.1@aar"
-      jars="/data/.gradle/caches/transforms-4/b120d43e8a9f527b074ae85fb11e09a3/transformed/transition-1.4.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/74140354383e05cf5b76de3a82c2558a/transformed/transition-1.4.1/jars/classes.jar"
       resolved="androidx.transition:transition:1.4.1"
-      folder="/data/.gradle/caches/transforms-4/b120d43e8a9f527b074ae85fb11e09a3/transformed/transition-1.4.1"
+      folder="/data/.gradle/caches/transforms-4/74140354383e05cf5b76de3a82c2558a/transformed/transition-1.4.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -583,9 +583,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/d10c5863fa6a303dbd18befd7e215073/transformed/swiperefreshlayout-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/14fca8ffdddf43cb8d5fa86b672cf25f/transformed/swiperefreshlayout-1.0.0/jars/classes.jar"
       resolved="androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/d10c5863fa6a303dbd18befd7e215073/transformed/swiperefreshlayout-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/14fca8ffdddf43cb8d5fa86b672cf25f/transformed/swiperefreshlayout-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -596,9 +596,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.asynclayoutinflater:asynclayoutinflater:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/a87e34afcad0848b719703dbd658becf/transformed/asynclayoutinflater-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/ecb74e140411640bb9c67d90c4a2a881/transformed/asynclayoutinflater-1.0.0/jars/classes.jar"
       resolved="androidx.asynclayoutinflater:asynclayoutinflater:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/a87e34afcad0848b719703dbd658becf/transformed/asynclayoutinflater-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/ecb74e140411640bb9c67d90c4a2a881/transformed/asynclayoutinflater-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -609,9 +609,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-runtime-ktx:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/55ce2fd484a2494c77872e3941f517f0/transformed/lifecycle-runtime-ktx-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/6e124ad5a56924dc2bc7684005ad4989/transformed/lifecycle-runtime-ktx-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/55ce2fd484a2494c77872e3941f517f0/transformed/lifecycle-runtime-ktx-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/6e124ad5a56924dc2bc7684005ad4989/transformed/lifecycle-runtime-ktx-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -622,9 +622,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0@aar"
-      jars="/data/.gradle/caches/transforms-4/195940c5e56ac0374662ba888c0a22cc/transformed/lifecycle-viewmodel-ktx-2.7.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/fbccc7999e891dbf334469eb22d25c6f/transformed/lifecycle-viewmodel-ktx-2.7.0/jars/classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
-      folder="/data/.gradle/caches/transforms-4/195940c5e56ac0374662ba888c0a22cc/transformed/lifecycle-viewmodel-ktx-2.7.0"
+      folder="/data/.gradle/caches/transforms-4/fbccc7999e891dbf334469eb22d25c6f/transformed/lifecycle-viewmodel-ktx-2.7.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -635,9 +635,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.savedstate:savedstate-ktx:1.2.1@aar"
-      jars="/data/.gradle/caches/transforms-4/7abf8c7c1dc5f40f0bba6fe73f8598b0/transformed/savedstate-ktx-1.2.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/7cee82aebe4abaac6c0405cfb0def36d/transformed/savedstate-ktx-1.2.1/jars/classes.jar"
       resolved="androidx.savedstate:savedstate-ktx:1.2.1"
-      folder="/data/.gradle/caches/transforms-4/7abf8c7c1dc5f40f0bba6fe73f8598b0/transformed/savedstate-ktx-1.2.1"
+      folder="/data/.gradle/caches/transforms-4/7cee82aebe4abaac6c0405cfb0def36d/transformed/savedstate-ktx-1.2.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -648,9 +648,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.exifinterface:exifinterface:1.4.2@aar"
-      jars="/data/.gradle/caches/transforms-4/dc3f3328ff637433e59c2cdf88a40778/transformed/exifinterface-1.4.2/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/2c8f2e36839598b93cde674968264270/transformed/exifinterface-1.4.2/jars/classes.jar"
       resolved="androidx.exifinterface:exifinterface:1.4.2"
-      folder="/data/.gradle/caches/transforms-4/dc3f3328ff637433e59c2cdf88a40778/transformed/exifinterface-1.4.2"
+      folder="/data/.gradle/caches/transforms-4/2c8f2e36839598b93cde674968264270/transformed/exifinterface-1.4.2"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -661,9 +661,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.profileinstaller:profileinstaller:1.3.1@aar"
-      jars="/data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/c53088b17fe2e40a29da32f294ded1be/transformed/profileinstaller-1.3.1/jars/classes.jar"
       resolved="androidx.profileinstaller:profileinstaller:1.3.1"
-      folder="/data/.gradle/caches/transforms-4/b394c8b2c45e5a51fd7b149f65c27995/transformed/profileinstaller-1.3.1"
+      folder="/data/.gradle/caches/transforms-4/c53088b17fe2e40a29da32f294ded1be/transformed/profileinstaller-1.3.1"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -674,9 +674,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="com.github.bumptech.glide:gifdecoder:4.16.0@aar"
-      jars="/data/.gradle/caches/transforms-4/3509964f5d49b316b6a013c2523c3fd5/transformed/gifdecoder-4.16.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/5daafcaaf9b7c24559d8676335b0f767/transformed/gifdecoder-4.16.0/jars/classes.jar"
       resolved="com.github.bumptech.glide:gifdecoder:4.16.0"
-      folder="/data/.gradle/caches/transforms-4/3509964f5d49b316b6a013c2523c3fd5/transformed/gifdecoder-4.16.0"
+      folder="/data/.gradle/caches/transforms-4/5daafcaaf9b7c24559d8676335b0f767/transformed/gifdecoder-4.16.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -703,9 +703,9 @@
       resolved="androidx.datastore:datastore-core-okio-jvm:1.1.3"/>
   <library
       name="androidx.datastore:datastore-core-android:1.1.3@aar"
-      jars="/data/.gradle/caches/transforms-4/4cb0f09cb64a3d7e9e391cbf7ab32ef8/transformed/datastore-core-release/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/8dddae80d9fa85b2e3e6117ee7845244/transformed/datastore-core-release/jars/classes.jar"
       resolved="androidx.datastore:datastore-core-android:1.1.3"
-      folder="/data/.gradle/caches/transforms-4/4cb0f09cb64a3d7e9e391cbf7ab32ef8/transformed/datastore-core-release"
+      folder="/data/.gradle/caches/transforms-4/8dddae80d9fa85b2e3e6117ee7845244/transformed/datastore-core-release"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -716,9 +716,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.datastore:datastore-preferences-android:1.1.3@aar"
-      jars="/data/.gradle/caches/transforms-4/a3af825b57ba57c470c515672d9a2195/transformed/datastore-preferences-release/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/059e72e878979e62f812c700dcd9825a/transformed/datastore-preferences-release/jars/classes.jar"
       resolved="androidx.datastore:datastore-preferences-android:1.1.3"
-      folder="/data/.gradle/caches/transforms-4/a3af825b57ba57c470c515672d9a2195/transformed/datastore-preferences-release"
+      folder="/data/.gradle/caches/transforms-4/059e72e878979e62f812c700dcd9825a/transformed/datastore-preferences-release"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -729,9 +729,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.datastore:datastore-android:1.1.3@aar"
-      jars="/data/.gradle/caches/transforms-4/1ac9090d25a36ab8dbfb9077fb71f0f3/transformed/datastore-release/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/8b0063e4cca710fbe8035297ddb55993/transformed/datastore-release/jars/classes.jar"
       resolved="androidx.datastore:datastore-android:1.1.3"
-      folder="/data/.gradle/caches/transforms-4/1ac9090d25a36ab8dbfb9077fb71f0f3/transformed/datastore-release"
+      folder="/data/.gradle/caches/transforms-4/8b0063e4cca710fbe8035297ddb55993/transformed/datastore-release"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -742,9 +742,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.interpolator:interpolator:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/f7f8bb26585ebf7448a8dd3a1881dc2d/transformed/interpolator-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/2d22d95fc797c62a74a81feb15b8d1ca/transformed/interpolator-1.0.0/jars/classes.jar"
       resolved="androidx.interpolator:interpolator:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/f7f8bb26585ebf7448a8dd3a1881dc2d/transformed/interpolator-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/2d22d95fc797c62a74a81feb15b8d1ca/transformed/interpolator-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -759,9 +759,9 @@
       resolved="androidx.collection:collection-ktx:1.1.0"/>
   <library
       name="androidx.cursoradapter:cursoradapter:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/132ab5509659da9b54346d7e478fcdb6/transformed/cursoradapter-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/8d5de45e4598555fff8dc329e200a93d/transformed/cursoradapter-1.0.0/jars/classes.jar"
       resolved="androidx.cursoradapter:cursoradapter:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/132ab5509659da9b54346d7e478fcdb6/transformed/cursoradapter-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/8d5de45e4598555fff8dc329e200a93d/transformed/cursoradapter-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -776,9 +776,9 @@
       resolved="androidx.concurrent:concurrent-futures:1.1.0"/>
   <library
       name="androidx.window.extensions.core:core:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/5b081999b525d450af63642c6b1e32b4/transformed/core-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/fbc1063e480dc637e8253612abb97e05/transformed/core-1.0.0/jars/classes.jar"
       resolved="androidx.window.extensions.core:core:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/5b081999b525d450af63642c6b1e32b4/transformed/core-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/fbc1063e480dc637e8253612abb97e05/transformed/core-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -789,9 +789,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.documentfile:documentfile:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/f975e5bd2610c6803ce3785783325685/transformed/documentfile-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/e9dfa16d2472bc645906a51f89369e06/transformed/documentfile-1.0.0/jars/classes.jar"
       resolved="androidx.documentfile:documentfile:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/f975e5bd2610c6803ce3785783325685/transformed/documentfile-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/e9dfa16d2472bc645906a51f89369e06/transformed/documentfile-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -802,9 +802,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/6c58fa4769c01de02532cf96daeca8a6/transformed/localbroadcastmanager-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/23798e9710892a2d93fdb41a86530845/transformed/localbroadcastmanager-1.0.0/jars/classes.jar"
       resolved="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/6c58fa4769c01de02532cf96daeca8a6/transformed/localbroadcastmanager-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/23798e9710892a2d93fdb41a86530845/transformed/localbroadcastmanager-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -815,9 +815,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="androidx.print:print:1.0.0@aar"
-      jars="/data/.gradle/caches/transforms-4/3c8d6fc611fc821c1353c374ab3dc702/transformed/print-1.0.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/222b1511eba80e31b8ce24a6d421f390/transformed/print-1.0.0/jars/classes.jar"
       resolved="androidx.print:print:1.0.0"
-      folder="/data/.gradle/caches/transforms-4/3c8d6fc611fc821c1353c374ab3dc702/transformed/print-1.0.0"
+      folder="/data/.gradle/caches/transforms-4/222b1511eba80e31b8ce24a6d421f390/transformed/print-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -840,9 +840,9 @@
       resolved="org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22"/>
   <library
       name="org.tensorflow:tensorflow-lite:2.11.0@aar"
-      jars="/data/.gradle/caches/transforms-4/ccb1d964cf0588d6ffb43defc101ce69/transformed/tensorflow-lite-2.11.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/f77f27e60f07f80ef266e3c4f17dffa0/transformed/tensorflow-lite-2.11.0/jars/classes.jar"
       resolved="org.tensorflow:tensorflow-lite:2.11.0"
-      folder="/data/.gradle/caches/transforms-4/ccb1d964cf0588d6ffb43defc101ce69/transformed/tensorflow-lite-2.11.0"
+      folder="/data/.gradle/caches/transforms-4/f77f27e60f07f80ef266e3c4f17dffa0/transformed/tensorflow-lite-2.11.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -853,9 +853,9 @@
       proguardRules="proguard.txt"/>
   <library
       name="org.tensorflow:tensorflow-lite-gpu:2.11.0@aar"
-      jars="/data/.gradle/caches/transforms-4/5478f34591c021dbb1bed3b4dfb7c3f2/transformed/tensorflow-lite-gpu-2.11.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/989ec2d331bfc2cc47c9aaf9df1edb18/transformed/tensorflow-lite-gpu-2.11.0/jars/classes.jar"
       resolved="org.tensorflow:tensorflow-lite-gpu:2.11.0"
-      folder="/data/.gradle/caches/transforms-4/5478f34591c021dbb1bed3b4dfb7c3f2/transformed/tensorflow-lite-gpu-2.11.0"
+      folder="/data/.gradle/caches/transforms-4/989ec2d331bfc2cc47c9aaf9df1edb18/transformed/tensorflow-lite-gpu-2.11.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -878,9 +878,9 @@
       resolved="org.jspecify:jspecify:1.0.0"/>
   <library
       name="org.tensorflow:tensorflow-lite-api:2.11.0@aar"
-      jars="/data/.gradle/caches/transforms-4/fa037ea15b4f1c1505e4837091a6a070/transformed/tensorflow-lite-api-2.11.0/jars/classes.jar"
+      jars="/data/.gradle/caches/transforms-4/8f615c0af0182e2b80c1dc5ae2417f61/transformed/tensorflow-lite-api-2.11.0/jars/classes.jar"
       resolved="org.tensorflow:tensorflow-lite-api:2.11.0"
-      folder="/data/.gradle/caches/transforms-4/fa037ea15b4f1c1505e4837091a6a070/transformed/tensorflow-lite-api-2.11.0"
+      folder="/data/.gradle/caches/transforms-4/8f615c0af0182e2b80c1dc5ae2417f61/transformed/tensorflow-lite-api-2.11.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

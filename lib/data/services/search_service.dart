@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import '../../domain/entities/photo_entity.dart';
 import '../../domain/entities/search_result.dart';
 import 'embedding_service.dart';
@@ -14,12 +15,22 @@ class SearchService {
   SearchService(this._embeddingService, this._vectorStore);
 
   /// Search for photos matching a text query.
+  /// Returns an error string if search fails, or the results list.
   Future<List<SearchResult>> search(String query, {int limit = 20}) async {
     // Ensure embedding service is initialized before search
-    await _embeddingService.initialize();
+    try {
+      await _embeddingService.initialize();
+    } catch (e) {
+      throw Exception('AI model not available: $e');
+    }
 
     // 1. Embed the text query
-    final queryEmbedding = await _embeddingService.embedText(query);
+    Float32List queryEmbedding;
+    try {
+      queryEmbedding = await _embeddingService.embedText(query);
+    } catch (e) {
+      throw Exception('Failed to process search query: $e');
+    }
 
     // 2. Search vector store
     final hits = await _vectorStore.searchKnn(

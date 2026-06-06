@@ -26,6 +26,6 @@
       applicationId="io.flutter.plugins.urllauncher"
       generatedSourceFolders="/data/.openclaw/workspace/vinci/build/url_launcher_android/generated/ap_generated_sources/release/out:/data/.openclaw/workspace/vinci/build/url_launcher_android/generated/source/buildConfig/release"
       generatedResourceFolders="/data/.openclaw/workspace/vinci/build/url_launcher_android/generated/res/resValues/release"
-      desugaredMethodsFiles="/data/.gradle/caches/transforms-4/e4797adac1df08d0afff475e6ace5eae/transformed/D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="/data/.gradle/caches/transforms-4/d2c7a31091ed68d6b6af49cc9070909c/transformed/D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

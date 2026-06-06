@@ -1,38 +1,38 @@
 [
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/notification_action_tombstone.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/notification_action_tombstone.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/notification_action_tombstone.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/ime_secondary_split_test_activity.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/ime_secondary_split_test_activity.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/ime_secondary_split_test_activity.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/notification_template_custom_big.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/notification_template_custom_big.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/notification_template_custom_big.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/custom_dialog.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/custom_dialog.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/custom_dialog.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/notification_template_icon_group.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/notification_template_icon_group.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/notification_template_icon_group.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/notification_template_part_chronometer.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/notification_template_part_chronometer.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/notification_template_part_time.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/notification_template_part_time.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/notification_template_part_time.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/ime_base_split_test_activity.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/ime_base_split_test_activity.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/ime_base_split_test_activity.xml"
     },
     {
         "merged": "org.tensorflow.tflite_flutter-merged_res-23:/layout/notification_action.xml",
-        "source": "org.tensorflow.tflite_flutter-core-1.13.1-2:/layout/notification_action.xml"
+        "source": "org.tensorflow.tflite_flutter-core-1.13.1-11:/layout/notification_action.xml"
     }
 ]

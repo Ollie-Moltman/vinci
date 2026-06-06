@@ -5,9 +5,9 @@
     targetSdkVersion="36"
     shrinking="true"
     mergedManifest="/data/.openclaw/workspace/vinci/build/app/intermediates/merged_manifest/release/AndroidManifest.xml"
-    proguardFiles="/data/.openclaw/workspace/vinci/build/app/intermediates/default_proguard_files/global/proguard-android.txt-8.2.0:/tmp/flutter/packages/flutter_tools/gradle/flutter_proguard_rules.pro:proguard-rules.pro"
+    proguardFiles="/data/.openclaw/workspace/vinci/build/app/intermediates/default_proguard_files/global/proguard-android.txt-8.2.0:/data/flutter/packages/flutter_tools/gradle/flutter_proguard_rules.pro:proguard-rules.pro"
     partialResultsDir="/data/.openclaw/workspace/vinci/build/app/intermediates/lint_vital_partial_results/release/out"
-    desugaredMethodsFiles="/data/.gradle/caches/transforms-4/e4797adac1df08d0afff475e6ace5eae/transformed/D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="/data/.gradle/caches/transforms-4/d2c7a31091ed68d6b6af49cc9070909c/transformed/D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>
@@ -32,6 +32,6 @@
       applicationId="com.vinci.vinci"
       generatedSourceFolders="/data/.openclaw/workspace/vinci/build/app/generated/ap_generated_sources/release/out"
       generatedResourceFolders="/data/.openclaw/workspace/vinci/build/app/generated/res/resValues/release"
-      desugaredMethodsFiles="/data/.gradle/caches/transforms-4/e4797adac1df08d0afff475e6ace5eae/transformed/D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="/data/.gradle/caches/transforms-4/d2c7a31091ed68d6b6af49cc9070909c/transformed/D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>
