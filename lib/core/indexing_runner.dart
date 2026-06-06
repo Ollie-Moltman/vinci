@@ -109,6 +109,10 @@ Future<void> runIndexing(WidgetRef ref) async {
 }
 
 /// Load persisted index state on app startup.
+///
+/// indexDirProvider is set via override in main.dart BEFORE runApp(), so
+/// vectorStoreProvider gets the correct path on first creation. Do NOT
+/// overwrite indexDirProvider here — that would break the override.
 Future<void> loadPersistedState(WidgetRef ref) async {
   final embeddingService = ref.read(embeddingServiceProvider);
 
@@ -120,10 +124,6 @@ Future<void> loadPersistedState(WidgetRef ref) async {
   }
 
   final vectorStore = ref.read(vectorStoreProvider);
-
-  // Set the index directory path before loading
-  final dir = await getApplicationDocumentsDirectory();
-  ref.read(indexDirProvider.notifier).state = dir.path;
 
   // Load index with error handling — corrupt files are cleared
   try {
