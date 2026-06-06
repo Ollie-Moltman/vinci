@@ -110,10 +110,15 @@ class EmbeddingService {
     final imgOutput = Float32List(_embeddingDim);
     final dummyOut = Float32List(1);
 
-    _textInterpreter!.runForMultipleInputs(
-      [dummyImage, tokens],
-      {0: textOutput, 1: imgOutput, 2: dummyOut},
-    );
+    try {
+      _textInterpreter!.runForMultipleInputs(
+        [dummyImage, tokens],
+        {0: textOutput, 1: imgOutput, 2: dummyOut},
+      );
+    } catch (e) {
+      // Surface TFLite errors clearly rather than silently failing
+      throw Exception('TFLite text inference failed: $e');
+    }
 
     _normalize(textOutput);
     return textOutput;
@@ -135,10 +140,14 @@ class EmbeddingService {
     final textOutput = Float32List(_embeddingDim);
     final dummyOut = Float32List(1);
 
-    _imageInterpreter!.runForMultipleInputs(
-      [inputTensor, emptyTokens],
-      {0: textOutput, 1: imgOutput, 2: dummyOut},
-    );
+    try {
+      _imageInterpreter!.runForMultipleInputs(
+        [inputTensor, emptyTokens],
+        {0: textOutput, 1: imgOutput, 2: dummyOut},
+      );
+    } catch (e) {
+      throw Exception('TFLite image inference failed: $e');
+    }
 
     _normalize(imgOutput);
     return imgOutput;

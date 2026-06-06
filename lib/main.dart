@@ -13,7 +13,7 @@ import 'ui/screens/settings_screen.dart';
 import 'providers/providers.dart';
 import 'data/services/model_download_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -21,6 +21,7 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
+
   runApp(const ProviderScope(child: VinciApp()));
 }
 
@@ -49,14 +50,14 @@ class VinciApp extends StatelessWidget {
 /// 2. If models missing → Model download screen
 /// 3. Permissions check
 /// 4. Home
-class StartupFlow extends StatefulWidget {
+class StartupFlow extends ConsumerStatefulWidget {
   const StartupFlow({super.key});
 
   @override
-  State<StartupFlow> createState() => _StartupFlowState();
+  ConsumerState<StartupFlow> createState() => _StartupFlowState();
 }
 
-class _StartupFlowState extends State<StartupFlow> {
+class _StartupFlowState extends ConsumerState<StartupFlow> {
   static const _splashDuration = Duration(milliseconds: 900);
 
   _StartupStep _step = _StartupStep.splash;
@@ -73,6 +74,12 @@ class _StartupFlowState extends State<StartupFlow> {
     if (!mounted) return;
 
     final appDir = await getApplicationDocumentsDirectory();
+
+    // CRITICAL: Set indexDirProvider BEFORE any screen that uses
+    // vectorStoreProvider. This ensures VectorStore gets the correct
+    // path (not an empty string) on first creation.
+    ref.read(indexDirProvider.notifier).state = '${appDir.path}/vectors';
+
     final modelDir = '${appDir.path}/.vinci/models';
 
     // Ensure directory exists before checking or downloading

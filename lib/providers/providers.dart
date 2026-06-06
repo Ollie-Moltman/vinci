@@ -13,8 +13,13 @@ final permissionServiceProvider = Provider((_) => PermissionService());
 final embeddingServiceProvider = Provider((_) => EmbeddingService());
 
 final vectorStoreProvider = Provider<VectorStore>((ref) {
+  // Use ref.watch so this recreates VectorStore if indexDirProvider changes.
+  // indexDirProvider is now set in main.dart before runApp, so this is correct.
   final dir = ref.watch(indexDirProvider);
-  return VectorStore('$dir/vectors');
+  final effectiveDir = dir.isEmpty
+      ? throw StateError('indexDirProvider not initialized before vectorStoreProvider first access')
+      : dir;
+  return VectorStore('$effectiveDir/vectors');
 });
 
 final searchServiceProvider = Provider<SearchService>((ref) {
