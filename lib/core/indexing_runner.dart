@@ -112,8 +112,12 @@ Future<void> runIndexing(WidgetRef ref) async {
 Future<void> loadPersistedState(WidgetRef ref) async {
   final embeddingService = ref.read(embeddingServiceProvider);
 
-  // Initialize embedding service at startup
-  await embeddingService.initialize();
+  // Initialize embedding service at startup (errors are logged but don't crash)
+  try {
+    await embeddingService.initialize();
+  } catch (e) {
+    // Non-fatal at startup — search will use fake embeddings
+  }
 
   final vectorStore = ref.read(vectorStoreProvider);
 

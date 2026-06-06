@@ -55,6 +55,9 @@ class EmbeddingService {
       // Load CLIP tokenizer (always from assets, small file)
       _tokenizer = CLIPTokenizer();
       await _tokenizer!.load();
+      if (!_tokenizer!.isLoaded) {
+        throw Exception('Tokenizer loaded but isLoaded=false');
+      }
 
       // Load TFLite models from documents directory (~/.vinci/models/)
       final modelDir = await _modelDir;
@@ -64,18 +67,35 @@ class EmbeddingService {
       final imageFile = File(imageModelPath);
       final textFile = File(textModelPath);
 
-      if (await imageFile.exists() && await textFile.exists()) {
-        _imageInterpreter = await Interpreter.fromFile(imageFile);
-        _imageInterpreter!.allocateTensors();
+      final imageExists = await imageFile.exists();
+      final textExists = await textFile.exists();
 
-        _textInterpreter = await Interpreter.fromFile(textFile);
-        _textInterpreter!.allocateTensors();
-
-        _isInitialized = true;
+      if (!imageExists) {
+        throw Exception('Image model not found at: $imageModelPath');
       }
-      // If models not found, service stays uninitialized — embeddings use fake fallback
+      if (!textExists) {
+        throw Exception('Text model not found at: $textModelPath');
+      }
+
+      final imageSize = await imageFile.length();
+      final textSize = await textFile.length();
+      if (imageSize < 1000000) {
+        throw Exception('Image model file too small: $imageSize bytes');
+      }
+      if (textSize < 1000000) {
+        throw Exception('Text model file too small: $textSize bytes');
+      }
+
+      _imageInterpreter = await Interpreter.fromFile(imageFile);
+      _imageInterpreter!.allocateTensors();
+
+      _textInterpreter = await Interpreter.fromFile(textFile);
+      _textInterpreter!.allocateTensors();
+
+      _isInitialized = true;
     } catch (e) {
       _isInitialized = false;
+      rethrow;
     }
   }
 
