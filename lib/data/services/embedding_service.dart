@@ -149,7 +149,7 @@ class EmbeddingService {
   // -------------------------------------------------------------------------
 
   /// Run text query through the text model.
-  /// Uses invoke() directly for full control over tensor I/O.
+  /// Uses runForMultipleInputs with 2 output buffers to match model outputs.
   Float32List _runTextEmbedding(String text) {
     final tokens = _tokenize(text);
 
@@ -158,29 +158,29 @@ class EmbeddingService {
       throw Exception('Text model has ${inputTensors.length} inputs, expected at least 2');
     }
 
-    // Set inputs directly on tensors (batch dim included in shape)
     final dummyImage = Float32List(3 * _imageSize * _imageSize);
-    inputTensors[0].setTo(dummyImage);
-    inputTensors[1].setTo(tokens);
+    final textOutput = Float32List(_embeddingDim);
+    final imgOutput = Float32List(_embeddingDim);
+    final dummyOut = Float32List(1);
 
     try {
-      _textInterpreter!.invoke();
+      _textInterpreter!.runForMultipleInputs(
+        [dummyImage, tokens],
+        {0: textOutput, 1: imgOutput, 2: dummyOut},
+      );
     } catch (e, st) {
       final outTensors = _textInterpreter!.getOutputTensors();
       final shapes = outTensors.map((t) => '${t.name}(${t.shape})').join(', ');
       throw Exception('TFLite text inference failed: $e | output shapes: $shapes | $st');
     }
 
-    // Read output tensor 0 (text embedding)
-    final outTensors = _textInterpreter!.getOutputTensors();
-    final textBuf = Float32List(_embeddingDim);
-    outTensors[0].copyTo(textBuf);
-    _normalize(textBuf);
-    return textBuf;
+    _normalize(textOutput);
+    return textOutput;
   }
 
   /// Run image through the image model.
-  /// Uses invoke() directly for full control over tensor I/O.
+  /// Takes image [1, 3, 256, 256] float32 + empty text tokens [1, 77].
+  /// Returns image embedding [1, 512] float32 (output index 1).
   Float32List _runImageEmbedding(Uint8List bytes) {
     final image = img.decodeImage(bytes);
     if (image == null) return _fakeEmbedding(bytes.length);
@@ -188,24 +188,23 @@ class EmbeddingService {
     final resized = img.copyResize(image, width: _imageSize, height: _imageSize);
     final inputTensor = _preprocessImage(resized);
 
-    final inputTensors = _imageInterpreter!.getInputTensors();
-    inputTensors[0].setTo(inputTensor);
-    inputTensors[1].setTo(_createEmptyTokens());
+    final imgOutput = Float32List(_embeddingDim);
+    final textOutput = Float32List(_embeddingDim);
+    final dummyOut = Float32List(1);
 
     try {
-      _imageInterpreter!.invoke();
+      _imageInterpreter!.runForMultipleInputs(
+        [inputTensor, _createEmptyTokens()],
+        {0: textOutput, 1: imgOutput, 2: dummyOut},
+      );
     } catch (e, st) {
       final outTensors = _imageInterpreter!.getOutputTensors();
       final shapes = outTensors.map((t) => '${t.name}(${t.shape})').join(', ');
       throw Exception('TFLite image inference failed: $e | output shapes: $shapes | $st');
     }
 
-    // Read output tensor 1 (image embedding)
-    final outTensors = _imageInterpreter!.getOutputTensors();
-    final imgBuf = Float32List(_embeddingDim);
-    outTensors[1].copyTo(imgBuf);
-    _normalize(imgBuf);
-    return imgBuf;
+    _normalize(imgOutput);
+    return imgOutput;
   }
 
   // -------------------------------------------------------------------------
