@@ -97,21 +97,6 @@ class EmbeddingService {
       if (textInputs.length < 2) {
         throw Exception('Text model has only ${textInputs.length} input tensors, expected 2');
       }
-      // Validate: first input (image) should be float32 [1,3,256,256], second input (tokens) should be int64 [?,77]
-      final imgInput = textInputs[0];
-      final tokInput = textInputs[1];
-      // Warm-up inference to catch any runtime issues
-      try {
-        final warmTokens = Int64List(_maxTokens);
-        final warmImg = Float32List(3 * _imageSize * _imageSize);
-        final warmOut = Float32List(_embeddingDim);
-        _textInterpreter!.runForMultipleInputs(
-          [warmImg, warmTokens],
-          {0: warmOut, 1: warmOut, 2: Float32List(1)},
-        );
-      } catch (e) {
-        throw Exception('Text model warm-up failed: $e');
-      }
 
       final imgInputs = _imageInterpreter!.getInputTensors();
       if (imgInputs.length < 2) {
