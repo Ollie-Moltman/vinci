@@ -86,10 +86,12 @@ class EmbeddingService {
         throw Exception('Text model file too small: $textSize bytes');
       }
 
-      _imageInterpreter = await Interpreter.fromFile(imageFile);
+      // Disable NNAPI to avoid device-compatibility issues
+      final opts = InterpreterOptions()..useNnApiForAndroid = false;
+      _imageInterpreter = await Interpreter.fromFile(imageFile, options: opts);
       _imageInterpreter!.allocateTensors();
 
-      _textInterpreter = await Interpreter.fromFile(textFile);
+      _textInterpreter = await Interpreter.fromFile(textFile, options: opts);
       _textInterpreter!.allocateTensors();
 
       // Validate tensor shapes after allocation
