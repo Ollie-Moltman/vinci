@@ -98,10 +98,26 @@ class EmbeddingService {
         throw Exception('Text model has only ${textInputs.length} input tensors, expected 2');
       }
 
+      // Log all tensor shapes for debugging
+      final textOuts = _textInterpreter!.getOutputTensors();
+      final textInShapes = textInputs.map((t) => '${t.name}(${t.shape})').join(', ');
+      final textOutShapes = textOuts.map((t) => '${t.name}(${t.shape})').join(', ');
+      // ignore: avoid_print
+      print('[EmbeddingService] Text model input tensors: $textInShapes');
+      // ignore: avoid_print
+      print('[EmbeddingService] Text model output tensors: $textOutShapes');
+
       final imgInputs = _imageInterpreter!.getInputTensors();
       if (imgInputs.length < 2) {
         throw Exception('Image model has only ${imgInputs.length} input tensors, expected 2');
       }
+      final imgOuts = _imageInterpreter!.getOutputTensors();
+      final imgInShapes = imgInputs.map((t) => '${t.name}(${t.shape})').join(', ');
+      final imgOutShapes = imgOuts.map((t) => '${t.name}(${t.shape})').join(', ');
+      // ignore: avoid_print
+      print('[EmbeddingService] Image model input tensors: $imgInShapes');
+      // ignore: avoid_print
+      print('[EmbeddingService] Image model output tensors: $imgOutShapes');
 
       _isInitialized = true;
     } catch (e) {
@@ -142,12 +158,6 @@ class EmbeddingService {
       throw Exception('Text model has ${inputTensors.length} inputs, expected at least 2');
     }
 
-    // Log tensor shapes for debugging
-    for (var i = 0; i < inputTensors.length; i++) {
-      final t = inputTensors[i];
-      // Shape, type validation done silently in release
-    }
-
     final dummyImage = Float32List(3 * _imageSize * _imageSize);
     final textOutput = Float32List(_embeddingDim);
     final imgOutput = Float32List(_embeddingDim);
@@ -158,8 +168,11 @@ class EmbeddingService {
         [dummyImage, tokens],
         {0: textOutput, 1: imgOutput, 2: dummyOut},
       );
-    } catch (e) {
-      throw Exception('TFLite text inference failed: $e');
+    } catch (e, st) {
+      // Log tensor shapes on failure for debugging
+      final outTensors = _textInterpreter!.getOutputTensors();
+      final shapes = outTensors.map((t) => '${t.name}(${t.shape})').join(', ');
+      throw Exception('TFLite text inference failed: $e | output shapes: $shapes | $st');
     }
 
     _normalize(textOutput);
@@ -187,8 +200,10 @@ class EmbeddingService {
         [inputTensor, emptyTokens],
         {0: textOutput, 1: imgOutput, 2: dummyOut},
       );
-    } catch (e) {
-      throw Exception('TFLite image inference failed: $e');
+    } catch (e, st) {
+      final outTensors = _imageInterpreter!.getOutputTensors();
+      final shapes = outTensors.map((t) => '${t.name}(${t.shape})').join(', ');
+      throw Exception('TFLite image inference failed: $e | output shapes: $shapes | $st');
     }
 
     _normalize(imgOutput);
