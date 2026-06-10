@@ -44,6 +44,8 @@ Future<void> runIndexing(WidgetRef ref) async {
     return;
   }
 
+  // Set indexing state immediately, before any async work.
+  // finally block below handles reset on all exit paths.
   ref.read(isIndexingProvider.notifier).state = true;
 
   try {
@@ -62,7 +64,7 @@ Future<void> runIndexing(WidgetRef ref) async {
     if (total == 0) {
       // No photos on device — not an error, just nothing to index
       ref.read(indexProgressProvider.notifier).state = (0, 0);
-      return;
+      // NOTE: finally block below will set isIndexing=false
     }
 
     ref.read(indexProgressProvider.notifier).state = (0, total);
@@ -132,7 +134,7 @@ Future<void> loadPersistedState(WidgetRef ref) async {
     await vectorStore.clearIndex();
   }
 
-  if (vectorStore.indexedCount > 0) {
-    ref.read(indexedCountProvider.notifier).state = vectorStore.indexedCount;
-  }
+  // Always update indexedCountProvider after load attempt, whether
+  // load succeeded (show real count) or failed/cleared (count is 0)
+  ref.read(indexedCountProvider.notifier).state = vectorStore.indexedCount;
 }
